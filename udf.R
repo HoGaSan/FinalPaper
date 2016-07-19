@@ -3,17 +3,19 @@
 #Function name: loadLibraries
 #Input: none
 #Output: none
-#Main use: load the required libraries for the project
+#Main use: load the required libraries for the project, if library is not installed, than installs it as well
 
 loadLibraries <- function() {
-  require(grid)
-  require(ggplot2)
-  require(lattice)
-  require(ggplot2movies)
+  if (!require(RODBC)) {install.packages("RODBC"); require(RODBC)}
+  if (!require(knitr)) {install.packages("knitr"); require(knitr)}
+  if (!require(data.table)) {install.packages("data.table"); require(data.table)}
+  if (!require(dplyr)) {install.packages("dplyr"); require(dplyr)}
+  
+  #require(grid)
+  #require(ggplot2)
+  #require(lattice)
+  #require(ggplot2movies)
   #require(latticeExtra)
-  #require(knitr)
-  #require(data.table)
-  #require(dplyr)
 }
 
 
