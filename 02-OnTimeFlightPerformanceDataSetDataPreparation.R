@@ -21,7 +21,7 @@ if (file.exists(destfile) != TRUE)
 
 #unzip the file
 unzip(destfile, exdir = "./DataSets")
+destfile2 <- "./DataSets/On_Time_On_Time_Performance_1987_10.csv"
 
-On_Time_On_Time_Performance_1987_10 <- data.table(read.csv(destfile, header = TRUE))
-
+On_Time_On_Time_Performance_1987_10 <- data.table(read.csv(destfile2, header = TRUE))
 
