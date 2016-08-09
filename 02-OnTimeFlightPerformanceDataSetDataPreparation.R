@@ -5,19 +5,31 @@
 #File naming pattern: On_Time_On_Time_Performance_<year>_<month>.zip
 #File name example: On_Time_On_Time_Performance_1989_12.zip
 
-#setting the download parameters
-URL <- "http://tsdata.bts.gov/PREZIP/On_Time_On_Time_Performance_1987_10.zip"
-destfile <- "./DataSets/On_Time_On_Time_Performance_1987_10.zip"
-method="curl"
 
-#if the file exists then do not download again
-if (file.exists(destfile) != TRUE)
-{
-  download.file(URL, destfile, method)
-} else
-{
-  message("File exists no download required.")
+#Setting the download parameters
+#Generating the filenames
+#Downloading the files
+method="curl"
+for (i in 1987:2015){
+  for (j in 1:12){
+    sourceFile <- paste("On_Time_On_Time_Performance_", i, "_", j, ".zip", sep = "")
+    URL <- paste("http://tsdata.bts.gov/PREZIP/", sourceFile, sep = "")
+    destinationFile <- paste("./flightData/", sourceFile, sep = "")
+    
+    #if the file exists then do not download again
+    if (file.exists(destinationFile) != TRUE)
+    {
+      message("Downloading ", sourceFile)
+      download.file(URL, destinationFile, method)
+      Sys.sleep(2)
+    } else
+    {
+      message(sourceFile," file exists, no download required.")
+    }
+  }
 }
+
+#files moved to /tmp/flightData
 
 #unzip the file
 unzip(destfile, exdir = "./DataSets")
