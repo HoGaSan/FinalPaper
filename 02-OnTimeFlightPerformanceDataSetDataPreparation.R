@@ -14,7 +14,7 @@ for (i in 1987:2015){
   for (j in 1:12){
     sourceFile <- paste("On_Time_On_Time_Performance_", i, "_", j, ".zip", sep = "")
     URL <- paste("http://tsdata.bts.gov/PREZIP/", sourceFile, sep = "")
-    destinationFile <- paste("./flightData/", sourceFile, sep = "")
+    destinationFile <- paste("/app/finalProject/flightData/", sourceFile, sep = "")
     
     #if the file exists then do not download again
     if (file.exists(destinationFile) != TRUE)
@@ -32,9 +32,11 @@ for (i in 1987:2015){
 #files moved to /tmp/flightData
 
 #unzip the file
-unzip(destfile, exdir = "./DataSets")
-destfile2 <- "./DataSets/On_Time_On_Time_Performance_1987_10.csv"
+destfile2 <- "/app/finalProject/flightData/On_Time_On_Time_Performance_1987_10.zip"
+unzip(destfile2, exdir = "/app/finalProject/flightData/")
+
+unzippedfile <- "/app/finalProject/flightData/On_Time_On_Time_Performance_1987_10.csv"
 
 system.time(
-On_Time_On_Time_Performance_1987_10 <- data.table(read.csv(destfile2, header = TRUE))
+On_Time_On_Time_Performance_1987_10 <- data.table(read.csv(unzippedfile, header = TRUE))
 )
