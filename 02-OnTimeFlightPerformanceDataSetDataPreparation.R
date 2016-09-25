@@ -32,7 +32,7 @@ for (i in 1987:2015){
 #files moved to /tmp/flightData
 
 #unzip the file
-destfile2 <- "/app/finalProject/flightData/On_Time_On_Time_Performance_1987_10.zip"
+destfile2 <- "/app/finalProject/flightData/On_Time_On_Time_Performance_1987_11.zip"
 unzip(destfile2, exdir = "/app/finalProject/flightData/")
 
 unzippedfile <- "/app/finalProject/flightData/On_Time_On_Time_Performance_1987_10.csv"
