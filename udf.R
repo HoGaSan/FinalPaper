@@ -10,6 +10,8 @@ loadLibraries <- function() {
   if (!require(knitr)) {install.packages("knitr"); require(knitr)}
   if (!require(data.table)) {install.packages("data.table"); require(data.table)}
   if (!require(dplyr)) {install.packages("dplyr"); require(dplyr)}
+  if (!require(dtplyr)) {install.packages("dtplyr"); require(dtplyr)}
+
   
   #require(grid)
   #require(ggplot2)
