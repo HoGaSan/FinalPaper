@@ -5,8 +5,8 @@
 
 #setting the download parameters
 URL <- "http://wildlife.faa.gov/downloads/wildlife.zip"
-destfile <- "/app/finalProject/wildLife/wildlife.zip"
-method="curl"
+destfile <- paste(getwd(), "/DataSets/wildlife.zip", sep = "")
+method="auto"
 
 #if the file exists then do not download again
 if (file.exists(destfile) != TRUE)
@@ -16,6 +16,7 @@ if (file.exists(destfile) != TRUE)
 {
   message("File exists no download required.")
 }
+##OK##############################
 
 #unzip the file
 unzip(destfile, exdir = "/app/finalProject/wildLife")
