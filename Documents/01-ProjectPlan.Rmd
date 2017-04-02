@@ -2,7 +2,6 @@
 title: "Project Plan of the Final Paper"
 subtitle: "for the CEU MSc in Business Analytics program"
 author: "Gabor Horvath"
-date: "2017"
 output: pdf_document
 description: "Describe the project and the resource needs in one page. Any special need in training, tools or any restrictions (e.g., non-disclosure agreement) should be specified here. Signed by student, host and mentor."
 ---
@@ -31,9 +30,13 @@ Fulfilling the completition need for the project the following tools are planned
     + [RStudio](https://www.rstudio.com/)
 * Documentation (including this initial project description) is created using:
     + [knitr](https://yihui.name/knitr/)
+    + [MiKTeX](https://miktex.org/)
     + [ReporteRs](https://cran.r-project.org/web/packages/ReporteRs/index.html)
 * Data visualisation:
     + [ggplot2](http://ggplot2.org/)
+* Data manipulation:
+    + [access2csv](https://github.com/AccelerationNet/access2csv)
+    + [dtplyr](https://cran.r-project.org/web/packages/dtplyr/index.html)
 * Project plan / task management:
     + [Buckets](https://www.buckets.co/)
 * Source code repository:
@@ -56,6 +59,9 @@ Restrictions apply as per the restrictions set by the tools, data providers and 
 
 ## Contributors
 
-Student: Gabor Horvath
-
+Student: Gabor Horvath  
 Mentor: Gergely Daroczi
+  
+  
+  
+Budapest, 2017
