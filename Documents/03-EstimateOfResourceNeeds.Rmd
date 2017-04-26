@@ -6,8 +6,12 @@ output:
   pdf_document:
     number_sections: true
 description: "Students estimates the resource needs of the project. Who needs to be involved? What time do they need to devote to the project? Any new software or data needs to purchased?"
+header-includes:
+  - \usepackage{color}
 ---
+\pagenumbering{gobble}
 \newpage
+\pagenumbering{arabic}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

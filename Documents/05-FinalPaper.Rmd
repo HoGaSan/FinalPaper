@@ -2,9 +2,15 @@
 title: "Final Paper"
 author: "Gabor Horvath"
 date: "26 March 2017"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
+header-includes:
+  - \usepackage{color}
 ---
-
+\pagenumbering{gobble}
+\newpage
+\pagenumbering{arabic}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source("../udf.R")

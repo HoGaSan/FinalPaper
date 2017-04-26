@@ -9,7 +9,9 @@ description: "Student documents business needs as gathered from clients. User st
 header-includes:
   - \usepackage{color}
 ---
+\pagenumbering{gobble}
 \newpage
+\pagenumbering{arabic}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

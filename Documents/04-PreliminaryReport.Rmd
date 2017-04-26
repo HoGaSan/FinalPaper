@@ -1,11 +1,17 @@
 ---
-title: "Preliminary report"
+title: "Preliminary report of the Final Paper"
+subtitle: "for the CEU MSc in Business Analytics program"
 author: "Gabor Horvath"
-date: "26 March 2017"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 description: "This contains the description of the business needs and the scope of the project, results of the analysis with exhibits, and recommendations for management."
+header-includes:
+  - \usepackage{color}
 ---
+\pagenumbering{gobble}
 \newpage
+\pagenumbering{arabic}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
