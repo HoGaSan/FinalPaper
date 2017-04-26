@@ -6,6 +6,8 @@ output:
   pdf_document:
     number_sections: true
 description: "This contains the description of the business needs and the scope of the project, results of the analysis with exhibits, and recommendations for management."
+urlcolor: blue
+linkcolor: blue
 header-includes:
   - \usepackage{color}
 ---
@@ -17,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# 1. Business understanding
+# Business understanding
 
 Determine Business Objectives
 Background
@@ -118,7 +120,7 @@ Experience Documentation
 
 
 
-# 3. Contributors
+# Contributors
 
 Student: Gabor Horvath  
 Mentor: Gergely Daroczi

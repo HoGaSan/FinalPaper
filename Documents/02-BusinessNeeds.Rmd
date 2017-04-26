@@ -6,6 +6,8 @@ output:
   pdf_document:
     number_sections: true
 description: "Student documents business needs as gathered from clients. User stories, scope of the project."
+urlcolor: blue
+linkcolor: blue
 header-includes:
   - \usepackage{color}
 ---
@@ -69,7 +71,7 @@ This is a one-man project, no significant cost is expected. Main benefit is to p
 ## Produce Project Plan
 
 ### Project Plan
-The project is managed in an agile way, where all the tasks, requirements, issues, solutions, and ideas are kept in a project @ [Buckets](https://www.buckets.co/).
+The project is managed in an agile way, where all the tasks, requirements, issues, solutions, and ideas are kept in a project at [buckets](https://www.buckets.co/).
 
 ### Initial Assessment of Tools and Techniques
 * Programming language:

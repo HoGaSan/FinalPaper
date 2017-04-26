@@ -5,6 +5,8 @@ date: "26 March 2017"
 output: 
   pdf_document:
     number_sections: true
+urlcolor: blue
+linkcolor: blue
 header-includes:
   - \usepackage{color}
 ---

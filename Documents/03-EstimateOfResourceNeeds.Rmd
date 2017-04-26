@@ -6,6 +6,8 @@ output:
   pdf_document:
     number_sections: true
 description: "Students estimates the resource needs of the project. Who needs to be involved? What time do they need to devote to the project? Any new software or data needs to purchased?"
+urlcolor: blue
+linkcolor: blue
 header-includes:
   - \usepackage{color}
 ---

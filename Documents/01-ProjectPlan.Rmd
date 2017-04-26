@@ -2,10 +2,18 @@
 title: "Project Plan of the Final Paper"
 subtitle: "for the CEU MSc in Business Analytics program"
 author: "Gabor Horvath"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 description: "Describe the project and the resource needs in one page. Any special need in training, tools or any restrictions (e.g., non-disclosure agreement) should be specified here. Signed by student, host and mentor."
+urlcolor: blue
+linkcolor: blue
+header-includes:
+  - \usepackage{color}
 ---
-
+\pagenumbering{gobble}
+\newpage
+\pagenumbering{arabic}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
