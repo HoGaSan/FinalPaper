@@ -1,31 +1,147 @@
 ---
-title: "Business needs"
+title: "Business needs of the Final Paper"
+subtitle: "for the CEU MSc in Business Analytics program"
 author: "Gabor Horvath"
-date: "26 March 2017"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 description: "Student documents business needs as gathered from clients. User stories, scope of the project."
+header-includes:
+  - \usepackage{color}
 ---
-
+\newpage
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The structure of the document follows the Cross Industry Standard Process for Data Mining (CRISP-DM) process model, which is a non-proprietary, documented, and freely available data mining model [@shearer2000]. Whenever the model sections can be matched to (and can fulfill) the requirements stated by CEU for the Final Paper I'm using the appropiate section identified by the CRIPS-DM model. Please keep in mind that the model supports the full end-to-end process of a data mining project, but the project does not require the use of all the model elements.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+# Business understanding
 
-## Including Plots
+## Determine Business Objectives
 
-You can also embed plots, for example:
+### Business Objectives
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+\color{red}**TODO**\color{black}
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Business Success Criteria
+* Identification of featured determining the risk potential of an airport
+* Working model for animal strike prediction
+
+## Assess Situation
+
+### Inventory of resources
+* Flight Data
+* Animal Strike Data
+* R
+* Buckets
+
+### Requirements, Assumptions, and Constraints
+
+### Risks and Contingencies
+* No initial Risks identified
+* No initial Contingencies identified
+
+### Terminology
+
+\color{red}**TODO**\color{black}
+
+
+### Costs and Benefits
+This is a one-man project, no significant cost is expected. Main benefit is to put to and almost end-to-end scenario the topics covered during the courses and discovering bits and bolts of the techniques for creating the project. 
+
+## Determine Data Mining Goals
+
+### Data Mining Goals
+* Understand, Analyse, Clean and Merge the source data correctly
+* Create the required attributes
+* Generate the required records (if applicable)
+
+### Data Mining Success Criteria
+* Identification of featured determining the risk potential of an airport
+* Working model for animal strike prediction
+
+## Produce Project Plan
+
+### Project Plan
+The project is managed in an agile way, where all the tasks, requirements, issues, solutions, and ideas are kept in a project @ [Buckets](https://www.buckets.co/).
+
+### Initial Assessment of Tools and Techniques
+* Programming language:
+    + [R](https://www.r-project.org/)
+* GUI for the programming language:
+    + [RStudio](https://www.rstudio.com/)
+* Documentation (including this initial project description) is created using:
+    + [knitr](https://yihui.name/knitr/)
+    + [MiKTeX](https://miktex.org/)
+    + [ReporteRs](https://cran.r-project.org/web/packages/ReporteRs/index.html)
+* Data visualisation:
+    + [ggplot2](http://ggplot2.org/)
+* Data manipulation:
+    + [access2csv](https://github.com/AccelerationNet/access2csv)
+    + [dtplyr](https://cran.r-project.org/web/packages/dtplyr/index.html)
+* Project plan / task management:
+    + [Buckets](https://www.buckets.co/)
+* Source code repository:
+    + [GitHub](https://github.com/)
+
+# Data Understanding
+
+## Collect Initial Data
+
+### Initial Data Collection Report
+This report will be part of the following documents:
+
+* Preliminary Report
+* Final Paper
+
+## Describe Data
+
+### Data Description Report
+
+\color{red}**TODO**\color{black}
+
+## Explore Data
+
+### Data Exploration Report
+This report will be part of the following documents:
+
+* Preliminary Report
+* Final Paper
+
+## Verify Data Quality
+
+### Data Quality Report
+This report will be part of the following documents:
+
+* Preliminary Report
+* Final Paper
+
+
+# Contributors
+
+Student: Gabor Horvath  
+Mentor: Gergely Daroczi
+
+\newpage
+# References
+
+---
+references:
+- id: shearer2000
+  title: The CRISP-DM Model - The New Blueprint for Data Mining
+  author:
+  - family: Shearer
+    given: Colin
+  volume: 5
+  number: 4
+  publisher: Journal of Data Warehousing
+  page: 13-22
+  type: article-journal
+  issued:
+    year: 2000
+    month: 9
+---

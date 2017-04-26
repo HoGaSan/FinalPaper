@@ -1,31 +1,69 @@
 ---
-title: "Estimate of resource needs"
+title: "Estimate of resource needs of the Final Paper"
+subtitle: "for the CEU MSc in Business Analytics program"
 author: "Gabor Horvath"
-date: "26 March 2017"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 description: "Students estimates the resource needs of the project. Who needs to be involved? What time do they need to devote to the project? Any new software or data needs to purchased?"
 ---
-
+\newpage
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Human resource needs
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Stakeholders & people to involve
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+As this final paper is a pet project, there is no actual business management behind the requirements, therefore no business stakeholders are identified and involved. The completition of the project requires feedback and guidenance from the mentor (Gergely Daroczi), but no other person (or role) needs to be involved.
 
-```{r cars}
-summary(cars)
-```
+## Dedication for the project
 
-## Including Plots
+There are no additonal time dedication requirements identified above the requirements stated by CEU in the Final Project description document.
 
-You can also embed plots, for example:
+## Training requirements
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+As stated earlier no additonal organized / official training requirements are required above the trainings received during the courses in the program. There are tools and techiques used to fulfill the project, which have not been described in the program at CEU. There are several usefull user manuals available on the webpages of the creators of the tools, which would enable the use of these tools and resources for any student who have been part of the program.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# Software and data resource needs
+
+
+## Tools & resources used
+
+As stated earlier, fulfilling the completition need for the project the following tools are planned to be used:
+
+* Programming language:
+    + [R](https://www.r-project.org/)
+* GUI for the programming language:
+    + [RStudio](https://www.rstudio.com/)
+* Documentation (including this initial project description) is created using:
+    + [knitr](https://yihui.name/knitr/)
+    + [MiKTeX](https://miktex.org/)
+    + [ReporteRs](https://cran.r-project.org/web/packages/ReporteRs/index.html)
+* Data visualisation:
+    + [ggplot2](http://ggplot2.org/)
+* Data manipulation:
+    + [access2csv](https://github.com/AccelerationNet/access2csv)
+    + [dtplyr](https://cran.r-project.org/web/packages/dtplyr/index.html)
+* Project plan / task management:
+    + [Buckets](https://www.buckets.co/)
+* Source code repository:
+    + [GitHub](https://github.com/)
+
+*Note: The list above do not contain the list of all the packages used to create the project, but the full list will be provided in the source code.*
+
+## Data sources
+
+As stated earlier, the project will use the following data provided by multiple US government agencies:
+
+* [Federal Aviation Administration - Wildlife Strike Database](http://wildlife.faa.gov/)
+* [United States Department of Transportation - Bureau of Transportation Statistics](https://www.bts.gov/)
+
+*Note: In case data enrichment would be required for the sucessfull risk modelling, additional data sources might be used as well. These possible additional data sources will be listed in the Final Paper.*
+
+# Contributors
+
+Student: Gabor Horvath  
+Mentor: Gergely Daroczi
