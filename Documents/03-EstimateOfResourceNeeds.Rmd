@@ -10,10 +10,16 @@ urlcolor: blue
 linkcolor: blue
 header-includes:
   - \usepackage{color}
+  - \usepackage{fancyhdr}
 ---
 \pagenumbering{gobble}
 \newpage
 \pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thetitle}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
