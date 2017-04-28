@@ -23,8 +23,7 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
+<!--
 # Business understanding
 
 Determine Business Objectives
@@ -125,7 +124,7 @@ Review Project
 Experience Documentation
 
 
-
+-->
 # Contributors
 
 Student: Gabor Horvath  
