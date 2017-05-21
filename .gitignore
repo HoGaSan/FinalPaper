@@ -2,12 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
-DataSets/wildlife*
-DataSets/STRIKE_*
-DataSets/On_Time_*
-DataSets/read*
+DataSets/*
 Documents/Input/*
 Documents/*.Rmd
 Documents/9*
 Documents/r-*.pptx
-9*.R
+9*.*
