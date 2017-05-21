@@ -6,5 +6,6 @@ DataSets/wildlife*
 DataSets/STRIKE_*
 DataSets/On_Time_*
 DataSets/read*
-Documents/*.Rmd
 Documents/Input/*
+Documents/*.Rmd
+9*.R
