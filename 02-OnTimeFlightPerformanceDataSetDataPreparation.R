@@ -1,68 +1,62 @@
-#getwd()
-#setwd("DataSets")
-#setwd("..")
-#Files are located: https://www.transtats.bts.gov/PREZIP/
-#File naming pattern: On_Time_On_Time_Performance_<year>_<month>.zip
-#File name example: On_Time_On_Time_Performance_1989_12.zip
-#https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time
 
+onTimeFlightPerformanceDataSet <- function() {
+  #setting the download parameters
+  readConfigFile(TRUE)
+  
+  method="auto"
+  dataDir <- getDataDir()
+  startYear <- getStartYear()
+  endYear <- getEndYear()
+  startMonth <- getStartMonth()
+  endMonth <- getEndMonth()
 
-#Setting the download parameters
-#Generating the filenames
-#Downloading the files
-
-method="auto"
-#Files are available from 1987, but we need them only from 1990
-for (i in 1990:2016){
-  for (j in 1:12){
-    sourceFile <- paste("On_Time_On_Time_Performance_", i, "_", j, ".zip", sep = "")
-    URL <- paste("https://www.transtats.bts.gov/PREZIP/", sourceFile, sep = "")
-    destinationFile <- paste(getwd(), "/DataSets/", sourceFile, sep = "")
-    
-    #if the file exists then do not download again
-    if (file.exists(destinationFile) != TRUE)
-    {
-      message("Downloading ", sourceFile)
-      download.file(URL, destinationFile, method)
-      Sys.sleep(0.5)
-    } else
-    {
-      message(sourceFile," file exists, no download required.")
-    }
-  }
-}
-
-#setwd("DataSets")
-#setwd("..")
-#getwd()
-
-#Unzipping
-for (i in 1990:2016){
-  for (j in 1:12){
-    #zipped file unzipping
-    zippedFileName <- paste("On_Time_On_Time_Performance_", i, "_", j, ".zip", sep = "")
-    zippedFile <- paste(getwd(), "/DataSets/", zippedFileName, sep = "")
-    print(paste("Unzipping: ",zippedFile,sep=""))
-    #No overwrite, so if the unzip was done, then it's not done again.
-    #Gives warning because of the "readme.html" file, which is there in every zip file.
-    unzip(zippedFile, overwrite = FALSE, exdir = paste(getwd(), "/DataSets", sep = ""))
-  }
-}
-
-#warnings()
-
-
-#variable creation
-
-for (i in 1990:2016){ #2016
-  for (j in 1:12){
-    #unzipped file handling
-    unzippedFileName <- paste("On_Time_On_Time_Performance_", i, "_", j, ".csv", sep = "")
-    unzippedFile <- paste(getwd(), "/DataSets/", unzippedFileName, sep = "")
-    variableName <- paste("On_Time_On_Time_Performance_", i, "_", j, sep = "")
-    if (file.exists(unzippedFile) == TRUE){
-      print(variableName)
-      assign(variableName, data.table(read.csv(unzippedFile, header = TRUE)))
-    }
-  }
+  for (i in startYear:endYear){
+    for (j in startMonth:endMonth){
+      
+      variableName <- paste("On_Time_On_Time_Performance_", i, "_", j, sep = "")
+      
+      sourceFile <- paste(variableName, ".zip", sep = "")
+      URL <- paste(getFData(), sourceFile, sep = "")
+      destinationFile <- paste(dataDir, "/", sourceFile, sep = "")
+      
+      #if the file exists then do not download again
+      if (file.exists(destinationFile) != TRUE)
+      {
+        message("Downloading ", sourceFile)
+        download.file(URL, destinationFile, method)
+        Sys.sleep(0.1)
+      } else
+      {
+        message(sourceFile," file exists, no download is required.")
+      }
+      
+      zippedFileName <- sourceFile
+      zippedFile <- destinationFile
+      unzippedFileName <- paste(variableName, ".csv", sep = "")
+      unzippedFile <- paste(dataDir, "/", unzippedFileName, sep = "")
+      
+      #if the file exists then do not unzip it again
+      if (file.exists(unzippedFile) != TRUE)
+      {
+        message("Unzipping ", zippedFileName)
+        unzip(zippedFile, overwrite = FALSE, exdir = dataDir) #No overwrite, so if the unzip was done (and the if condition is wrong), then it's not done again.
+        #Clear warnings to get rid of the unzip warnings created because of the "readme.html" file, which is there in every zip file.
+        assign("last.warning", NULL, envir = baseenv())
+      } else
+      {
+        message(unzippedFileName," file exists, no unzip is required.")
+      }
+      
+      #if the variable is available, then do not reassign it
+      if (exists(variableName) != TRUE){
+        message("Reading ", variableName)
+        assign(variableName, data.table(read.csv(unzippedFile, header = TRUE)), envir = .GlobalEnv)
+      } else
+      {
+        message(variableName," variable exists, no assign is required.")
+      }
+      
+    } #end of "for (j in startMonth:endMonth)"
+  } #end of "for (i in startYear:endYear)"
+  
 }
