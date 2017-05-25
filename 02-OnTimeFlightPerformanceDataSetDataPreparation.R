@@ -1,8 +1,6 @@
 
 onTimeFlightPerformanceDataSet <- function() {
-  #setting the download parameters
-  readConfigFile(TRUE)
-  
+
   method="auto"
   dataDir <- getDataDir()
   startYear <- getStartYear()
@@ -46,16 +44,17 @@ onTimeFlightPerformanceDataSet <- function() {
       {
         message(unzippedFileName," file exists, no unzip is required.")
       }
-      
+
       #if the variable is available, then do not reassign it
-      if (exists(variableName) != TRUE){
-        message("Reading ", variableName)
-        assign(variableName, data.table(read.csv(unzippedFile, header = TRUE)), envir = .GlobalEnv)
-      } else
-      {
-        message(variableName," variable exists, no assign is required.")
-      }
-      
+#      if (exists(variableName) != TRUE){
+#        message("Reading ", variableName)
+#        assign(variableName, data.table(read.csv(unzippedFile, header = TRUE)), envir = .GlobalEnv)
+#      } else
+#      {
+#        message(variableName," variable exists, no assign is required.")
+#      }
+
+        
     } #end of "for (j in startMonth:endMonth)"
   } #end of "for (i in startYear:endYear)"
   
