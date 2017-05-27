@@ -1,0 +1,28 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+\graphicspath{ {Input/} }
+
+\pagenumbering{gobble}
+
+\begin{centering}
+
+\vspace*{2cm}
+  \Huge\textbf{Project Plan of the Final Paper}\\
+\vspace*{2cm}
+  \large\textbf{for the CEU MSc in Business Analytics program}
+
+\vfill
+
+\large\textit{Gábor Horváth}
+
+\vspace{1cm}
+  \normalsize{2017}
+  
+\includegraphics{CEU_logo_color2}
+
+\end{centering}

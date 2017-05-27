@@ -1,0 +1,11 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+* Assumptions
+    + No initial assumptions made. 
+

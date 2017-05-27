@@ -1,0 +1,73 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+#    pandoc_args: ["--output=Output/03-EstimateOfResourceNeeds.pdf"]
+urlcolor: blue
+linkcolor: black
+header-includes:
+  - \usepackage{color}
+  - \usepackage{fancyhdr}
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+bibliography: 850-Bibliography.bib
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+source("../90-UserDefinedFunctions.R")
+suppressPackageStartupMessages(loadLibraries())
+suppressPackageStartupMessages(readConfigFile(FALSE))
+```
+
+\pagenumbering{gobble}
+
+```{r child = '931-TitlePage.Rmd'}
+```
+
+\newpage
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\footrulewidth}{0.4pt}
+
+# Human resource needs
+
+## Stakeholders & people to involve
+
+As this final paper is a pet project, there is no actual business management behind the requirements, therefore no business stakeholders are identified and involved. The completition of the project requires feedback and guidenance from the mentor (Gergely Daroczi), but no other person (or role) needs to be involved.
+
+## Dedication for the project
+
+There are no additonal time dedication requirements identified above the requirements stated by CEU in the Final Project description document.
+
+## Training requirements
+
+As stated earlier no additonal organized / official training requirements are required above the trainings received during the courses in the program. There are tools and techiques used to fulfill the project, which have not been described in the program at CEU. There are several usefull user manuals available on the webpages of the creators of the tools, which would enable the use of these tools and resources for any student who have been part of the program.
+
+
+# Software and data resource needs
+
+
+## Tools & resources used
+
+As stated earlier, fulfilling the completition need for the project the following tools are planned to be used:
+
+```{r child = '871-Tools.Rmd'}
+```
+
+## Data sources
+
+As stated earlier, the project will use the following data provided by multiple US government agencies:
+
+```{r child = '872-DataSources.Rmd'}
+```
+
+# Contributors
+
+```{r child = '860-Contributors.Rmd'}
+```

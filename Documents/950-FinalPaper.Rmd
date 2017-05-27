@@ -1,0 +1,114 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+#    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
+urlcolor: blue
+linkcolor: black
+header-includes:
+  - \usepackage{color}
+  - \usepackage{fancyhdr}
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+bibliography: 850-Bibliography.bib
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+source("../90-UserDefinedFunctions.R")
+suppressPackageStartupMessages(loadLibraries())
+suppressPackageStartupMessages(readConfigFile(FALSE))
+```
+
+\pagenumbering{gobble}
+
+```{r child = '951-TitlePage.Rmd'}
+```
+
+\newpage
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\footrulewidth}{0.4pt}
+
+# Introduction
+
+```{r child = '010-Introduction.Rmd'}
+```
+
+\newpage
+
+# Business Understanding
+
+```{r child = '110-BusinessUnderstanding.Rmd'}
+```
+
+\newpage
+
+# Data Understanding
+
+```{r child = '210-DataUnderstanding.Rmd'}
+```
+
+\newpage
+
+# Data Preparation
+
+```{r child = '310-DataPreparation.Rmd'}
+```
+
+\newpage
+
+# Modeling
+
+```{r child = '410-Modeling.Rmd'}
+```
+
+\newpage
+
+# Evaluation
+
+```{r child = '510-Evaluation.Rmd'}
+```
+
+
+\newpage
+
+# Deployment
+
+```{r child = '610-Deployment.Rmd'}
+```
+
+
+
+\newpage
+
+# Contributors
+
+```{r child = '860-Contributors.Rmd'}
+```
+
+\newpage
+
+#Environment
+
+```{r child = '870-Environment.Rmd'}
+```
+
+\newpage
+
+```{r child = '880-TOC.Rmd'}
+```
+
+\newpage
+
+#References
+
+```{r child = '890-References.Rmd'}
+```
+  

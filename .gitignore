@@ -3,8 +3,4 @@
 .RData
 .Ruserdata
 DataSets/*
-Documents/Input/*
-Documents/*.Rmd
-Documents/9*
-Documents/r-*.pptx
-9*.*
+Readings/*

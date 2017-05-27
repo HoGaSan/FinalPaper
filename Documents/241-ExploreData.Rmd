@@ -1,0 +1,14 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+### Data Exploration Report
+This report will be part of the following documents:
+
+```{r child = '891-DocumentReferences.Rmd'}
+```
+

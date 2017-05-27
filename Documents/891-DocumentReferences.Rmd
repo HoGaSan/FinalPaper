@@ -1,0 +1,9 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+* Preliminary Report
+* Final Paper

@@ -1,0 +1,10 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+No additonal organized / official training requirements are required above the trainings received during the courses in the program. There are tools and techiques used to fulfill the project which have not been described in the program at CEU, but there are several usefull user manuals available on the webpages of the toold creators, which would enable the use of these tools and resources for any student who have been part of the program.
+

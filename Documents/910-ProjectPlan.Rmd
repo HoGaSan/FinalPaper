@@ -1,0 +1,63 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+#    pandoc_args: ["--output=Output/01-ProjectPlan.pdf"]
+urlcolor: blue
+linkcolor: black
+header-includes:
+  - \usepackage{color}
+  - \usepackage{fancyhdr}
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+---
+\pagenumbering{gobble}
+
+```{r child = '911-TitlePage.Rmd'}
+```
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+# High level description
+
+```{r child = '912-Introduction.Rmd'}
+```
+
+# Resource needs
+
+## Training requirements
+
+```{r child = '913-TrainingRequirements.Rmd'}
+```
+
+## Tools & resources used
+
+Fulfilling the completition need for the project the following tools are planned to be used:
+
+```{r child = '871-Tools.Rmd'}
+```
+
+
+## Data sources
+
+The project will use the following data provided by multiple US government agencies:
+
+```{r child = '872-DataSources.Rmd'}
+```
+
+## Restrictions
+
+Restrictions apply as per the restrictions set by the tools, data providers and owners of additional resources used. No addtional restrictions have been identified and set regarding the use of the results of this project.
+
+## Contributors
+
+```{r child = '860-Contributors.Rmd'}
+```

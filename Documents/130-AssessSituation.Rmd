@@ -1,0 +1,42 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+### Inventory of resources
+* Flight Data
+* Animal Strike Data
+* R
+* Buckets
+
+### Requirements, Assumptions, and Constraints
+
+```{r child = '132-Requirements.Rmd'}
+```
+```{r child = '133-Assumptions.Rmd'}
+```
+```{r child = '134-Constraints.Rmd'}
+```
+
+
+### Risks and Contingencies
+
+```{r child = '135-Risks.Rmd'}
+```
+```{r child = '136-Contingencies.Rmd'}
+```
+
+
+### Terminology
+
+The project is using different terminologies from the different domains. The terms/definitions used will not be marked or explained in details, if based on the context the reader can easily identify the domain of the particular term. In case there are uncertainities about a term (and it's not explained in the paper), the following sources can be used for the definitions:
+
+```{r child = '840-Terminology.Rmd'}
+```
+
+### Costs and Benefits
+This is a one-man project, no significant cost is expected. Main benefit is to put to and almost end-to-end scenario the topics covered during the courses and discovering bits and bolts of the techniques for creating the project. 
+

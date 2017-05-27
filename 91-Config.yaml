@@ -1,0 +1,14 @@
+directories:
+  maindir : H:/!!Code/R/FinalPaper
+  backupdir : E:/!!CodeBackup/R-FinalPaper
+  datasets : H:/!!Code/R/FinalPaper/DataSets
+  documents : H:/!!Code/R/FinalPaper/Documents
+sources:
+  wildlife : http://wildlife.faa.gov/downloads/wildlife.zip
+  flightdata : https://www.transtats.bts.gov/PREZIP/
+years:
+  startyear : 1990
+  endyear : 2016
+months:
+  startmonth : 1
+  endmonth : 12

@@ -1,0 +1,15 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+### Project Plan
+The project is managed in an agile way, where all the tasks, requirements, issues, solutions, and ideas are kept in a project at [buckets](https://www.buckets.co/).
+
+### Initial Assessment of Tools and Techniques
+
+```{r child = '871-Tools.Rmd'}
+```
+

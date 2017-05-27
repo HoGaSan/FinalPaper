@@ -1,0 +1,26 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+
+## Collect Initial Data
+
+```{r child = '221-CollectInitialData.Rmd'}
+```
+
+## Describe Data
+
+```{r child = '230-DescribeData.Rmd'}
+```
+
+## Explore Data
+```{r child = '241-ExploreData.Rmd'}
+```
+
+## Verify Data Quality
+```{r child = '251-VerifyDataQuality.Rmd'}
+```

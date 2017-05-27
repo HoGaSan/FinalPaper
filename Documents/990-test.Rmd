@@ -1,0 +1,31 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+#    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
+urlcolor: blue
+linkcolor: black
+header-includes:
+  - \usepackage{color}
+  - \usepackage{fancyhdr}
+  - \usepackage{multicol}
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+bibliography: 850-Bibliography.bib
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+source("../90-UserDefinedFunctions.R")
+suppressPackageStartupMessages(loadLibraries())
+suppressPackageStartupMessages(readConfigFile(FALSE))
+```
+
+
+
+```{r child = '870-Environment.Rmd'}
+```

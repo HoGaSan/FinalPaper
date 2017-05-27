@@ -1,0 +1,31 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+## Determine Business Objectives
+
+
+```{r child = '120-DetermineBusinessObjectives.Rmd'}
+```
+
+## Assess Situation
+
+```{r child = '130-AssessSituation.Rmd'}
+```
+
+
+## Determine Data Mining Goals
+
+```{r child = '140-DetermineDataMiningGoals.Rmd'}
+```
+
+
+## Produce Project Plan
+
+```{r child = '150-ProjectPlan.Rmd'}
+```
+

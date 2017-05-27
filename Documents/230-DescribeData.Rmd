@@ -1,0 +1,21 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+
+### Data Description Report
+
+The two main data sources have the following column explanations, which is attached to the downloaded files as well, by the data provider agecies.
+
+#### Flight data
+
+```{r child = '231-FlightData.Rmd'}
+```
+
+#### Animal strike data
+
+```{r child = '232-AnimalStrikeData.Rmd'}
+```

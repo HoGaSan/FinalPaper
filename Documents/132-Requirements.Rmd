@@ -1,0 +1,9 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+* Additional requirements:
+    + No additional requirements identified on top of the requirements already stated in this document.

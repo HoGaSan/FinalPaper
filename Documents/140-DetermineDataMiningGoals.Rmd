@@ -1,0 +1,15 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+### Data Mining Goals
+* Understand, Analyse, Clean and Merge the source data correctly
+* Create the required attributes
+* Generate the required records (if applicable)
+
+### Data Mining Success Criteria
+* Identification of featured determining the risk potential of an airport
+* Working model for animal strike prediction

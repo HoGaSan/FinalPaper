@@ -1,0 +1,75 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+#    pandoc_args: ["--output=Output/02-BusinessNeeds.pdf"]
+urlcolor: blue
+linkcolor: black
+header-includes:
+  - \usepackage{color}
+  - \usepackage{fancyhdr}
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+bibliography: 850-Bibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+source("../90-UserDefinedFunctions.R")
+suppressPackageStartupMessages(loadLibraries())
+suppressPackageStartupMessages(readConfigFile(FALSE))
+```
+
+\pagenumbering{gobble}
+
+```{r child = '921-TitlePage.Rmd'}
+```
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+# Introduction
+
+```{r child = '010-Introduction.Rmd'}
+```
+
+\newpage
+
+# Business understanding
+
+```{r child = '110-BusinessUnderstanding.Rmd'}
+```
+
+\newpage
+
+# Data Understanding
+
+```{r child = '211-DataUnderstanding.Rmd'}
+```
+
+\newpage
+
+# Contributors
+
+```{r child = '860-Contributors.Rmd'}
+```
+
+
+\newpage
+
+```{r child = '880-TOC.Rmd'}
+```
+
+\newpage
+
+#References
+
+```{r child = '890-References.Rmd'}
+```
