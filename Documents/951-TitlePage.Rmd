@@ -12,9 +12,9 @@ output:
 \begin{centering}
 
 \vspace*{2cm}
-  \Huge\textbf{Final Paper}\\
+  \Huge\textbf{Prediction of Animal Strike on US Commercial Flights}\\
 \vspace*{2cm}
-  \large\textbf{for the CEU MSc in Business Analytics program}
+  \large\textbf{Final Paper for the CEU MSc in Business Analytics program}
 
 \vfill
 
