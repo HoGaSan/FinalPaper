@@ -4,3 +4,11 @@ output:
     latex_engine: xelatex
     number_sections: true
 ---
+
+### Derived Attributes
+
+TODO
+
+### Generated Records
+
+TODO

@@ -5,4 +5,32 @@ output:
     number_sections: true
 ---
 
+## Data Set
 
+```{r child = '320-DescribeData.Rmd'}
+```
+
+## Select Data
+
+```{r child = '330-SelectData.Rmd'}
+```
+
+## Clean Data
+
+```{r child = '340-CleanData.Rmd'}
+```
+
+## Construct Data
+
+```{r child = '350-ConstructData.Rmd'}
+```
+
+## Integrate Data
+
+```{r child = '360-IntegrateData.Rmd'}
+```
+
+## Format Data
+
+```{r child = '370-FormatData.Rmd'}
+```
