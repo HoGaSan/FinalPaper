@@ -3,9 +3,10 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: true
+header-includes:
+  - \usepackage{fontspec}
+monofont: TXTT
 ---
-
-\ttfamily
 
 ```{r readCode, echo = FALSE, comment='#'}
 cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
