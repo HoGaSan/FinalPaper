@@ -3,7 +3,7 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: true
-#    pandoc_args: ["--output=Output/03-EstimateOfResourceNeeds.pdf"]
+    #pandoc_args: ["--output=Output/03-EstimateOfResourceNeeds.pdf"]
 urlcolor: blue
 linkcolor: black
 header-includes:
@@ -16,7 +16,7 @@ bibliography: 850-Bibliography.bib
 ---
 
 
-```{r setup, include=FALSE}
+```{r 930-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 source("../90-UserDefinedFunctions.R")
 suppressPackageStartupMessages(loadLibraries())

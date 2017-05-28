@@ -70,7 +70,7 @@ versionDetails <- function() {
 
 versionDetailsMiKTeX <- function() {
   
-  cat(system("mpm --version", intern = TRUE))
+  cat(system("mpm --version", intern = TRUE), sep = '\n')
   
 }
 
@@ -82,7 +82,7 @@ versionDetailsMiKTeX <- function() {
 
 versionDetailsMiKTeXPackages <- function() {
   
-  cat(system("mpm --list", intern = TRUE))
+  cat(system("mpm --list", intern = TRUE), sep = '\n')
   
 }
 
@@ -138,6 +138,24 @@ getBackupDir <- function() {
 
 getDocDir <- function() {
   return(config$directories$documents)
+}
+
+#Function name: getDocInputDir
+#Input: none
+#Output: the Documents directory from the config file
+#Main use: call it whenever you need to get the Documents directory
+
+getDocInputDir <- function() {
+  return(config$directories$documentinput)
+}
+
+#Function name: getDocOutputDir
+#Input: none
+#Output: the Documents directory from the config file
+#Main use: call it whenever you need to get the Documents directory
+
+getDocOutputDir <- function() {
+  return(config$directories$documentoutput)
 }
 
 
@@ -242,7 +260,18 @@ removeDataSetVariables <- function() {
   
 }
 
+#Function name: loadSourceCodeFunctions
+#Input: 
+#Output: 
+#Main use: 
 
+loadSourceCodeFunctions <- function() {
+  
+  source("01-WildLiveStrikeDataSetDataPreparation.R")
+  source("02-OnTimeFlightPerformanceDataSetDataPreparation.R")
+  source("03-WildLiveStrikeDataSetDataCleanup.R")
+
+}
 
 #Function name: addWatermark
 #Input: plot

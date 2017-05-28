@@ -9,7 +9,7 @@ The following language, tool and library versions have been used to create the p
 
 ```{r}
 versionDetails()
-#versionDetailsMiKTeX()
+versionDetailsMiKTeX()
 ```
 
 

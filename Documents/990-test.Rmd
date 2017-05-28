@@ -18,14 +18,10 @@ bibliography: 850-Bibliography.bib
 
 
 
-```{r setup, include=FALSE}
+```{r 990-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 source("../90-UserDefinedFunctions.R")
 suppressPackageStartupMessages(loadLibraries())
 suppressPackageStartupMessages(readConfigFile(FALSE))
 ```
 
-
-
-```{r child = '870-Environment.Rmd'}
-```

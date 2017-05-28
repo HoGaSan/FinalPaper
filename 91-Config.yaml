@@ -3,6 +3,8 @@ directories:
   backupdir : E:/!!CodeBackup/R-FinalPaper
   datasets : H:/!!Code/R/FinalPaper/DataSets
   documents : H:/!!Code/R/FinalPaper/Documents
+  documentinput : H:/!!Code/R/FinalPaper/Documents/Input
+  documentoutput : H:/!!Code/R/FinalPaper/Documents/Output
 sources:
   wildlife : http://wildlife.faa.gov/downloads/wildlife.zip
   flightdata : https://www.transtats.bts.gov/PREZIP/

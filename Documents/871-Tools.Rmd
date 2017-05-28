@@ -6,22 +6,22 @@ output:
 ---
 
 * Programming language:
-    + [R](https://www.r-project.org/)
+    + R: [https://www.r-project.org/](https://www.r-project.org/)
 * GUI for the programming language:
-    + [RStudio](https://www.rstudio.com/)
+    + RStudio: [https://www.rstudio.com/](https://www.rstudio.com/)
 * Documentation is created using:
-    + [knitr](https://yihui.name/knitr/)
-    + [MiKTeX](https://miktex.org/)
-    + [ReporteRs](https://cran.r-project.org/web/packages/ReporteRs/index.html)
+    + knitr: [https://yihui.name/knitr/](https://yihui.name/knitr/)
+    + MiKTeX: [https://miktex.org/](https://miktex.org/)
+    + ReporteRs: [https://cran.r-project.org/web/packages/ReporteRs/index.html](https://cran.r-project.org/web/packages/ReporteRs/index.html)
 * Data visualisation:
-    + [ggplot2](http://ggplot2.org/)
+    + ggplot2: [http://ggplot2.org/](http://ggplot2.org/)
 * Data manipulation:
-    + [access2csv](https://github.com/AccelerationNet/access2csv)
-    + [dtplyr](https://cran.r-project.org/web/packages/dtplyr/index.html)
+    + access2csv: [https://github.com/AccelerationNet/access2csv](https://github.com/AccelerationNet/access2csv)
+    + dtplyr: [https://cran.r-project.org/web/packages/dtplyr/index.html](https://cran.r-project.org/web/packages/dtplyr/index.html)
 * Project plan / task management:
-    + [Buckets](https://www.buckets.co/)
+    + Buckets: [https://www.buckets.co/](https://www.buckets.co/)
 * Source code repository:
-    + [GitHub](https://github.com/)
+    + GitHub: [https://github.com/](https://github.com/)
 
 \textit{Note: The list above do not contain the list of all the tools and packages used to create the project, but the full list will be provided in the source code.}
 

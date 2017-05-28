@@ -9,6 +9,7 @@ linkcolor: black
 header-includes:
   - \usepackage{color}
   - \usepackage{fancyhdr}
+  - \usepackage{pdfpages}
 mainfont: Times New Roman
 monofont: Times New Roman
 sansfont: Times New Roman
@@ -17,7 +18,7 @@ bibliography: 850-Bibliography.bib
 
 
 
-```{r setup, include=FALSE}
+```{r 950-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 source("../90-UserDefinedFunctions.R")
 suppressPackageStartupMessages(loadLibraries())
@@ -103,6 +104,61 @@ suppressPackageStartupMessages(readConfigFile(FALSE))
 \newpage
 
 ```{r child = '880-TOC.Rmd'}
+```
+
+\newpage
+
+# Appendix 1 - Final project requirements
+
+The following pages contain the Final project requirements received from the CEU Business School.
+
+\begin{center}
+\includepdf[nup=2x2, pages=-]{Input/Final project_Summer 2017.pdf}
+\end{center}
+
+
+\newpage
+
+# Appendix 2 - Project Plan
+
+The following pages contain the Project Plan, which is the first deliverable described as the "Describe the project and the resource needs in one page. Any special need in training, tools or any restrictions (e.g., non-disclosure agreement) should be specified here." in the final project requirements.
+
+\begin{center}
+\includepdf[nup=2x2, pages=-]{910-ProjectPlan.pdf}
+\end{center}
+
+
+\newpage
+
+# Appendix 3 - Business Needs
+
+The following pages contain the Business Needs, which is the second deliverable described as the "Student documents business needs as gathered from clients. User stories, scope of the project." in the final project requirements.
+
+
+\begin{center}
+\includepdf[nup=2x2, pages=-]{920-BusinessNeeds.pdf}
+\end{center}
+
+\newpage
+
+# Appendix 4 - Estimate of Resource Needs
+
+The following pages contain the Estimate of Resource Needs, which is the third deliverable described as the "Students estimates the resource needs of the project. Who needs to be involved? What time do they need to devote to the project? Any new software or data needs to purchased?" in the final project requirements.
+
+\begin{center}
+\includepdf[nup=2x2, pages=-]{930-EstimateOfResourceNeeds.pdf}
+\end{center}
+
+# Appendix 5 - Source code
+
+The following pages contain the source code of the project.
+
+```{r readCode, comment='#'}
+cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
+cat(readLines('../02-OnTimeFlightPerformanceDataSetDataPreparation.R'), sep = '\n')
+cat(readLines('../03-WildLiveStrikeDataSetDataCleanup.R'), sep = '\n')
+cat(readLines('../04-OnTimeFlightPerformanceDataSetDataCleanup.R'), sep = '\n')
+cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
 ```
 
 \newpage
