@@ -153,12 +153,7 @@ The following pages contain the Estimate of Resource Needs, which is the third d
 
 The following pages contain the source code of the project.
 
-```{r readCode, comment='#'}
-cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
-cat(readLines('../02-OnTimeFlightPerformanceDataSetDataPreparation.R'), sep = '\n')
-cat(readLines('../03-WildLiveStrikeDataSetDataCleanup.R'), sep = '\n')
-cat(readLines('../04-OnTimeFlightPerformanceDataSetDataCleanup.R'), sep = '\n')
-cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
+```{r child = '952-SourceCode.Rmd'}
 ```
 
 \newpage

@@ -8,7 +8,7 @@ output:
 
 ### Initial Data Collection Report
 
-There have been two data sources aquired in the initial phase of the project. These sources are the following:
+There have been two data sources acquired in the initial phase of the project. These sources are the following:
 
 #### Federal Aviation Administration
 * Data source: [Wildlife Strike Database](http://wildlife.faa.gov/)
@@ -27,10 +27,10 @@ There have been two data sources aquired in the initial phase of the project. Th
 * Data source: [Bureau of Transportation Statistics](https://www.bts.gov/)
 * The BTS provides the database as separate compressed CSV files. One file contains data of one month.
 * The datestamp of the first CSV file available is 1-1-1987.
-* The datespamp of the first data available is 1-10-1987.
-* The datestamp of the last data aquired from BTS in the project is 31-12-2016.
+* The datestamp of the first data available is 1-10-1987.
+* The datestamp of the last data acquired from BTS in the project is 31-12-2016.
 * The number of files is 360.
     + Compressed size of the files is 6,196,385,360 bytes.
     + Uncompressed size of the files is 71,146,030,010 bytes.
-* The download speed of the public access to these files seems to be limited, whch needs to be taken into account in case of reproducing the results.
+* The download speed of the public access to these files seems to be limited, which needs to be taken into account in case of reproducing the results.
 

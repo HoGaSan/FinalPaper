@@ -7,7 +7,7 @@ output:
 
 * Programming language:
     + R: [https://www.r-project.org/](https://www.r-project.org/)
-* GUI for the programming language:
+* IDE for the programming language:
     + RStudio: [https://www.rstudio.com/](https://www.rstudio.com/)
 * Documentation is created using:
     + knitr: [https://yihui.name/knitr/](https://yihui.name/knitr/)

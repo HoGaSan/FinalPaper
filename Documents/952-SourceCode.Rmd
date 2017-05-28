@@ -1,0 +1,16 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+---
+
+\ttfamily
+
+```{r readCode, echo = FALSE, comment='#'}
+cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
+cat(readLines('../02-OnTimeFlightPerformanceDataSetDataPreparation.R'), sep = '\n')
+cat(readLines('../03-WildLiveStrikeDataSetDataCleanup.R'), sep = '\n')
+cat(readLines('../04-OnTimeFlightPerformanceDataSetDataCleanup.R'), sep = '\n')
+cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
+```
