@@ -5,4 +5,23 @@ output:
     number_sections: true
 ---
 
+## Plan Deployment
+
+```{r child = '620-PlanDeployment.Rmd'}
+```
+
+## Plan Monitoring and Maintenance
+
+```{r child = '630-PlanMonitoringMaintenance.Rmd'}
+```
+
+## Produce Final Report
+
+```{r child = '640-ProduceFinalReport.Rmd'}
+```
+
+## Review Project
+
+```{r child = '650-ReviewProject.Rmd'}
+```
 

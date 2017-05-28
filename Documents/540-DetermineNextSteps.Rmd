@@ -4,3 +4,11 @@ output:
     latex_engine: xelatex
     number_sections: true
 ---
+
+### List of Possible Actions
+
+TODO
+
+### Decision
+
+TODO

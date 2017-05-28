@@ -7,8 +7,30 @@ output:
 
 
 ### Initial Data Collection Report
-This report will be part of the following documents:
 
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
+There have been two data sources aquired in the initial phase of the project. These sources are the following:
+
+#### Federal Aviation Administration
+* Data source: [Wildlife Strike Database](http://wildlife.faa.gov/)
+* The FAA provides the database as a compressed Microsoft Access file.
+* The database version used is Version 2016.4-P (as of 24-10-2016).
+* The database contains 180,177 Strike Reports from 1-1-1990 through 30-4-2016.
+* The compressed file size is 44,730,852 bytes.
+* The uncompressed Microsoft Access database file size is 193,495,040 bytes.
+* The extracted tables are:
+    + STRIKE_REPORTS (1990-1999) - 30082 rows - CSV size is 21,523,668 bytes
+    + STRIKE_REPORTS (2000-2009) - 69960 rows - CSV size is 51,833,820 bytes.
+    + STRIKE_REPORTS (2010-Current) - 70577 rows - CSV size is 53,973,874 bytes.
+    + STRIKE_REPORTS_BASH (1990-Current).csv - 8046 rows - CSV size is 5,412,394 bytes.
+
+#### United States Department of Transportation
+* Data source: [Bureau of Transportation Statistics](https://www.bts.gov/)
+* The BTS provides the database as separate compressed CSV files. One file contains data of one month.
+* The datestamp of the first CSV file available is 1-1-1987.
+* The datespamp of the first data available is 1-10-1987.
+* The datestamp of the last data aquired from BTS in the project is 31-12-2016.
+* The number of files is 360.
+    + Compressed size of the files is 6,196,385,360 bytes.
+    + Uncompressed size of the files is 71,146,030,010 bytes.
+* The download speed of the public access to these files seems to be limited, whch needs to be taken into account in case of reproducing the results.
+

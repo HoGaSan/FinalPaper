@@ -30,8 +30,8 @@ doc = pptx( )
  doc <- addTitle(doc,"Create a PowerPoint document from R software")
  doc <- addSubtitle(doc, "R and ReporteRs package")
  doc <- addDate(doc)
- doc <- addFooter(doc, "Isaac Newton")
- doc <- addPageNumber(doc, "1/4")
+ doc <- addFooter.pptx(doc, "Isaac Newton")
+ doc <- addPageNumber.pptx(doc, "1/4")
 
 # Slide 2 : Add plot
 #+++++++++++++++++++++++
@@ -45,7 +45,7 @@ doc = pptx( )
    title(main = "Death Rates in Virginia", font.main = 4)
  }
  doc <- addPlot(doc, plotFunc )
- doc <- addPageNumber(doc, "2/4")
+ doc <- addPageNumber.pptx(doc, "2/4")
 
 # Slide 3 : Add table 
 #+++++++++++++++++++++++
@@ -53,7 +53,7 @@ doc = pptx( )
  doc <- addTitle(doc,"iris data sets")
  doc <- addFlexTable(doc, FlexTable(iris[1:10,] ))
  doc <- addParagraph(doc, "iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.")
- doc <- addPageNumber(doc, "3/4")
+ doc <- addPageNumber.pptx(doc, "3/4")
 
 # Silde 4 : Add R script
 #+++++++++++++++++++++
@@ -63,7 +63,8 @@ doc = pptx( )
  r_code ="data(iris)
  hist(iris$Sepal.Width, col = 4)"
  doc <- addRScript(doc, text=r_code)
-
+ doc <- addPageNumber.pptx(doc, "4/4")
+ 
 # write the document 
  writeDoc(doc, "r-reporters-powerpoint.pptx" )
 

@@ -6,10 +6,9 @@ output:
 ---
 
 ### Data Quality Report
-This report will be part of the following documents:
 
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
+TODO
 
-
+<!--
+At this point, the analyst examines the quality of the data, addressing questions such as: Is the data complete? Missing values often occur, particularly if the data was collected across long periods of time. Some common items to check include: missing attributes and blank fields; whether all possible values are represented; the plausibility of values; the spelling of values; and whether attributes with different values have similar meanings (e.g., low fat, diet). The data analyst also should review any attributes that may give answers that conflict with common sense (e.g., teenagers with high income).
+-->

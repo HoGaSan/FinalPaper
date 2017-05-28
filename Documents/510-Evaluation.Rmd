@@ -5,3 +5,19 @@ output:
     number_sections: true
 ---
 
+
+## Evaluate Results
+
+```{r child = '520-EvaluateResults.Rmd'}
+```
+
+## Review Process
+
+```{r child = '530-ReviewProcess.Rmd'}
+```
+
+## Determine Next Steps
+
+```{r child = '540-DetermineNextSteps.Rmd'}
+```
+

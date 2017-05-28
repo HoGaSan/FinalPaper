@@ -6,9 +6,9 @@ output:
 ---
 
 ### Data Exploration Report
-This report will be part of the following documents:
 
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO
+TODO
 
+<!--
+This task tackles the data mining questions, which can be addressed using querying, visualization, and reporting. For instance, a data analyst may query the data to discover the types of products that purchasers in a particular income group usually buy. Or the analyst may run a visualization analysis to uncover potential fraud patterns. The data analyst should then create a data exploration report that outlines first findings, or an initial hypothesis, and the potential impact on the remainder of the project.
+-->
