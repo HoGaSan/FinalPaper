@@ -24,7 +24,12 @@ wildLifeStrikeDataSet <- function() {
   if (file.exists(csvfile) != TRUE)
   {
     setwd(getDataDir())
-    system(paste("java -jar ", getDataDir(), "/access2csv.jar ", getDataDir(), "/wildlife.accdb", sep = ""))
+    system(paste("java -jar ", 
+                 getDataDir(), 
+                 "/access2csv.jar ", 
+                 getDataDir(), 
+                 "/wildlife.accdb", 
+                 sep = ""))
     setwd(getMainDir())
   } else
   {

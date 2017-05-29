@@ -3,10 +3,9 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: true
-header-includes:
-  - \usepackage{fontspec}
-monofont: TXTT
 ---
+
+\setmonofont{Courier New}
 
 ```{r readCode, echo = FALSE, comment='#'}
 cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
@@ -15,3 +14,5 @@ cat(readLines('../03-WildLiveStrikeDataSetDataCleanup.R'), sep = '\n')
 cat(readLines('../04-OnTimeFlightPerformanceDataSetDataCleanup.R'), sep = '\n')
 cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
 ```
+
+\setmonofont{Times New Roman}

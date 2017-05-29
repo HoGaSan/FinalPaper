@@ -13,15 +13,18 @@ onTimeFlightPerformanceDataSetDataCleanup <- function() {
       
       unzippedFileName <- paste(variableName, ".csv", sep = "")
       unzippedFile <- paste(dataDir, "/", unzippedFileName, sep = "")
-      
+
       #if the variable is available, then do not reassign it
-#      if (exists(variableName) != TRUE){
-#        message("Reading ", variableName)
-#        assign(variableName, data.table(read.csv(unzippedFile, header = TRUE)), envir = .GlobalEnv)
-#      } else
-#      {
-#        message(variableName," variable exists, no assign is required.")
-#      }
+      # if (exists(variableName) != TRUE){
+      #   message("Reading ", variableName)
+      #   assign(variableName, 
+      #          data.table(read.csv(unzippedFile, 
+      #                              header = TRUE)), 
+      #          envir = .GlobalEnv)
+      # } else
+      # {
+      #   message(variableName," variable exists, no assign is required.")
+      # }
 
       #TODO:
       #- remove unused and/or duplicated columns

@@ -3,7 +3,7 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: true
-    #pandoc_args: ["--output=Output/03-EstimateOfResourceNeeds.pdf"]
+#    pandoc_args: ["--output=Output/03-EstimateOfResourceNeeds.pdf"]
 urlcolor: blue
 linkcolor: black
 header-includes:
