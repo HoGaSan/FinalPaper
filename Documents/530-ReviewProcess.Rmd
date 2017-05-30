@@ -8,3 +8,7 @@ output:
 ### Review of Process
 
 TODO
+
+<!--
+It is now appropriate to do a more thorough review of the data mining engagement to determine if there is any important factor or task that has somehow been overlooked. This review also covers quality assurance issues (e.g., did we correctly build the model? Did we only use allowable attributes that are available for future deployment?).
+-->

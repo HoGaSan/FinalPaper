@@ -12,7 +12,7 @@ There are two main objectives what the project is aiming to complete.
 1. Create a statistical analysis to identify those reasons (based on the data available), which are determining the the risk of an animal strike for an airport.
 2. Create a prediction model, which can be used to predict the risk of an animal strike for a given flight.
 
-The result of the statistical analysis could be used in the completition of the model building and evaluation the recommended order of the completition is the order of the objectives stated above.
+The result of the statistical analysis could be used in the completion of the model building and evaluation the recommended order of the completion is the order of the objectives stated above.
 
 ### Business Success Criteria
 * Identification of features determining the risk potential of an airport

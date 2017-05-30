@@ -1,3 +1,11 @@
+#' 
+#' \code{wildLifeStrikeDataSetDataCleanup} creates the R objects for the wildlife 
+#' strike data tables if they are not available yet and adds the header for 
+#' these objects
+#' 
+#' @examples 
+#' wildLifeStrikeDataSetDataCleanup()
+#' 
 wildLifeStrikeDataSetDataCleanup <- function() {
 
   destdir <- getDataDir()
@@ -7,10 +15,11 @@ wildLifeStrikeDataSetDataCleanup <- function() {
   if (exists("sr_1990_1999") != TRUE){
     message("Reading sr_1990_1999")
     vName <- sr_1990_1999
-    assign(vname, data.table(read.csv(paste(destdir,
-                                            "/STRIKE_REPORTS (1990-1999).csv",
-                                            sep=""), 
-                                      header = FALSE)), 
+    assign(vname,
+           data.table(read.csv(paste(destdir,
+                                     "/STRIKE_REPORTS (1990-1999).csv",
+                                     sep=""),
+                               header = FALSE)),
            envir = .GlobalEnv)
     names(sr_1990_1999) <- c("INDEX_NR",
                              "OPID",
@@ -114,10 +123,11 @@ wildLifeStrikeDataSetDataCleanup <- function() {
   if (exists("sr_2000_2009") != TRUE){
     message("Reading sr_2000_2009")
     vName <- sr_2000_2009
-    assign(vname, data.table(read.csv(paste(destdir,
-                                            "/STRIKE_REPORTS (2000-2009).csv",
-                                            sep=""), 
-                                      header = FALSE)), 
+    assign(vname,
+           data.table(read.csv(paste(destdir,
+                                     "/STRIKE_REPORTS (2000-2009).csv",
+                                     sep=""),
+                               header = FALSE)),
            envir = .GlobalEnv)
     names(sr_2000_2009) <- c("INDEX_NR",
                              "OPID",
@@ -221,10 +231,11 @@ wildLifeStrikeDataSetDataCleanup <- function() {
   if (exists("sr_2010_Current") != TRUE){
     message("Reading sr_2010_Current")
     vName <- sr_2010_Current
-    assign(vname, data.table(read.csv(paste(destdir,
-                                            "/STRIKE_REPORTS (2010-Current).csv",
-                                            sep=""), 
-                                      header = FALSE)), 
+    assign(vname,
+           data.table(read.csv(paste(destdir,
+                                     "/STRIKE_REPORTS (2010-Current).csv",
+                                     sep=""),
+                               header = FALSE)),
            envir = .GlobalEnv)
     names(sr_2010_Current) <- c("INDEX_NR",
                                 "OPID",

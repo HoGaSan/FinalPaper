@@ -8,7 +8,7 @@ output:
 
 ### Data Description Report
 
-The two main data sources have the following column explanations, which is attached to the downloaded files as well, by the data provider agecies.
+The two main data sources have the following column explanations, which is attached to the downloaded files as well, by the data provider agencies.
 
 #### Flight data
 

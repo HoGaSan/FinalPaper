@@ -1,3 +1,14 @@
+#' 
+#' \code{wildLifeStrikeDataSet} based on the configuration 
+#' items checkes if the wildlife strike data set file has been:
+#'  - downloaded
+#'  - uncompressed
+#'  - included tables extracted
+#' if not, then execute these tasks.
+#' 
+#' @examples 
+#' wildLifeStrikeDataSet()
+#' 
 wildLifeStrikeDataSet <- function() {
   #setting the download parameters
   URL <- getWData()
@@ -19,7 +30,9 @@ wildLifeStrikeDataSet <- function() {
   #unzip the file
   unzip(destfile, exdir = destdir)
 
-  csvfile <- paste(destdir, "/STRIKE_REPORTS (1990-1999).csv", sep="")
+  csvfile <- paste(destdir,
+                   "/STRIKE_REPORTS (1990-1999).csv",
+                   sep="")
   
   if (file.exists(csvfile) != TRUE)
   {

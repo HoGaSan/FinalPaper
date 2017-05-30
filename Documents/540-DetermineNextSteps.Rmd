@@ -12,3 +12,7 @@ TODO
 ### Decision
 
 TODO
+
+<!--
+At this stage, the project leader must decide whether to finish this project and move on to deployment or whether to initiate further iterations or set up new data mining projects.
+-->

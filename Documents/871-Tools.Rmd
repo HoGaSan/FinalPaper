@@ -13,7 +13,7 @@ output:
     + knitr: [https://yihui.name/knitr/](https://yihui.name/knitr/)
     + MiKTeX: [https://miktex.org/](https://miktex.org/)
     + ReporteRs: [https://cran.r-project.org/web/packages/ReporteRs/index.html](https://cran.r-project.org/web/packages/ReporteRs/index.html)
-* Data visualisation:
+* Data visualization:
     + ggplot2: [http://ggplot2.org/](http://ggplot2.org/)
 * Data manipulation:
     + access2csv: [https://github.com/AccelerationNet/access2csv](https://github.com/AccelerationNet/access2csv)

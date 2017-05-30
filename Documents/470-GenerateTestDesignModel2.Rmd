@@ -8,3 +8,8 @@ output:
 ### Test Design
 
 TODO
+
+<!--
+After building a model, the data analyst must test the model’s quality and validity, running empirical testing to determine the strength of the model. In supervised data mining tasks such as classification, it is common to use error rates as quality measures for data mining models. Therefore, we typically separate the data set into train and test set, build the model on the train set, and estimate its quality on the separate test set. In other words, the data analyst develops the model based on one set of existing data and tests its validity using a separate set of data. This enables the data analyst to measure how well the model can predict history before using it to predict the future. It is usually appropriate to design the test procedure before building the model; this also has implications for data preparation.
+-->
+

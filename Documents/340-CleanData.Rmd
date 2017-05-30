@@ -8,3 +8,7 @@ output:
 ### Data Cleaning Report
 
 TODO
+
+<!--
+Without clean data, the results of a data mining analysis are in question. Thus at this stage, the data analyst must either select clean subsets of data or incorporate more ambitious techniques such as estimating missing data through modeling analyses. At this point, data analysts should make sure they outline how they addressed each quality problem reported in the earlier “Verify Data Quality” step.
+-->

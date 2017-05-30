@@ -8,3 +8,7 @@ output:
 ### Deployment Plan
 
 TODO
+
+<!--
+In order to deploy the data mining result(s) into the business, this task takes the evaluation results and develops a strategy for deployment.
+-->

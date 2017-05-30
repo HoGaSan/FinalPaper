@@ -1,10 +1,12 @@
-#Project functions
-
-#Function name: loadLibraries
-#Input: none
-#Output: none
-#Main use: load the required libraries for the project, if library is not installed, than installs it as well
-
+#' 
+#' \code{loadLibraries} checkes if the required libraries are 
+#'  - installed and
+#'  - loaded
+#' if not, the it installs (if required) and loads them.
+#' 
+#' @examples 
+#' loadLibraries()
+#' 
 loadLibraries <- function() {
   if (!require(installr)) {install.packages("installr"); require(installr)}
   if (!require(RODBC)) {install.packages("RODBC"); require(RODBC)}
@@ -29,12 +31,14 @@ loadLibraries <- function() {
 }
 
 
-
-#Function name: versionDetails
-#Input: none
-#Output: The version details of the environment used for the project
-#Main use: with just one function call have the possibility to provide the environment details into the rmd
-
+#' 
+#' \code{versionDetails} provides details about the running environment
+#' 
+#' @return text with the versions of R, RStudio, and used packages
+#' 
+#' @examples 
+#' versionDetails()
+#' 
 versionDetails <- function() {
   
   cat(paste(
@@ -60,38 +64,48 @@ versionDetails <- function() {
     "- datasets version ", packageVersion("datasets"),"\n",
     "- methods version ", packageVersion("methods"),"\n",
     "- base version ", packageVersion("base"),sep=""))
-  
 }
 
-#Function name: versionDetailsMiKTeX
-#Input: none
-#Output: The version details of the environment used for the project
-#Main use: with just one function call have the possibility to provide the environment details into the rmd
 
+#' 
+#' \code{versionDetailsMiKTeX} provides details about the running 
+#' environment
+#' 
+#' @return text with the versions of MiKTeX
+#' 
+#' @examples 
+#' versionDetailsMiKTeX()
+#' 
 versionDetailsMiKTeX <- function() {
-  
   cat(system("mpm --version", intern = TRUE), sep = '\n')
-  
 }
 
 
-#Function name: versionDetailsMiKTeXPackages
-#Input: none
-#Output: The version details of the environment used for the project
-#Main use: with just one function call have the possibility to provide the environment details into the rmd
-
+#' 
+#' \code{versionDetailsMiKTeXPackages} provides details about the 
+#' running environment
+#' 
+#' @return text with the versions of the installed MiKTeX packages
+#' 
+#' @examples 
+#' versionDetailsMiKTeXPackages()
+#' 
 versionDetailsMiKTeXPackages <- function() {
-  
   cat(system("mpm --list", intern = TRUE), sep = '\n')
-  
 }
 
 
-#Function name: readConfigFile
-#Input: none
-#Output: none
-#Main use: reads the config file to a global variable to use in the session
-
+#' 
+#' \code{readConfigFile} reads the YAML config file into a global 
+#' environment variable
+#' 
+#' @param a boolean
+#' The YAML config file is in the working directory or in the parent 
+#' directory (i.e. one directory above) 
+#' 
+#' @examples 
+#' readConfigFile(TRUE)
+#' 
 readConfigFile <- function(a) {
   vName <- "config"
   if (a == TRUE){
@@ -102,21 +116,31 @@ readConfigFile <- function(a) {
   }
 }
 
-#Function name: getMainDir
-#Input: none
-#Output: the main directory from the config file
-#Main use: call it whenever you need to get the main directory - might not be the same as the result of getwd()
 
+#' 
+#' \code{getMainDir} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the maindir configuration item
+#' 
+#' @examples 
+#' getMainDir()
+#' 
 getMainDir <- function() {
   return(config$directories$maindir)
 }
 
 
-#Function name: getBackupDir
-#Input: none
-#Output: the name of the backup directory from the config file, plus the timestamp directory created as part of the function
-#Main use: call it whenever you need to get the backup directory
-
+#' 
+#' \code{getBackupDir} provides the value of the specific 
+#' configuration item and creates the directory if it does 
+#' not exist
+#' 
+#' @return the value of the backupdir configuration item
+#' 
+#' @examples 
+#' getBackupDir()
+#' 
 getBackupDir <- function() {
   backupdir <- config$directories$backupdir
   subdir <- Sys.Date()
@@ -126,151 +150,198 @@ getBackupDir <- function() {
     dir.create(returnvalue)
     dir.create(file.path(returnvalue, "Documents"))
   }
-    
   return(returnvalue)
-
 }
 
 
-#Function name: getDocDir
-#Input: none
-#Output: the Documents directory from the config file
-#Main use: call it whenever you need to get the Documents directory
-
+#' 
+#' \code{getDocDir} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the documents configuration item
+#' 
+#' @examples 
+#' getDocDir()
+#' 
 getDocDir <- function() {
   return(config$directories$documents)
 }
 
-#Function name: getDocInputDir
-#Input: none
-#Output: the Documents directory from the config file
-#Main use: call it whenever you need to get the Documents directory
 
+#' 
+#' \code{getDocInputDir} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the documentinput configuration item
+#' 
+#' @examples 
+#' getDocInputDir()
+#' 
 getDocInputDir <- function() {
   return(config$directories$documentinput)
 }
 
-#Function name: getDocOutputDir
-#Input: none
-#Output: the Documents directory from the config file
-#Main use: call it whenever you need to get the Documents directory
 
+#' 
+#' \code{getDocOutputDir} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the documentoutput configuration item
+#' 
+#' @examples 
+#' getDocOutputDir()
+#' 
 getDocOutputDir <- function() {
   return(config$directories$documentoutput)
 }
 
 
-#Function name: getDataDir
-#Input: none
-#Output: the DataSets directory from the config file
-#Main use: call it whenever you need to get the DataSets directory
-
+#' 
+#' \code{getDataDir} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the datasets configuration item
+#' 
+#' @examples 
+#' getDataDir()
+#' 
 getDataDir <- function() {
   return(config$directories$datasets)
 }
 
 
-#Function name: getStartYear
-#Input: none
-#Output: start year
-#Main use: call it whenever you need to get the start year of the data set to work with
-
+#' 
+#' \code{getStartYear} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the startyear configuration item
+#' 
+#' @examples 
+#' getStartYear()
+#' 
 getStartYear <- function() {
   return(config$years$startyear)
 }
 
 
-#Function name: getEndYear
-#Input: none
-#Output: start year
-#Main use: call it whenever you need to get the end year of the data set to work with
-
+#' 
+#' \code{getEndYear} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the endyear configuration item
+#' 
+#' @examples 
+#' getEndYear()
+#' 
 getEndYear <- function() {
   return(config$years$endyear)
 }
 
 
-#Function name: getStartMonth
-#Input: none
-#Output: start year
-#Main use: call it whenever you need to get the start month of the data set to work with
-
+#' 
+#' \code{getStartMonth} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the startmonth configuration item
+#' 
+#' @examples 
+#' getStartMonth()
+#' 
 getStartMonth <- function() {
   return(config$months$startmonth)
 }
 
 
-#Function name: getEndMonth
-#Input: none
-#Output: start year
-#Main use: call it whenever you need to get the end month of the data set to work with
-
+#' 
+#' \code{getEndMonth} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the endmonth configuration item
+#' 
+#' @examples 
+#' getEndMonth()
+#' 
 getEndMonth <- function() {
   return(config$months$endmonth)
 }
 
 
-#Function name: backupFiles
-#Input: none
-#Output: the name of the backup directory from the config file, plus the timestamp directory created as part of the function
-#Main use: call it whenever you need to get the backup directory
-
+#' 
+#' \code{backupFiles} makes a copy of the most important 
+#' files to a safe location set by the YAML configuration 
+#' file
+#' 
+#' @examples 
+#' backupFiles()
+#' 
 backupFiles <- function() {
-  
   #Main directoery files
   filesMain <- list.files(getMainDir(), full.names = TRUE)
   file.copy(filesMain, getBackupDir(), overwrite = TRUE)
-
   #Documents folder
   filesDocuments <- list.files(getDocDir(), full.names = TRUE)
   file.copy(filesDocuments, file.path(getBackupDir(), "Documents"), overwrite = TRUE)
-  
 }
 
 
-#Function name: getWData
-#Input: none
-#Output: the Wildlife Data Set url from the config file
-#Main use: call it whenever you need to get the url
-
+#' 
+#' \code{getWData} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the wildlife configuration item
+#' 
+#' @examples 
+#' getWData()
+#' 
 getWData <- function() {
   return(config$sources$wildlife)
 }
 
 
-#Function name: getFData
-#Input: none
-#Output: the Flight Data Set url from the config file
-#Main use: call it whenever you need to get the url
-
+#' 
+#' \code{getFData} provides the value of the specific 
+#' configuration item
+#' 
+#' @return the value of the flightdata configuration item
+#' 
+#' @examples 
+#' getFData()
+#' 
 getFData <- function() {
   return(config$sources$flightdata)
 }
 
 
-
-#Function name: removeDataSetVariables
-#Input: none
-#Output: none
-#Main use: call it whenever you need to cleanup the Data Set variables
-
+#' 
+#' \code{removeDataSetVariables} removes the data set variables 
+#' from the memory and calls the garbage collection to free up 
+#' memory - currently disabled
+#' 
+#' @examples 
+#' removeDataSetVariables()
+#' 
 removeDataSetVariables <- function() {
-
-  #rm(list = ls(pattern = "On_Time_On_Time_Performance*", envir = .GlobalEnv), envir = .GlobalEnv)
-  #rm(list = ls(pattern = "sr_*", envir = .GlobalEnv), envir = .GlobalEnv)
-  
+  # rm(list = ls(pattern = "On_Time_On_Time_Performance*",
+  #              envir = .GlobalEnv),
+  #    envir = .GlobalEnv)
+  # rm(list = ls(pattern = "sr_*",
+  #              envir = .GlobalEnv),
+  #    envir = .GlobalEnv)
+  # gc()
 }
 
-#Function name: loadSourceCodeFunctions
-#Input: 
-#Output: 
-#Main use: 
 
+#' 
+#' \code{loadSourceCodeFunctions} makes the functions created 
+#' in different R files available for further use and process 
+#' management
+#' 
+#' @examples 
+#' loadSourceCodeFunctions()
+#' 
 loadSourceCodeFunctions <- function() {
-  
   source("01-WildLiveStrikeDataSetDataPreparation.R")
   source("02-OnTimeFlightPerformanceDataSetDataPreparation.R")
   source("03-WildLiveStrikeDataSetDataCleanup.R")
-
 }
 

@@ -12,3 +12,9 @@ TODO
 ### Revised Parameter Settings
 
 TODO
+
+<!--
+The data mining analyst interprets the models according to his or her domain knowledge, the data mining success criteria, and the desired test design. The data mining analyst judges the success of the application of modeling and discovery techniques technically, but he or she should also work with business analysts and domain experts in order to interpret the data mining results in the business context. The data mining analyst may even choose to have the business analyst involved when creating the models for assistance in discovering potential problems with the data.
+For example, a data mining project may test the factors that affect bank account closure. If data is collected at different times of the month, it could cause a significant difference in the account balances of the two data sets collected. (Because individuals tend to get paid at the end of the month, the data collected at that time would reflect higher account balances.) A business analyst familiar with the bank’s operations would note such a discrepancy immediately.
+In this phase, the data mining analyst also tries to rank the models. He or she assesses the models according to the evaluation criteria and takes into account business objectives and business success criteria. In most data mining projects, the data mining analyst applies a single technique more than once or generates data mining results with different alternative techniques. In this task, he or she also compares all results according to the evaluation criteria.
+-->

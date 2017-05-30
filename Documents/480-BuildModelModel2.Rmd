@@ -16,3 +16,8 @@ TODO
 ### Model Description
 
 TODO
+
+<!--
+After testing, the data analyst runs the modeling tool on the prepared data set to create one or more models.
+-->
+

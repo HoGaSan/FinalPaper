@@ -5,6 +5,6 @@ output:
     number_sections: true
 ---
 
-Student: Gabor Horvath  
-Mentor: Gergely Daroczi
+Student: Gábor Horváth  
+Mentor: Gergely Daróczi
 

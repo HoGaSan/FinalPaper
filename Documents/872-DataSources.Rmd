@@ -8,5 +8,5 @@ output:
 * Federal Aviation Administration: [Wildlife Strike Database](http://wildlife.faa.gov/)
 * United States Department of Transportation: [Bureau of Transportation Statistics](https://www.bts.gov/)
 
-\textit{Note: In case data enrichment would be required for the sucessfull risk modelling, additional data sources might be used as well. These possible additional data sources will be listed in the Final Paper.}
+\textit{Note: In case data enrichment would be required for the successful risk modelling, additional data sources might be used as well. These possible additional data sources will be listed in the Final Paper.}
 

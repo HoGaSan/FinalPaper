@@ -12,3 +12,7 @@ TODO
 ### Modeling Assumptions
 
 TODO
+
+<!--
+This task refers to choosing one or more specific modeling techniques, such as decision tree building with C4.5 or neural network generation with back propagation. If assumptions are attached to the modeling technique, these should be recorded.
+-->

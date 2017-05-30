@@ -32,7 +32,7 @@ output:
 
 ### Terminology
 
-The project is using different terminologies from the different domains. The terms/definitions used will not be marked or explained in details, if based on the context the reader can easily identify the domain of the particular term. In case there are uncertainities about a term (and it's not explained in the paper), the following sources can be used for the definitions:
+The project is using different terminologies from the different domains. The terms/definitions used will not be marked or explained in details, if based on the context the reader can easily identify the domain of the particular term. In case there are uncertainties about a term (and it's not explained in the paper), the following sources can be used for the definitions:
 
 ```{r child = '840-Terminology.Rmd'}
 ```

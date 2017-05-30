@@ -26,7 +26,7 @@ output:
 |REG|Aircraft registration|
 |FLT|Flight number|
 |REMAINS_COLLECTED|Indicates if bird or wildlife remains were found and collected|
-|REMAINS_SENT|Indicates if remains were sent to the Smithsonian Institution for identifcation|
+|REMAINS_SENT|Indicates if remains were sent to the Smithsonian Institution for identification|
 |INCIDENT_DATE|Date strike occurred|
 |INCIDENT_MONTH|Month strike occurred|
 |INCIDENT_YEAR|Year strike occurred|

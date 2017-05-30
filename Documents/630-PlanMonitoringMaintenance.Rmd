@@ -8,3 +8,7 @@ output:
 ### Monitoring and Maintenance Plan
 
 TODO
+
+<!--
+Monitoring and maintenance are important issues if the data mining result is to become part of the day-to-day business and its environment. A carefully prepared maintenance strategy avoids incorrect usage of data mining results.
+-->

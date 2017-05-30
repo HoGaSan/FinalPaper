@@ -1,4 +1,13 @@
-
+#' 
+#' \code{onTimeFlightPerformanceDataSet} based on the configuration 
+#' items checkes if the commercial flight data set files have been:
+#'  - downloaded
+#'  - uncompressed
+#' if not, then execute these tasks.
+#' 
+#' @examples 
+#' onTimeFlightPerformanceDataSet()
+#' 
 onTimeFlightPerformanceDataSet <- function() {
 
   method="auto"
@@ -11,7 +20,11 @@ onTimeFlightPerformanceDataSet <- function() {
   for (i in startYear:endYear){
     for (j in startMonth:endMonth){
       
-      variableName <- paste("On_Time_On_Time_Performance_", i, "_", j, sep = "")
+      variableName <- paste("On_Time_On_Time_Performance_",
+                            i,
+                            "_",
+                            j,
+                            sep = "")
       
       sourceFile <- paste(variableName, ".zip", sep = "")
       URL <- paste(getFData(), sourceFile, sep = "")
@@ -25,12 +38,15 @@ onTimeFlightPerformanceDataSet <- function() {
         Sys.sleep(0.1)
       } else
       {
-        message(sourceFile," file exists, no download is required.")
+        message(sourceFile,
+                " file exists, no download is required.")
       }
       
       zippedFileName <- sourceFile
       zippedFile <- destinationFile
-      unzippedFileName <- paste(variableName, ".csv", sep = "")
+      unzippedFileName <- paste(variableName,
+                                ".csv",
+                                sep = "")
       unzippedFile <- paste(dataDir, "/", unzippedFileName, sep = "")
       
       #if the file exists then do not unzip it again
@@ -44,7 +60,8 @@ onTimeFlightPerformanceDataSet <- function() {
         assign("last.warning", NULL, envir = baseenv())
       } else
       {
-        message(unzippedFileName," file exists, no unzip is required.")
+        message(unzippedFileName,
+                " file exists, no unzip is required.")
       }
 
     } #end of "for (j in startMonth:endMonth)"

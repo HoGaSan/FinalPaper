@@ -3,15 +3,6 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: true
-urlcolor: blue
-linkcolor: blue
-header-includes:
-  - \usepackage{color}
-  - \usepackage{fancyhdr}
-  - \usepackage{graphicx}
-mainfont: Times New Roman
-monofont: Times New Roman
-sansfont: Times New Roman
 ---
 
 \tableofcontents
