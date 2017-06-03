@@ -345,7 +345,7 @@ removeDataSetVariables <- function() {
 loadSourceCodeFunctions <- function() {
   source("01-WildLiveStrikeDataSetDataPreparation.R")
   source("02-OnTimeFlightPerformanceDataSetDataPreparation.R")
-  source("03-WildLiveStrikeDataSetDataCleanup.R")
+  source("03-WildLifeStrikeDataSetSplitByYear.R")
   source("04-OnTimeFlightPerformanceDataSetMergeByYear.R")
 }
 
