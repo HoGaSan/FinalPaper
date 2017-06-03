@@ -275,12 +275,15 @@ getEndMonth <- function() {
 #' backupFiles()
 #' 
 backupFiles <- function() {
-  #Main directoery files
+  #Main directory files
   filesMain <- list.files(getMainDir(), full.names = TRUE)
   file.copy(filesMain, getBackupDir(), overwrite = TRUE)
   #Documents folder
   filesDocuments <- list.files(getDocDir(), full.names = TRUE)
-  file.copy(filesDocuments, file.path(getBackupDir(), "Documents"), overwrite = TRUE)
+  file.copy(filesDocuments,
+            file.path(getBackupDir(),
+                      "Documents"),
+            overwrite = TRUE)
 }
 
 
@@ -343,5 +346,6 @@ loadSourceCodeFunctions <- function() {
   source("01-WildLiveStrikeDataSetDataPreparation.R")
   source("02-OnTimeFlightPerformanceDataSetDataPreparation.R")
   source("03-WildLiveStrikeDataSetDataCleanup.R")
+  source("04-OnTimeFlightPerformanceDataSetMergeByYear.R")
 }
 

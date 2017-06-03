@@ -5,6 +5,7 @@ suppressPackageStartupMessages(loadSourceCodeFunctions())
 suppressPackageStartupMessages(wildLifeStrikeDataSet())
 suppressPackageStartupMessages(onTimeFlightPerformanceDataSet())
 suppressPackageStartupMessages(wildLifeStrikeDataSetDataCleanup())
+suppressPackageStartupMessages(onTimeFlightPerformanceDataSetMergeByYear())
 
 versionDetails()
 
