@@ -30,7 +30,7 @@ for (i in startYear:endYear){
                    sep = "")
   
   if (file.exists(RDSFile) == TRUE){
-    file.remove(RDSFile)
+    #file.remove(RDSFile)
     
   }
 }
