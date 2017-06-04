@@ -7,13 +7,12 @@ output:
 
 ### Data Exploration Report
 
-Keeping the length of this section reasonable, the exploration report shown here contains the data from 1990 (except for the data summary). The report for the rest of the data is in the appendix of the final document.
 
-#### Animal Strike Data
+#### Animal Strike Data (1990 - 2016)
 
 The first summary table shows the number of distinct items for each year regarding the Airline operators, Aircraft, Aircraft types, Aircraft mass types, and Engine types, which have been reported as being affected in an animal strike. (Please note that the data for 2016 is available until 30-4-2016.)
 
-```{r 240-table-01, results = 'asis'}
+```{r 242-table-01, results = 'asis'}
 
 dataDir <- getDataDir()
 
@@ -41,7 +40,7 @@ kable(summaryData[, ..firstSetOfColumns], col.names = c("Year",
 
 The second summary table shows the number of distinct items for each year regarding the Time of day, Airports, States, Phase of flight, weather conditions (Sky and Precipitation), and the flag for showing if the pilot has been warned or not about birds / wildlife in the reports. (Please note that the data for 2016 is available until 30-4-2016.)
 
-```{r 240-table-02, results = 'asis'}
+```{r 242-table-02, results = 'asis'}
 
 secondSetOfColumns <- c("dataYear","factorTIME_OF_DAY","factorAIRPORT_ID","factorSTATE","factorPHASE_OF_FLT","factorSKY","factorPRECIP","factorWARNED")
 
@@ -61,24 +60,27 @@ kable(summaryData[, ..secondSetOfColumns], col.names = c("Year",
 
 The following graphs show the distributions of some of the selected distinct items summarized in the tables above.
 
-```{r 240-showPlots, fig.width=7, fig.height=4}
+```{r 242-showPlots, fig.width=7, fig.height=4}
 
 imageLocation <- getDocInputDir()
 DataField <- c("AC_CLASS", "AC_MASS", "TYPE_ENG", "TIME_OF_DAY", "PHASE_OF_FLT", "SKY", "PRECIP")
+startYear <- getStartYear()
+endYear <- getEndYear()
 
-for (i in 1:7) {
-  targetFileName <- paste("/1990_AnimalStrike_", DataField[i], ".png", sep="")
-  targetFile <- paste(imageLocation, targetFileName, sep="")
-  if (file.exists(targetFile) == TRUE){
-    img <- readPNG(targetFile)
-    grid.newpage()
-    grid.raster(img)
-  } else {
-    cat(targetFile, " not found!")
-  }
-     
-}
-
+for (i in startYear:endYear){
+  for (j in 1:7) {
+    targetFileName <- paste("/", i , "_AnimalStrike_", DataField[j], ".png", sep="")
+    targetFile <- paste(imageLocation, targetFileName, sep="")
+    if (file.exists(targetFile) == TRUE){
+      img <- readPNG(targetFile)
+      grid.newpage()
+      grid.raster(img)
+    } else {
+      cat(targetFile, " not found!")
+    }
+       
+  } #end of "for (j in 1:7)"
+} #end of "for (i in startYear:endYear)"
 ```
 
 

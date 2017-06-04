@@ -155,6 +155,9 @@ The following pages contain the Estimate of Resource Needs, which is the third d
 
 # Appendix 5 - Data Exploration Report: Animal Strike Data
 
+```{r child = '242-ExploreData1.Rmd'}
+```
+
 
 \newpage
 # Appendix 6 - Data Exploration Report: Flight Data
