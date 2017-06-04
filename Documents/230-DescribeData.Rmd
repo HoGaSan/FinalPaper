@@ -10,12 +10,12 @@ output:
 
 The two main data sources have the following column explanations, which is attached to the downloaded files as well, by the data provider agencies.
 
-#### Flight data
-
-```{r child = '231-FlightData.Rmd'}
-```
-
 #### Animal strike data
 
-```{r child = '232-AnimalStrikeData.Rmd'}
+```{r child = '231-AnimalStrikeData.Rmd'}
+```
+
+#### Flight data
+
+```{r child = '232-FlightData.Rmd'}
 ```

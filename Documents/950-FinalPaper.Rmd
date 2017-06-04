@@ -10,6 +10,9 @@ header-includes:
   - \usepackage{color}
   - \usepackage{fancyhdr}
   - \usepackage{pdfpages}
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
 mainfont: Times New Roman
 monofont: Times New Roman
 sansfont: Times New Roman
@@ -149,7 +152,16 @@ The following pages contain the Estimate of Resource Needs, which is the third d
 \includepdf[nup=2x2, pages=-]{930-EstimateOfResourceNeeds.pdf}
 \end{center}
 
-# Appendix 5 - Source code
+
+# Appendix 5 - Data Exploration Report: Animal Strike Data
+
+
+\newpage
+# Appendix 6 - Data Exploration Report: Flight Data
+
+
+\newpage
+# Appendix 7 - Source code
 
 The following pages contain the source code of the project.
 

@@ -17,6 +17,8 @@ loadLibraries <- function() {
   if (!require(ggplot2)) {install.packages("ggplot2"); require(ggplot2)}
   if (!require(ReporteRs)) {install.packages("ReporteRs"); require(ReporteRs)}
   if (!require(yaml)) {install.packages("yaml"); require(yaml)}
+  if (!require(png)) {install.packages("png"); require(png)}
+  if (!require(grid)) {install.packages("grid"); require(grid)}
   
   #update R
   updateR(TRUE)
@@ -24,7 +26,6 @@ loadLibraries <- function() {
   #update MiKTeX packages
   #system("mpm --update --quiet")
   
-  #require(grid)
   #require(lattice)
   #require(ggplot2movies)
   #require(latticeExtra)
@@ -347,5 +348,46 @@ loadSourceCodeFunctions <- function() {
   source("02-OnTimeFlightPerformanceDataSetDataPreparation.R")
   source("03-WildLifeStrikeDataSetSplitByYear.R")
   source("04-OnTimeFlightPerformanceDataSetMergeByYear.R")
+  source("05-ExploreWildLifeStrikeDataSet.R")
+  source("06-ExploreOnTimeFlightPerformanceDataSet.R")
+}
+
+
+#' 
+#' \code{saveBarPlotPNG} saves the required bar plot based on 
+#' the details in the YAML config file
+#' 
+#' @param DataYear integer
+#' The year of the data set being used for the plot
+#' 
+#' @param DataSet string
+#' The name of the data set the plot is being created from
+#' 
+#' @param DataField string
+#' The name of the data field the plot is being created from
+#' 
+#' @param DataObject object
+#' The data object to create the plot
+#' 
+#' @examples 
+#' saveBarPlotPNG(1990, "Animal Strike", DT)
+#' 
+saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataObject) {
+  currentWorkingDir <- getwd()
+  setwd(getDocInputDir())
+  targetFileName <- paste(DataYear, "_", DataSet, "_", DataField, ".png", sep="")
+  png(
+    targetFileName, #File name, no directory!
+    units = "px", #units are in pixels
+    width = 400, #width of the plot in px (should be the same as the height)
+    height = 400, #height of the plot in px (should be the same as the width)
+    res = 72 #nominal resolution in ppi (pixels per inch)
+  ) 
+  
+  barplot(DataObject)
+  
+  dev.off() #flush the plot to the file and close the file
+  
+  setwd(currentWorkingDir)
 }
 

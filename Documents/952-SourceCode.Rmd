@@ -12,6 +12,8 @@ cat(readLines('../01-WildLiveStrikeDataSetDataPreparation.R'), sep = '\n')
 cat(readLines('../02-OnTimeFlightPerformanceDataSetDataPreparation.R'), sep = '\n')
 cat(readLines('../03-WildLifeStrikeDataSetSplitByYear.R'), sep = '\n')
 cat(readLines('../04-OnTimeFlightPerformanceDataSetMergeByYear.R'), sep = '\n')
+cat(readLines('../05-ExploreWildLifeStrikeDataSet.R'), sep = '\n')
+cat(readLines('../06-ExploreOnTimeFlightPerformanceDataSet.R'), sep = '\n')
 cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
 ```
 
