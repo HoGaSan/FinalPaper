@@ -14,7 +14,7 @@ wildLifeStrikeDataSetSplitByYear <- function() {
 
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
-                       "_Animal_Strikes.rds",
+                       "_Animal_Strikes_01_Orig.rds",
                        sep = "")
   
     RDSFile <- paste(dataDir,
@@ -378,6 +378,7 @@ wildLifeStrikeDataSetSplitByYear <- function() {
       
       #free up memory
       rm(dataOfWholeYear)
+      rm(list = ls(pattern = "sr_*"))
       gc()
       
     }

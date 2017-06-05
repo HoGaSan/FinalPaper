@@ -26,7 +26,7 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
   
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
-                         "_On_Time_On_Time_Performance_01_Orig.rds",
+                         "_On_Time_On_Time_Performance.rds",
                          sep = "")
 
     RDSFile <- paste(dataDir,
@@ -43,6 +43,9 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
       variableName <- paste("FP_", i, sep="")
       assign(variableName, readRDS(file = RDSFile))
       
+      #TODO:
+      #Create analysis graphs, data
+
       dataSummary <- rbindlist(
         list(
           dataSummary,
@@ -61,13 +64,11 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "FlightData", 
                      DataField = "Carrier", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$Carrier))
 
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "FlightData", 
                      DataField = "DistanceGroup", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$DistanceGroup))
 
       #Free up the memory

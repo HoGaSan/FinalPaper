@@ -31,7 +31,7 @@ ExploreWildLifeStrikeDataSet <- function() {
 
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
-                       "_Animal_Strikes_01_Orig.rds",
+                       "_Animal_Strikes.rds",
                        sep = "")
 
     RDSFile <- paste(dataDir,
@@ -71,38 +71,31 @@ ExploreWildLifeStrikeDataSet <- function() {
       #Save the plots as PNG files
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike", 
-                     DataField = "AC_CLASS",
-                     DataStage = "01_Orig",
+                     DataField = "AC_CLASS", 
                      DataObject = table(get(variableName)$AC_CLASS))
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike", 
                      DataField = "AC_MASS", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$AC_MASS))
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike", 
                      DataField = "TYPE_ENG", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$TYPE_ENG))
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike",
                      DataField = "TIME_OF_DAY", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$TIME_OF_DAY))
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike", 
                      DataField = "PHASE_OF_FLT", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$PHASE_OF_FLT))
       saveBarPlotPNG(DataYear = i, 
                      DataSet = "AnimalStrike", 
                      DataField = "SKY", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$SKY))
       saveBarPlotPNG(DataYear = i,
                      DataSet = "AnimalStrike", 
                      DataField = "PRECIP", 
-                     DataStage = "01_Orig",
                      DataObject = table(get(variableName)$PRECIP))
       
       #Free up the memory

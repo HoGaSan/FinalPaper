@@ -1,9 +1,9 @@
 ---
 output: 
   pdf_document:
-#    keep_tex: yes
     latex_engine: xelatex
-    number_sections: true
+    number_sections: yes
+    toc_depth: 4
 #    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
 urlcolor: blue
 linkcolor: black

@@ -7,8 +7,68 @@ output:
 
 ### Data Set Description
 
-TODO
+The resolution of the issues found during the data quality verification includes the reducing of several details originally provided by the Federal Aviation Administration and the United States Department of Transportation agencies. This section describes the resulted data sets.
 
-<!--
-During this step, the data analyst examines the “gross” or “surface” properties of the acquired data and reports on the results, examining issues such as the format of the data, the quantity of the data, the number of records and fields in each table, the identities of the fields, and any other surface features of the data. The key question to ask is: Does the data acquired satisfy the relevant requirements? For instance, if age is an important field and the data does not reflect the entire age range, it may be wise to collect a different set of data. This step also provides a basic understanding of the data on which subsequent steps will build.
--->
+#### Animal strike data
+
+| Column name         | Explanation of Column Name and Codes          |
+|:--------------------|:----------------------------------------------|
+|INDEX NR|Individual record number|
+|OPID|Airline operator code|
+|OPERATOR|A three letter International Civil Aviation Organization code for aircraft operators. (BUS = business, PVT = private aircraft other than business, GOV = government aircraft, MIL - military aircraft.)|
+|ATYPE|Aircraft|
+|AC_CLASS|Type of aircraft (see Aircraft Type tab below)|
+|AC_MASS|1 = 2,250 kg or less: 2 = ,2251-5700 kg: 3 = 5,701-27,000 kg: 4 = 27,001-272,000 kg: 5 = above 272,000 kg|
+|TYPE_ENG|Type of power A = reciprocating engine (piston): B = Turbojet: C = Turboprop: D = Turbofan: E = None (glider): F = Turboshaft (helicopter): Y = Other|
+|REG|Aircraft registration|
+|FLT|Flight number|
+|INCIDENT_DATE|Date strike occurred|
+|INCIDENT_MONTH|Month strike occurred|
+|INCIDENT_YEAR|Year strike occurred|
+|TIME_OF_DAY|Light conditions|
+|TIME|Hour and minute in local time|
+|AIRPORT_ID|International Civil Aviation Organization airport identifier for location of strike whether it was on or off airport|
+|AIRPORT|Name of airport|
+|STATE|State|
+|FAAREGION|FAA Region where airport is located|
+|ENROUTE|If strike did not occur on approach, climb, landing roll, taxi or take-off, aircraft was enroute. This shows location.|
+|RUNWAY|Runway|
+|HEIGHT|Feet Above Ground Level|
+|SPEED|Knots (indicated air speed)|
+|DISTANCE|Miles from airport|
+|PHASE_OF_FLT|Phase of flight during which strike occurred|
+|SKY|Type of cloud cover, if any|
+|PRECIP|Precipitation|
+|WARNED|Pilot warned of birds/wildlife|
+
+The number of details (columns) for each strike report has been reduces from 94 to 27.
+
+#### Flight data
+
+
+| Column name     | Explanation of Column Name and Codes              |
+|:----------------|:--------------------------------------------------|
+|Year|Year|
+|Quarter|Quarter (1-4)|
+|Month|Month|
+|DayofMonth|Day of Month|
+|DayOfWeek|Day of Week|
+|FlightDate|Flight Date (yyyymmdd)|
+|Carrier|Code assigned by IATA and commonly used to identify a carrier. As the same code may have been assigned to different carriers over time, the code is not always unique. For analysis, use the Unique Carrier Code.|
+|FlightNum|Flight Number|
+|Origin|Origin Airport|
+|OriginCityName|Origin Airport, City Name|
+|OriginState|Origin Airport, State Code|
+|OriginStateName|Origin Airport, State Name|
+|Dest|Destination Airport|
+|DestCityName|Destination Airport, City Name|
+|DestState|Destination Airport, State Code|
+|DestStateName|Destination Airport, State Name|
+|CRSDepTime|CRS Departure Time (local time: hhmm)|
+|DepTimeBlk|CRS Departure Time Block, Hourly Intervals|
+|CRSArrTime|CRS Arrival Time (local time: hhmm)|
+|CRSElapsedTime|CRS Elapsed Time of Flight, in Minutes|
+|Distance|Distance between airports (miles)|
+|DistanceGroup|Distance Intervals, every 250 Miles, for Flight Segment|
+
+The number of details (columns) for each flight performance record has been reduces from 110 to 23.

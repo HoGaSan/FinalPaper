@@ -354,6 +354,10 @@ loadSourceCodeFunctions <- function() {
   source("04-OnTimeFlightPerformanceDataSetMergeByYear.R")
   source("05-ExploreWildLifeStrikeDataSet.R")
   source("06-ExploreOnTimeFlightPerformanceDataSet.R")
+  source("07-DescribeWildLifeStrikeDataSet.R")
+  source("08-DescribeOnTimeFlightPerformanceDataSet.R")
+  source("09-SelectWildLifeStrikeDataSet.R")
+  source("10-SelectOnTimeFlightPerformanceDataSet.R")
 }
 
 
@@ -370,16 +374,27 @@ loadSourceCodeFunctions <- function() {
 #' @param DataField string
 #' The name of the data field the plot is being created from
 #' 
+#' @param DataStage string
+#' The name of the stage of the data
+#' 
 #' @param DataObject object
 #' The data object to create the plot
 #' 
 #' @examples 
 #' saveBarPlotPNG(1990, "Animal Strike", DT)
 #' 
-saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataObject) {
+saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) {
   currentWorkingDir <- getwd()
   setwd(getDocInputDir())
-  targetFileName <- paste(DataYear, "_", DataSet, "_", DataField, ".png", sep="")
+  targetFileName <- paste(DataYear,
+                          "_",
+                          DataSet,
+                          "_",
+                          DataField,
+                          "_",
+                          DataStage,
+                          ".png",
+                          sep="")
   png(
     targetFileName, #File name, no directory!
     units = "px", #units are in pixels
@@ -389,10 +404,60 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataObject) {
   ) 
   
   #barplot(DataObject)
-  barplot(DataObject, horiz = TRUE, col = "lightblue", main = paste("Data distribution of\n",DataField," in year ", DataYear, sep=""))
+  barplot(DataObject, 
+          horiz = TRUE, 
+          col = "lightblue", 
+          main = paste("Data distribution of\n",
+                       DataField,
+                       " in year ",
+                       DataYear,
+                       sep=""))
   
   dev.off() #flush the plot to the file and close the file
   
   setwd(currentWorkingDir)
+}
+
+
+#' 
+#' \code{printTable} saves the required bar plot based on 
+#' the details in the YAML config file
+#' 
+#' @param Full boolean
+#' Flag to have the full data set or just the first year to print
+#' 
+#' @param DataFile string
+#' The name of the RDS data file to load the data from
+#' 
+#' @param ColumnNames string list
+#' The name of columns to be extracted from the data table
+#' 
+#' @param ColumnTitles string list
+#' The titles the columns should have in the table
+#' 
+#' @examples 
+#' printTable()
+#' 
+printTable <- function(Full, DataFile, ColumnNames, ColumnTitles) {
+
+  dataDir <- getDataDir()
+  
+  RDSExpFile <- paste(dataDir,
+                      "/",
+                      DataFile,
+                      sep = "")
+  
+  dataTable <- readRDS(file = RDSExpFile)
+  
+  if (Full == TRUE) {
+    kable(dataTable[, ..ColumnNames],
+          col.names = ColumnTitles,
+          align = "c")
+  } else {
+    kable(dataTable[1, ..ColumnNames],
+          col.names = ColumnTitles,
+          align = "c")
+  }
+
 }
 
