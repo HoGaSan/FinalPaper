@@ -19,6 +19,7 @@ loadLibraries <- function() {
   if (!require(yaml)) {install.packages("yaml"); require(yaml)}
   if (!require(png)) {install.packages("png"); require(png)}
   if (!require(grid)) {install.packages("grid"); require(grid)}
+  if (!require(pander)) {install.packages("pander"); require(pander)}
   
   #update R
   updateR(TRUE)
@@ -56,7 +57,10 @@ versionDetails <- function() {
     "- installr version ", packageVersion("installr"),"\n",
     "- stringr version ", packageVersion("stringr"),"\n",
     "- ggplot2 version ", packageVersion("ggplot2"),"\n",
-    "- yaml version ", packageVersion("yaml"),"\n\n",
+    "- yaml version ", packageVersion("yaml"),"\n",
+    "- png version ", packageVersion("png"),"\n",
+    "- grid version ", packageVersion("grid"),"\n",
+    "- pander version ", packageVersion("pander"),"\n\n",
     "Base package versions:\n",
     "- stats version ", packageVersion("stats"),"\n",
     "- graphics version ", packageVersion("graphics"),"\n",
@@ -379,12 +383,13 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataObject) {
   png(
     targetFileName, #File name, no directory!
     units = "px", #units are in pixels
-    width = 400, #width of the plot in px (should be the same as the height)
-    height = 400, #height of the plot in px (should be the same as the width)
+    width = 300, #width of the plot in px (should be the same as the height)
+    height = 300, #height of the plot in px (should be the same as the width)
     res = 72 #nominal resolution in ppi (pixels per inch)
   ) 
   
-  barplot(DataObject)
+  #barplot(DataObject)
+  barplot(DataObject, horiz = TRUE, col = "lightblue", main = paste("Data distribution of\n",DataField," in year ", DataYear, sep=""))
   
   dev.off() #flush the plot to the file and close the file
   

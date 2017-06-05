@@ -1,3 +1,6 @@
+getwd()
+setwd(getMainDir())
+
 source("90-UserDefinedFunctions.R")
 suppressPackageStartupMessages(loadLibraries())
 suppressPackageStartupMessages(readConfigFile(TRUE))
@@ -7,7 +10,7 @@ suppressPackageStartupMessages(onTimeFlightPerformanceDataSet())
 suppressPackageStartupMessages(wildLifeStrikeDataSetSplitByYear())
 suppressPackageStartupMessages(onTimeFlightPerformanceDataSetMergeByYear())
 suppressPackageStartupMessages(ExploreWildLifeStrikeDataSet())
-#suppressPackageStartupMessages(ExploreOnTimeFlightPerformanceDataSet())
+suppressPackageStartupMessages(ExploreOnTimeFlightPerformanceDataSet())
 
 
 versionDetails()
@@ -40,7 +43,3 @@ for (i in startYear:endYear){
 }
 
 
-png(file = "myplot.png")
-plot(1:10)
-rect(1, 5, 3, 7, col = "white")
-dev.off()

@@ -5,17 +5,17 @@ output:
     number_sections: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 ```{r cars}
 
 
-knitr::include_graphics("1990_AnimalStrike_AC_CLASS.png")
+#knitr::include_graphics("1990_AnimalStrike_AC_CLASS.png")
 
-knitr::include_graphics("H:/!!Code/R/FinalPaper/Documents/Input/1990_AnimalStrike_AC_CLASS.png")
+#knitr::include_graphics("H:/!!Code/R/FinalPaper/Documents/Input/1990_AnimalStrike_AC_CLASS.png")
+
+targetFile <- "H:/!!Code/R/FinalPaper/Documents/Input/1995_AnimalStrike_AC_CLASS.png"
+
+knitr::include_graphics(targetFile)
+
 
 ```
 

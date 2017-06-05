@@ -18,6 +18,7 @@ output:
 ```
 
 ## Explore Data
+
 ```{r child = '240-ExploreData.Rmd'}
 ```
 

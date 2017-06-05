@@ -11,8 +11,7 @@ ExploreWildLifeStrikeDataSet <- function() {
   dataDir <- getDataDir()
   startYear <- getStartYear()
   endYear <- getEndYear()
-  documentsInputDir <- getDocInputDir()
-  
+
   dataSummary <- data.table(
     dataYear = character(),
     numberOfRecords = integer(),

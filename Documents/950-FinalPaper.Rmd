@@ -1,6 +1,7 @@
 ---
 output: 
   pdf_document:
+#    keep_tex: yes
     latex_engine: xelatex
     number_sections: true
 #    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
@@ -39,6 +40,7 @@ suppressPackageStartupMessages(readConfigFile(FALSE))
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\footrulewidth}{0.4pt}
+
 
 # Introduction
 
@@ -153,18 +155,14 @@ The following pages contain the Estimate of Resource Needs, which is the third d
 \end{center}
 
 
-# Appendix 5 - Data Exploration Report: Animal Strike Data
+# Appendix 5 - Full Data Exploration Report (1990-2016)
 
-```{r child = '242-ExploreData1.Rmd'}
+```{r child = '242-ExploreDataFull.Rmd'}
 ```
 
 
 \newpage
-# Appendix 6 - Data Exploration Report: Flight Data
-
-
-\newpage
-# Appendix 7 - Source code
+# Appendix 6 - Source code
 
 The following pages contain the source code of the project.
 
