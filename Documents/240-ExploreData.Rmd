@@ -1,9 +1,11 @@
 ---
 output:
   pdf_document:
+    #keep_tex: yes
     latex_engine: xelatex
     number_sections: yes
 ---
+
 
 ### Data Exploration Report
 
@@ -66,10 +68,12 @@ printTable(Full = FALSE,
 
 The following graphs show the distributions of some of the selected distinct items summarized in the tables above.
 
+\newpage
+
 ```{r 240-showPlots-01, results='asis'}
 
 imageLocation <- getDocInputDir()
-DataField <- c("AC_CLASS",
+DataField <- c(#"AC_CLASS",
                "AC_MASS", 
                "TYPE_ENG", 
                "TIME_OF_DAY", 
@@ -77,24 +81,32 @@ DataField <- c("AC_CLASS",
                "SKY", 
                "PRECIP")
 
+cat("\\begin{multicols}{2}\n\n")
+cat("\\begin{center}\n")
 
-for (i in 1:7) {
+for (i in 1:6) {
+#for (i in 1:7) {
   targetFileName <- paste("/1990_AnimalStrike_", 
                           DataField[i],
                           "_01_Orig.png", 
                           sep="")
-  targetFile <- paste(imageLocation, 
-                      targetFileName, 
+  targetFile <- paste(imageLocation,
+                      targetFileName,
                       sep="")
   if (file.exists(targetFile) == TRUE){
-    cat("![](",targetFile,")\n")
+    #cat(paste("\\includegraphics[width=8cm]{",targetFile,"}\n\n",sep=""),sep="")
+    cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
   } else {
-    cat(targetFile, " not found!")
+    cat("File not found!\n")
   }
   
 }
 
+cat("\\end{center}\n")
+cat("\n\\end{multicols}\n\n")
+
 ```
+\newpage
 
 #### Flight Data
 
@@ -150,6 +162,9 @@ imageLocation <- getDocInputDir()
 DataField <- c("Carrier",
                "DistanceGroup")
 
+cat("\\begin{multicols*}{2}\n\n")
+cat("\\begin{center}\n")
+
 
 for (i in 1:2) {
   targetFileName <- paste("/1990_FlightData_", 
@@ -160,11 +175,15 @@ for (i in 1:2) {
                       targetFileName, 
                       sep="")
   if (file.exists(targetFile) == TRUE){
-    cat("![](",targetFile,")\n")
+    cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
   } else {
-    cat(targetFile, " not found!")
+    cat("File not found!\n")
   }
   
 }
+
+cat("\\end{center}\n")
+cat("\n\\end{multicols*}\n\n")
+
 
 ```

@@ -12,6 +12,7 @@ header-includes:
   - \usepackage{fancyhdr}
   - \usepackage{pdfpages}
   - \usepackage{lscape}
+  - \usepackage{multicol}    
   - \newcommand{\blandscape}{\begin{landscape}}
   - \newcommand{\elandscape}{\end{landscape}}
 mainfont: Times New Roman
@@ -34,13 +35,13 @@ suppressPackageStartupMessages(readConfigFile(FALSE))
 ```{r child = '951-TitlePage.Rmd'}
 ```
 
-\newpage
 
+\newpage
 \pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhf{}
+\fancyfoot[C]{\thepage}
 \renewcommand{\footrulewidth}{0.4pt}
-
 
 # Introduction
 

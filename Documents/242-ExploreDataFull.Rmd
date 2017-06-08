@@ -68,7 +68,7 @@ The following graphs show the distributions of some of the selected distinct ite
 ```{r 242-showPlots-01, results='asis'}
 
 imageLocation <- getDocInputDir()
-DataField <- c("AC_CLASS", 
+DataField <- c(#"AC_CLASS", 
                "AC_MASS", 
                "TYPE_ENG", 
                "TIME_OF_DAY", 
@@ -79,7 +79,11 @@ startYear <- getStartYear()
 endYear <- getEndYear()
 
 for (i in startYear:endYear){
-  for (j in 1:7) {
+  cat("\\newpage")
+  cat("\\begin{multicols}{2}\n\n")
+  cat("\\begin{center}\n")
+  for (j in 1:6) {
+#  for (j in 1:7) {
     targetFileName <- paste("/", 
                             i , 
                             "_AnimalStrike_", 
@@ -90,16 +94,18 @@ for (i in startYear:endYear){
                         targetFileName, 
                         sep="")
     if (file.exists(targetFile) == TRUE){
-      cat("![](",targetFile,")\n")
+      cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
     } else {
-      cat(targetFile, " not found!")
+      cat("File not found!\n")
     }
        
   } #end of "for (j in 1:7)"
-  cat("\n")
+  cat("\\end{center}\n")
+  cat("\n\\end{multicols}\n\n")
 } #end of "for (i in startYear:endYear)"
 ```
 
+\newpage
 
 ### Flight Data (1990 - 2016)
 
@@ -158,6 +164,8 @@ startYear <- getStartYear()
 endYear <- getEndYear()
 
 for (i in startYear:endYear){
+  cat("\\begin{multicols}{2}\n\n")
+  cat("\\begin{center}\n")
   for (j in 1:2) {
     targetFileName <- paste("/", 
                             i , 
@@ -169,12 +177,13 @@ for (i in startYear:endYear){
                         targetFileName, 
                         sep="")
     if (file.exists(targetFile) == TRUE){
-      cat("![](",targetFile,")\n")
+      cat(paste("\\includegraphics[height=73mm]{",targetFile,"}\n\n",sep=""),sep="")
     } else {
-      cat(targetFile, " not found!")
+      cat("File not found!\n")
     }
        
-  } #end of "for (j in 1:7)"
-  cat("\n")
+  } #end of "for (j in 1:2)"
+  cat("\\end{center}\n")
+  cat("\n\\end{multicols}\n\n")
 } #end of "for (i in startYear:endYear)"
 ```

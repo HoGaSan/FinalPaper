@@ -10,13 +10,14 @@ linkcolor: black
 header-includes:
   - \usepackage{color}
   - \usepackage{fancyhdr}
+  - \usepackage{multicol}    
 mainfont: Times New Roman
 monofont: Times New Roman
 sansfont: Times New Roman
 bibliography: 850-Bibliography.bib
 ---
 
-```{r setup, include=FALSE}
+```{r 940-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 source("../90-UserDefinedFunctions.R")
 suppressPackageStartupMessages(loadLibraries())
@@ -33,6 +34,7 @@ suppressPackageStartupMessages(readConfigFile(FALSE))
 \pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhf{}
+\fancyfoot[C]{\thepage}
 \renewcommand{\footrulewidth}{0.4pt}
 
 # Introduction
