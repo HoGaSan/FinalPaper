@@ -8,7 +8,7 @@ output:
 
 ### Initial Data Collection Report
 
-There have been two data sources acquired in the initial phase of the project. These sources are the following:
+There have been multiple data sources acquired in the initial phase of the project. These sources are the following:
 
 #### Federal Aviation Administration
 * Data source: [Wildlife Strike Database](http://wildlife.faa.gov/)
@@ -34,3 +34,9 @@ There have been two data sources acquired in the initial phase of the project. T
     + Uncompressed size of the files is 71,146,030,010 bytes.
 * The download speed of the public access to these files seems to be limited, which needs to be taken into account in case of reproducing the results.
 
+#### Federal Aviation Administration
+* Data source: [Airport Data & Contact Information](https://www.faa.gov/airports/airport_safety/airportdata_5010/)
+* The FAA provides the database as a tabulator separated csv file.
+* The database used is as current as of 25-05-2017.
+* The database used contains the details of 19,601 airport facilities.
+* The file size is 10,490,580 bytes.

@@ -8,14 +8,19 @@ output:
 
 ### Data Description Report
 
-The two main data sources have the following column explanations, which is attached to the downloaded files as well, by the data provider agencies.
+The data sources have the following column explanations, which is attached to the downloaded files or can be downloaded separatelly, by the data provider agencies.
 
-#### Animal strike data
+#### Animal Strike Data
 
 ```{r child = '231-AnimalStrikeData.Rmd'}
 ```
 
-#### Flight data
+#### Flight Data
 
 ```{r child = '232-FlightData.Rmd'}
+```
+
+#### Airport Data
+
+```{r child = '233-AirportData.Rmd'}
 ```

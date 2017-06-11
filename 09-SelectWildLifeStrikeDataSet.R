@@ -62,14 +62,24 @@ SelectWildLifeStrikeDataSet <- function() {
                                                             "I",
                                                             "J",
                                                             "Y",
-                                                            "Z"),]
-        #TODO  |AC_CLASS|""|Value is empty.|
-        
+                                                            "Z",
+                                                            ""),]
         #TYPE_ENG selection
         selectedDataSet <- selectedDataSet[!TYPE_ENG %in% c("E",
-                                                            "F"),]
-        #TODO  |TYPE_ENG|""|Value is empty.|
+                                                            "F",
+                                                            ""),]
+
+        #STATE selection
+        selectedDataSet <- selectedDataSet[STATE %in% getStates(),]
         
+        #AC_MASS resetting
+        selectedDataSet$AC_MASS <- as.factor(selectedDataSet$AC_MASS)
+        
+        #Resetting the factors of the data table
+        selectedDataSet[] <- 
+          lapply(selectedDataSet,
+                 function(x) if(is.factor(x)) factor(x) else x)
+
         saveRDS(selectedDataSet, file = RDSFileSelected)
   
         #Free up the memory

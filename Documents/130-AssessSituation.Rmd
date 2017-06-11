@@ -6,7 +6,7 @@ output:
 ---
 
 
-### Inventory of resources
+### Inventory of Resources
 * Flight Data
 * Animal Strike Data
 * R

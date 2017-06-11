@@ -3,10 +3,13 @@
 #' the inputs for the Data Exploration Report based on
 #' the Flight data set
 #' 
-#' @examples 
-#' ExploreOnTimeFlightPerformanceDataSet()
+#' @param createPNG boolean
+#' Flag to decide to create the PNG images or not
 #' 
-ExploreOnTimeFlightPerformanceDataSet <- function() {
+#' @examples 
+#' ExploreOnTimeFlightPerformanceDataSet(FALSE)
+#' 
+ExploreOnTimeFlightPerformanceDataSet <- function(createPNG) {
   
   dataDir <- getDataDir()
   startYear <- getStartYear()
@@ -22,6 +25,16 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
     factorDestState = integer(),
     factorDepTimeBlk = integer(),
     factorDistanceGroup = integer()
+  )
+  
+  dataSummaryOriginState <- data.table(
+    originState = character(),
+    originStateName = character()
+  )
+  
+  dataSummaryDestState <- data.table(
+    destState = character(),
+    destStateName = character()
   )
   
   for (i in startYear:endYear){
@@ -55,20 +68,44 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
                length(levels(get(variableName)$DestState)),
                length(levels(get(variableName)$DepTimeBlk)),
                length(levels(as.factor(get(variableName)$DistanceGroup)))
-          )))
+               )
+          )
+        )
 
-      #Save the plots as PNG files
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "FlightData", 
-                     DataField = "Carrier", 
-                     DataStage = "01_Orig",
-                     DataObject = table(get(variableName)$Carrier))
+      dataSummaryOriginState <- rbindlist(
+        list(
+          dataSummaryOriginState,
+          unique(get(variableName)[,c("OriginState",
+                                      "OriginStateName")],
+                 by = c("OriginState",
+                        "OriginStateName"))
+          )
+        )
 
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "FlightData", 
-                     DataField = "DistanceGroup", 
-                     DataStage = "01_Orig",
-                     DataObject = table(get(variableName)$DistanceGroup))
+      dataSummaryDestState <- rbindlist(
+        list(
+          dataSummaryDestState,
+          unique(get(variableName)[,c("DestState",
+                                      "DestStateName")], 
+                 by = c("DestState",
+                        "DestStateName"))
+          )
+        )
+
+      if (createPNG == TRUE) {
+        #Save the plots as PNG files
+        saveBarPlotPNG(DataYear = i, 
+                       DataSet = "FlightData", 
+                       DataField = "Carrier", 
+                       DataStage = "01_Orig",
+                       DataObject = table(get(variableName)$Carrier))
+  
+        saveBarPlotPNG(DataYear = i, 
+                       DataSet = "FlightData", 
+                       DataField = "DistanceGroup", 
+                       DataStage = "01_Orig",
+                       DataObject = table(get(variableName)$DistanceGroup))
+      }
 
       #Free up the memory
       rm(list = variableName)
@@ -92,5 +129,51 @@ ExploreOnTimeFlightPerformanceDataSet <- function() {
     file.remove(RDSExpFile)
     saveRDS(dataSummary, file = RDSExpFile)
   }
+  
+  RDSExpStateFileName <- "02_EXP_Flight_Data_O_States.rds"
+  
+  RDSExpStateFile <- paste(dataDir,
+                           "/",
+                           RDSExpStateFileName,
+                           sep = "")
+  
+  dataSummaryOriginState <- 
+    unique(dataSummaryOriginState[,c("originState",
+                                     "originStateName")],
+           by = c("originState",
+                  "originStateName"))
+
+  dataSummaryOriginState <- dataSummaryOriginState[order(originState)]
+    
+  if (file.exists(RDSExpStateFile) != TRUE) {
+    saveRDS(dataSummaryOriginState, file = RDSExpStateFile)
+  } else {
+    file.remove(RDSExpStateFile)
+    saveRDS(dataSummaryOriginState, file = RDSExpStateFile)
+  }
+  
+
+  RDSExpStateFileName <- "02_EXP_Flight_Data_D_States.rds"
+  
+  RDSExpStateFile <- paste(dataDir,
+                           "/",
+                           RDSExpStateFileName,
+                           sep = "")
+  
+  dataSummaryDestState <- 
+    unique(dataSummaryDestState[,c("destState",
+                                   "destStateName")], 
+           by = c("destState",
+                  "destStateName"))
+  
+  dataSummaryDestState <- dataSummaryDestState[order(destState)]
+    
+  if (file.exists(RDSExpStateFile) != TRUE) {
+    saveRDS(dataSummaryDestState, file = RDSExpStateFile)
+  } else {
+    file.remove(RDSExpStateFile)
+    saveRDS(dataSummaryDestState, file = RDSExpStateFile)
+  }
+  
 
 }

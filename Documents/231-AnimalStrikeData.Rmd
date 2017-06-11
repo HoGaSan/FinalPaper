@@ -43,12 +43,7 @@ output:
 |SPEED|Knots (indicated air speed)|
 |DISTANCE|Miles from airport|
 |PHASE_OF_FLT|Phase of flight during which strike occurred|
-|DAMAGE||
-|Blank|Unknown|
-|M = minor|When the aircraft can be rendered airworthy by simple repairs or replacements and an extensive inspection is not necessary.|
-|M? = uncertain level|The aircraft was damaged, but details as to the extent of the damage are lacking.|
-|S = substantial|When the aircraft incurs damage or structural failure which adversely affects the structure strength, performance or flight characteristics of the aircraft and which would normally require major repair or replacement of the affected component.|
-|D = Destroyed|When the damage sustained makes it inadvisable to restore the aircraft to an airworthy condition.|
+|DAMAGE|Blank - Unknown; M = minor - When the aircraft can be rendered airworthy by simple repairs or replacements and an extensive inspection is not necessary.; M? = uncertain level - The aircraft was damaged, but details as to the extent of the damage are lacking.; S = substantial - When the aircraft incurs damage or structural failure which adversely affects the structure strength, performance or flight characteristics of the aircraft and which would normally require major repair or replacement of the affected component.; D = Destroyed - When the damage sustained makes it inadvisable to restore the aircraft to an airworthy condition.|
 |STR_RAD|Struck radome|
 |DAM_RAD|Damaged radome|
 |STR_WINDSHLD|Struck windshield|

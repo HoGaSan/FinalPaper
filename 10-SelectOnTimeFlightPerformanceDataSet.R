@@ -47,14 +47,25 @@ SelectOnTimeFlightPerformanceDataSet <- function() {
         variableName <- paste("FP_", i, sep="")
         assign(variableName, readRDS(file = RDSFile))
         
-        #TODO
-        
         if (i == 2016) {
           selectedDataSet <- get(variableName)[Month < 5,]
         } else {
           selectedDataSet <- get(variableName)
         }
         
+        #OriginState selection
+        selectedDataSet <- selectedDataSet[OriginState %in% getStates(),]
+        
+        #DestState selection
+        selectedDataSet <- selectedDataSet[DestState %in% getStates(),]
+        
+        #DistanceGroup resetting
+        selectedDataSet$DistanceGroup <- as.factor(selectedDataSet$DistanceGroup)
+
+        #Resetting the factors of the data table
+        selectedDataSet[] <- 
+          lapply(selectedDataSet,
+                 function(x) if(is.factor(x)) factor(x) else x)
         
         saveRDS(selectedDataSet, file = RDSFileSelected)
         

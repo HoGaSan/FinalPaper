@@ -1,12 +1,16 @@
 #' 
-#' \code{ExploreWildLifeStrikeDataSet} creates the inputs 
-#' for the Data Exploration Report based on the WildLife 
-#' strike data set
+#' \code{CleanupWildLifeStrikeDataSet} cleans up the data 
+#' set quality isses based on the data quality report 
+#' findings and creates secondary exploration report for 
+#' comparism purposes
+#' 
+#' @param createPNG boolean
+#' Flag to decide to create the PNG images or not
 #' 
 #' @examples 
-#' ExploreWildLifeStrikeDataSet()
+#' CleanupWildLifeStrikeDataSet()
 #' 
-ExploreWildLifeStrikeDataSet <- function() {
+CleanupWildLifeStrikeDataSet <- function(createPNG) {
 
   dataDir <- getDataDir()
   startYear <- getStartYear()
@@ -16,7 +20,7 @@ ExploreWildLifeStrikeDataSet <- function() {
     dataYear = character(),
     numberOfRecords = integer(),
     factorOPID = integer(),
-    factopATYPE = integer(),
+    factorATYPE = integer(),
     factorAC_CLASS = integer(),
     factorAC_MASS = integer(),
     factorTYPE_ENG = integer(),
@@ -31,7 +35,7 @@ ExploreWildLifeStrikeDataSet <- function() {
 
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
-                       "_Animal_Strikes.rds",
+                       "_Animal_Strikes_03_Sel.rds",
                        sep = "")
 
     RDSFile <- paste(dataDir,
@@ -39,76 +43,134 @@ ExploreWildLifeStrikeDataSet <- function() {
                    RDSFileName,
                    sep = "")
 
+    RDSFileNameCleaned <- paste(i,
+                                "_Animal_Strikes_04_Cle.rds",
+                                sep = "")
+    
+    RDSFileCleaned <- paste(dataDir,
+                            "/",
+                            RDSFileNameCleaned,
+                            sep = "")
+    
     if (file.exists(RDSFile) != TRUE){
       message(RDSFileName,
               "is not available, ",
               "please re-run the preparation scripts!")
     } else {
-      #Read the data file into a variable
-      variableName <- paste("AS_", i, sep="")
-      assign(variableName, readRDS(file = RDSFile))
       
-      dataSummary <- rbindlist(
-        list(
-          dataSummary,
-          list(as.character(i),
-               nrow(get(variableName)),
-               length(levels(get(variableName)$OPID)),
-               length(levels(get(variableName)$ATYPE)),
-               length(levels(get(variableName)$AC_CLASS)),
-               length(levels(as.factor(get(variableName)$AC_MASS))),
-               length(levels(get(variableName)$TYPE_ENG)),
-               length(levels(get(variableName)$TIME_OF_DAY)),
-               length(levels(get(variableName)$AIRPORT_ID)),
-               length(levels(get(variableName)$STATE)),
-               length(levels(get(variableName)$PHASE_OF_FLT)),
-               length(levels(get(variableName)$SKY)),
-               length(levels(get(variableName)$PRECIP)),
-               length(levels(get(variableName)$WARNED))
-               )
-          ))
+      if (file.exists(RDSFileCleaned) == TRUE){
+        message(RDSFileNameCleaned,
+                " exists, no further action is required.")
+      } else {
+        
+        #Read the data file into a variable
+        variableName <- paste("AS_", i, sep="")
+        assign(variableName, readRDS(file = RDSFile))
+        
+        cleanedDataSet <- get(variableName)
+  
+        #Convert the factor characters to uppercase
+        cleanedDataSet[] <- 
+          lapply(cleanedDataSet,
+                 function(x) if(is.factor(x)) 
+                   as.factor(toupper(as.character(x))) else x)
+        
+        #Change values to plural
+        cleanedDataSet[SKY == "SOME CLOUD", SKY:= "SOME CLOUDS"]
+        cleanedDataSet[SKY == "NO CLOUD", SKY:= "NO CLOUDS"]
+        
+        #populate empty factors to none for selected columns
+        cleanedDataSet[TIME_OF_DAY == "", TIME_OF_DAY:= "NONE"]
+        cleanedDataSet[PHASE_OF_FLT == "", PHASE_OF_FLT:= "NONE"]
+        cleanedDataSet[SKY == "", SKY:= "NONE"]
+        cleanedDataSet[PRECIP == "", PRECIP:= "NONE"]
+        cleanedDataSet[WARNED == "", WARNED:= "NONE"]
+        
+        #change engine type
+        cleanedDataSet[TYPE_ENG == "A/C", TYPE_ENG:= "A"]
+        cleanedDataSet[TYPE_ENG == "B/D", TYPE_ENG:= "B"]
 
-      #Save the plots as PNG files
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike", 
-                     DataField = "AC_CLASS", 
-                     DataObject = table(get(variableName)$AC_CLASS))
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike", 
-                     DataField = "AC_MASS", 
-                     DataObject = table(get(variableName)$AC_MASS))
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike", 
-                     DataField = "TYPE_ENG", 
-                     DataObject = table(get(variableName)$TYPE_ENG))
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike",
-                     DataField = "TIME_OF_DAY", 
-                     DataObject = table(get(variableName)$TIME_OF_DAY))
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike", 
-                     DataField = "PHASE_OF_FLT", 
-                     DataObject = table(get(variableName)$PHASE_OF_FLT))
-      saveBarPlotPNG(DataYear = i, 
-                     DataSet = "AnimalStrike", 
-                     DataField = "SKY", 
-                     DataObject = table(get(variableName)$SKY))
-      saveBarPlotPNG(DataYear = i,
-                     DataSet = "AnimalStrike", 
-                     DataField = "PRECIP", 
-                     DataObject = table(get(variableName)$PRECIP))
-      
-      #Free up the memory
-      rm(list = variableName)
-      rm(variableName)
-      gc()
-      
+        #Resetting the factors of the data table
+        cleanedDataSet[] <- 
+          lapply(cleanedDataSet,
+                 function(x) if(is.factor(x)) factor(x) else x)
+        
+        dataSummary <- rbindlist(
+          list(
+            dataSummary,
+            list(as.character(i),
+                 nrow(cleanedDataSet),
+                 length(levels(cleanedDataSet$OPID)),
+                 length(levels(cleanedDataSet$ATYPE)),
+                 length(levels(cleanedDataSet$AC_CLASS)),
+                 length(levels(cleanedDataSet$AC_MASS)),
+                 length(levels(cleanedDataSet$TYPE_ENG)),
+                 length(levels(cleanedDataSet$TIME_OF_DAY)),
+                 length(levels(cleanedDataSet$AIRPORT_ID)),
+                 length(levels(cleanedDataSet$STATE)),
+                 length(levels(cleanedDataSet$PHASE_OF_FLT)),
+                 length(levels(cleanedDataSet$SKY)),
+                 length(levels(cleanedDataSet$PRECIP)),
+                 length(levels(cleanedDataSet$WARNED))
+                 )
+            )
+          )
+        
+        if (createPNG == TRUE) {
+    
+          #Save the plots as PNG files
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike", 
+                         DataField = "AC_CLASS", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$AC_CLASS))
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike", 
+                         DataField = "AC_MASS", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$AC_MASS))
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike", 
+                         DataField = "TYPE_ENG", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$TYPE_ENG))
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike",
+                         DataField = "TIME_OF_DAY", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$TIME_OF_DAY))
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike", 
+                         DataField = "PHASE_OF_FLT", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$PHASE_OF_FLT))
+          saveBarPlotPNG(DataYear = i, 
+                         DataSet = "AnimalStrike", 
+                         DataField = "SKY", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$SKY))
+          saveBarPlotPNG(DataYear = i,
+                         DataSet = "AnimalStrike", 
+                         DataField = "PRECIP", 
+                         DataStage = "04_Cleaned",
+                         DataObject = table(cleanedDataSet$PRECIP))
+        }
+
+        saveRDS(cleanedDataSet, file = RDSFileCleaned)
+        
+        #Free up the memory
+        rm(list = variableName)
+        rm(variableName)
+        gc()
+        
+      } #end of "if (file.exists(RDSFileCleaned) == TRUE)"
+
     } #end of "if (file.exists(RDSFile) != TRUE)"
 
   } #end of "for (i in startYear:endYear)"
   
   
-  RDSExpFileName <- "01_EXP_Animal_Strikes.rds"
+  RDSExpFileName <- "03_CLEANED_Animal_Strikes.rds"
   
   RDSExpFile <- paste(dataDir,
                       "/",

@@ -5,30 +5,14 @@ output:
     number_sections: true
 ---
 
-### Data Cleaning Report
-
-The resolution of the issues found during the data quality verification includes the exclusion of certain records from the data sets originally provided by the Federal Aviation Administration and the United States Department of Transportation agencies. This section provides the summary of the changes on the data sets.
-
-#### Animal Strike Data
-
-The data quality verification identified that the data provided by the Federal Aviation Administration contains the following problems impacting the indicated columns:
-
-* Mixed use of uppercase and lowercase letters/codes
-    + TYPE_ENG
-    + TIME_OF_DAY
-    + PHASE_OF_FLT
-    + SKY
-    + PRECIP
-    + WARNED
-* Mixed use of codes (e.g.: engine type is defined as "A/C")
-    + TYPE_ENG
-    + SKY
+## Data Exploration Report (1990 - 2016)
 
 
-The first summary table shows the number of distinct items for each year regarding the Airline operators, Aircraft, Aircraft types, Aircraft mass types, and Engine types, which have been reported as being affected in an animal strike after the selection and cleanup tasks.
+### Animal Strike Data (1990 - 2016)
 
+The first summary table shows the number of distinct items for each year regarding the Airline operators, Aircraft, Aircraft types, Aircraft mass types, and Engine types, which have been reported as being affected in an animal strike after the selection and cleanup tasks. (Please note that the data for 2016 is available until 30-4-2016.)
 
-```{r 340-table-01, results = 'asis'}
+```{r 342-table-01, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorOPID",
@@ -45,15 +29,16 @@ setOfColumnTitles <- c("Year",
                        "Aircraft mass type",
                        "Engine type")
   
-printTable(Full = FALSE, 
+printTable(Full = TRUE, 
            DataFile = "03_CLEANED_Animal_Strikes.rds", 
            ColumnNames = setOfColumns, 
            ColumnTitles = setOfColumnTitles)
 ```
 
-The second summary table shows the number of distinct items for each year regarding the Time of day, Airports, States, Phase of flight, weather conditions (Sky and Precipitation), and the flag for showing if the pilot has been warned or not about birds / wildlife in the reports after the selection and cleanup tasks.
 
-```{r 340-table-02, results = 'asis'}
+The second summary table shows the number of distinct items for each year regarding the Time of day, Airports, States, Phase of flight, weather conditions (Sky and Precipitation), and the flag for showing if the pilot has been warned or not about birds / wildlife in the reports after the selection and cleanup tasks. (Please note that the data for 2016 is available until 30-4-2016.)
+
+```{r 342-table-02, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "factorTIME_OF_DAY",
                   "factorAIRPORT_ID",
@@ -72,7 +57,7 @@ setOfColumnTitles <- c("Year",
                        "Precipitation",
                        "Warned")
   
-printTable(Full = FALSE, 
+printTable(Full = TRUE, 
            DataFile = "03_CLEANED_Animal_Strikes.rds", 
            ColumnNames = setOfColumns, 
            ColumnTitles = setOfColumnTitles)
@@ -82,7 +67,7 @@ The following graphs show the distributions of some of the selected distinct ite
 
 \newpage
 
-```{r 340-showPlots-01, results='asis'}
+```{r 342-showPlots-01, results='asis'}
 
 imageLocation <- getDocInputDir()
 DataField <- c("AC_MASS", 
@@ -91,40 +76,42 @@ DataField <- c("AC_MASS",
                "PHASE_OF_FLT", 
                "SKY", 
                "PRECIP")
+startYear <- getStartYear()
+endYear <- getEndYear()
 
-cat("\\begin{multicols}{2}\n\n")
-cat("\\begin{center}\n")
-
-for (i in 1:6) {
-  targetFileName <- paste("/1990_AnimalStrike_", 
-                          DataField[i],
-                          "_04_Cleaned.png", 
-                          sep="")
-  targetFile <- paste(imageLocation,
-                      targetFileName,
-                      sep="")
-  if (file.exists(targetFile) == TRUE){
-    cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
-  } else {
-    cat("File not found!\n")
-  }
-  
-}
-
-cat("\\end{center}\n")
-cat("\n\\end{multicols}\n\n")
-
+for (i in startYear:endYear){
+  cat("\\newpage")
+  cat("\\begin{multicols}{2}\n\n")
+  cat("\\begin{center}\n")
+  for (j in 1:6) {
+    targetFileName <- paste("/", 
+                            i , 
+                            "_AnimalStrike_", 
+                            DataField[j], 
+                           "_04_Cleaned.png", 
+                            sep="")
+    targetFile <- paste(imageLocation, 
+                        targetFileName, 
+                        sep="")
+    if (file.exists(targetFile) == TRUE){
+      cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
+    } else {
+      cat("File not found!\n")
+    }
+       
+  } #end of "for (j in 1:6)"
+  cat("\\end{center}\n")
+  cat("\n\\end{multicols}\n\n")
+} #end of "for (i in startYear:endYear)"
 ```
+
 \newpage
 
-#### Flight Data
-
-I did not identify any data quality issues - which have not been corrected in the previous steps - with the data provided by the United States Department of Transportation during the data exploration and data quality verification exercises.
-
+### Flight Data (1990 - 2016)
 
 The first summary table shows the number of distinct items for each year regarding the number of records, the carriers, and the origin and the destination airports after the selection and cleanup tasks.
 
-```{r 340-table-04, results = 'asis'}
+```{r 342-table-04, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorCarrier",
@@ -141,7 +128,7 @@ setOfColumnTitles <- c("Year",
                        "Destination airports",
                        "Destination states")
   
-printTable(Full = FALSE, 
+printTable(Full = TRUE, 
            DataFile = "03_CLEANED_Flight_Data.rds", 
            ColumnNames = setOfColumns, 
            ColumnTitles = setOfColumnTitles)
@@ -150,7 +137,7 @@ printTable(Full = FALSE,
 
 The second summary table shows the number of distinct items for each year the departure time group and distance between the airports after the selection and cleanup tasks.
 
-```{r 340-table-05, results = 'asis'}
+```{r 342-table-05, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "factorDepTimeBlk",
                   "factorDistanceGroup")
@@ -159,7 +146,7 @@ setOfColumnTitles <- c("Year",
                        "Departure time block",
                        "Distance group")
   
-printTable(Full = FALSE, 
+printTable(Full = TRUE, 
            DataFile = "03_CLEANED_Flight_Data.rds", 
            ColumnNames = setOfColumns, 
            ColumnTitles = setOfColumnTitles)
@@ -168,33 +155,37 @@ printTable(Full = FALSE,
 
 The following graphs show the distributions of some of the selected distinct items summarized in the tables above.
 
-```{r 340-showPlots-02, results='asis'}
+```{r 342-showPlots-02, results='asis'}
+
 
 imageLocation <- getDocInputDir()
 DataField <- c("Carrier",
                "DistanceGroup")
+startYear <- getStartYear()
+endYear <- getEndYear()
 
-cat("\\begin{multicols*}{2}\n\n")
-cat("\\begin{center}\n")
-
-
-for (i in 1:2) {
-  targetFileName <- paste("/1990_FlightData_", 
-                          DataField[i],
-                          "_04_Cleaned.png", 
-                          sep="")
-  targetFile <- paste(imageLocation, 
-                      targetFileName, 
-                      sep="")
-  if (file.exists(targetFile) == TRUE){
-    cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
-  } else {
-    cat("File not found!\n")
-  }
-  
-}
-
-cat("\\end{center}\n")
-cat("\n\\end{multicols*}\n\n")
+for (i in startYear:endYear){
+  cat("\\begin{multicols}{2}\n\n")
+  cat("\\begin{center}\n")
+  for (j in 1:2) {
+    targetFileName <- paste("/", 
+                            i , 
+                            "_FlightData_", 
+                            DataField[j], 
+                            "_04_Cleaned.png", 
+                            sep="")
+    targetFile <- paste(imageLocation, 
+                        targetFileName, 
+                        sep="")
+    if (file.exists(targetFile) == TRUE){
+      cat(paste("\\includegraphics[height=73mm]{",targetFile,"}\n\n",sep=""),sep="")
+    } else {
+      cat("File not found!\n")
+    }
+       
+  } #end of "for (j in 1:2)"
+  cat("\\end{center}\n")
+  cat("\n\\end{multicols}\n\n")
+} #end of "for (i in startYear:endYear)"
 ```
 

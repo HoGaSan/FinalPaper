@@ -358,6 +358,14 @@ loadSourceCodeFunctions <- function() {
   source("08-DescribeOnTimeFlightPerformanceDataSet.R")
   source("09-SelectWildLifeStrikeDataSet.R")
   source("10-SelectOnTimeFlightPerformanceDataSet.R")
+  source("11-CleanupWildLifeStrikeDataSet.R")
+  source("12-CleanupOnTimeFlightPerformanceDataSet.R")
+  source("13-AirportDataSetDataPreparation.R")
+  source("14-DescribeAirportDataSet.R")
+  source("15-SelectAirportDataSet.R")
+  source("16-CleanupAirportDataSet.R")
+  
+  #source("17-DeriveAirportAttributes.R")
 }
 
 
@@ -420,8 +428,8 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
 
 
 #' 
-#' \code{printTable} saves the required bar plot based on 
-#' the details in the YAML config file
+#' \code{printTable} prints an rmarkdown table based on the 
+#' input variables
 #' 
 #' @param Full boolean
 #' Flag to have the full data set or just the first year to print
@@ -436,7 +444,12 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
 #' The titles the columns should have in the table
 #' 
 #' @examples 
-#' printTable()
+#' printTable(
+#'   TRUE, 
+#'   "example.rds",
+#'   c("V1", "V2"),
+#'   c("Column1", "Column2")
+#' )
 #' 
 printTable <- function(Full, DataFile, ColumnNames, ColumnTitles) {
 
@@ -461,3 +474,137 @@ printTable <- function(Full, DataFile, ColumnNames, ColumnTitles) {
 
 }
 
+#' 
+#' \code{getStates} returns the U.S. state abbreviations
+#' 
+#' @examples 
+#' getStates()
+#' 
+getStates <- function() {
+  return(
+    c(
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO",
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+      )
+    )
+}
+
+
+#' 
+#' \code{printStates} prints the U.S. state abbreviations and names
+#' in an rmarkdown table
+#' 
+#' @examples 
+#' printStates()
+#' 
+printStates <- function() {
+  
+  dataState <- data.table(
+    state = getStates(),
+    stateName = c(
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming"
+      )
+  )
+  
+  kable(dataState,
+          col.names = c("Abbreviation","Name"),
+          align = "c")
+
+}

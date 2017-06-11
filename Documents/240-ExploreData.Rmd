@@ -6,7 +6,6 @@ output:
     number_sections: yes
 ---
 
-
 ### Data Exploration Report
 
 Keeping the length of this section reasonable, the exploration report shown here contains the data from 1990. The report for the rest of the data is in the appendix of the final document.
@@ -19,7 +18,7 @@ The first summary table shows the number of distinct items for each year regardi
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorOPID",
-                  "factopATYPE",
+                  "factorATYPE",
                   "factorAC_CLASS",
                   "factorAC_MASS",
                   "factorTYPE_ENG")
@@ -73,8 +72,7 @@ The following graphs show the distributions of some of the selected distinct ite
 ```{r 240-showPlots-01, results='asis'}
 
 imageLocation <- getDocInputDir()
-DataField <- c(#"AC_CLASS",
-               "AC_MASS", 
+DataField <- c("AC_MASS", 
                "TYPE_ENG", 
                "TIME_OF_DAY", 
                "PHASE_OF_FLT", 
@@ -85,7 +83,6 @@ cat("\\begin{multicols}{2}\n\n")
 cat("\\begin{center}\n")
 
 for (i in 1:6) {
-#for (i in 1:7) {
   targetFileName <- paste("/1990_AnimalStrike_", 
                           DataField[i],
                           "_01_Orig.png", 
@@ -94,7 +91,6 @@ for (i in 1:6) {
                       targetFileName,
                       sep="")
   if (file.exists(targetFile) == TRUE){
-    #cat(paste("\\includegraphics[width=8cm]{",targetFile,"}\n\n",sep=""),sep="")
     cat(paste("\\includegraphics[height=75mm]{",targetFile,"}\n\n",sep=""),sep="")
   } else {
     cat("File not found!\n")
@@ -112,7 +108,7 @@ cat("\n\\end{multicols}\n\n")
 
 The first summary table shows the number of distinct items for each year regarding the number of records, the carriers, and the origin and the destination airports.
 
-```{r 240-table-03, results = 'asis'}
+```{r 240-table-04, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorCarrier",
@@ -138,7 +134,7 @@ printTable(Full = FALSE,
 
 The second summary table shows the number of distinct items for each year the departure time group and distance between the airports.
 
-```{r 240-table-04, results = 'asis'}
+```{r 240-table-05, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "factorDepTimeBlk",
                   "factorDistanceGroup")
@@ -187,3 +183,8 @@ cat("\n\\end{multicols*}\n\n")
 
 
 ```
+
+#### Airport Data
+
+The airport data is used only as a reference data source, therefore no data exploration needs to be executed.
+

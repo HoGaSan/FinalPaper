@@ -1,6 +1,6 @@
 #' 
 #' \code{wildLifeStrikeDataSet} based on the configuration 
-#' items checkes if the wildlife strike data set file has been:
+#' items checks if the wildlife strike data set file has been:
 #'  - downloaded
 #'  - uncompressed
 #'  - included tables extracted

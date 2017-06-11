@@ -16,7 +16,7 @@ The first summary table shows the number of distinct items for each year regardi
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorOPID",
-                  "factopATYPE",
+                  "factorATYPE",
                   "factorAC_CLASS",
                   "factorAC_MASS",
                   "factorTYPE_ENG")
@@ -68,8 +68,7 @@ The following graphs show the distributions of some of the selected distinct ite
 ```{r 242-showPlots-01, results='asis'}
 
 imageLocation <- getDocInputDir()
-DataField <- c(#"AC_CLASS", 
-               "AC_MASS", 
+DataField <- c("AC_MASS", 
                "TYPE_ENG", 
                "TIME_OF_DAY", 
                "PHASE_OF_FLT", 
@@ -83,7 +82,6 @@ for (i in startYear:endYear){
   cat("\\begin{multicols}{2}\n\n")
   cat("\\begin{center}\n")
   for (j in 1:6) {
-#  for (j in 1:7) {
     targetFileName <- paste("/", 
                             i , 
                             "_AnimalStrike_", 
@@ -99,7 +97,7 @@ for (i in startYear:endYear){
       cat("File not found!\n")
     }
        
-  } #end of "for (j in 1:7)"
+  } #end of "for (j in 1:6)"
   cat("\\end{center}\n")
   cat("\n\\end{multicols}\n\n")
 } #end of "for (i in startYear:endYear)"
@@ -109,9 +107,9 @@ for (i in startYear:endYear){
 
 ### Flight Data (1990 - 2016)
 
-The first summary table shows the number of distinct items for each year regarding the number of records, the carriers, Origin and destination airports.
+The first summary table shows the number of distinct items for each year regarding the number of records, the carriers, and the origin and destination airports.
 
-```{r 242-table-03, results = 'asis'}
+```{r 242-table-04, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "numberOfRecords",
                   "factorCarrier",
@@ -137,7 +135,7 @@ printTable(Full = TRUE,
 
 The second summary table shows the number of distinct items for each year the departure time group and distance between the airports.
 
-```{r 242-table-04, results = 'asis'}
+```{r 242-table-05, results = 'asis'}
 setOfColumns <- c("dataYear",
                   "factorDepTimeBlk",
                   "factorDistanceGroup")

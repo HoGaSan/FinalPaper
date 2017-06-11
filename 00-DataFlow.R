@@ -2,47 +2,50 @@ getwd()
 setwd(getMainDir())
 
 source("90-UserDefinedFunctions.R")
-suppressPackageStartupMessages(loadLibraries()) #load the required libraries
-suppressPackageStartupMessages(readConfigFile(TRUE)) #read the config file
-suppressPackageStartupMessages(loadSourceCodeFunctions()) #get the file specific functions
-suppressPackageStartupMessages(wildLifeStrikeDataSet()) #download and extract the data is required
-suppressPackageStartupMessages(onTimeFlightPerformanceDataSet()) #download and extract the data is required
-suppressPackageStartupMessages(wildLifeStrikeDataSetSplitByYear()) #Split data by year --> RDS "_01_Orig"
-suppressPackageStartupMessages(onTimeFlightPerformanceDataSetMergeByYear()) #Merge data by year --> RDS "_01_Orig"
-suppressPackageStartupMessages(ExploreWildLifeStrikeDataSet()) #PNG plot creation
-suppressPackageStartupMessages(ExploreOnTimeFlightPerformanceDataSet()) #PNG plot creation
-suppressPackageStartupMessages(DescribeWildLifeStrikeDataSet()) #Take required columns --> RDS "_02_Desc"
-suppressPackageStartupMessages(DescribeOnTimeFlightPerformanceDataSet()) #Take required columns --> RDS "_02_Desc"
-suppressPackageStartupMessages(SelectWildLifeStrikeDataSet()) #Take out not required rows --> RDS "_03_Sel"
-suppressPackageStartupMessages(SelectOnTimeFlightPerformanceDataSet()) #Take out not required rows --> RDS "_03_Sel"
-
-versionDetails()
-
+#load the required libraries - 90
+  loadLibraries()
+#read the config file - 90
+  readConfigFile(TRUE)
+#get the file specific functions - 90
+  loadSourceCodeFunctions()
+#download and extract the data is required - 01
+  wildLifeStrikeDataSet()
+#download and extract the data is required - 02
+  onTimeFlightPerformanceDataSet()
+#Split data by year --> RDS "_01_Orig" - 03
+  wildLifeStrikeDataSetSplitByYear()
+#Merge data by year --> RDS "_01_Orig" - 04
+  onTimeFlightPerformanceDataSetMergeByYear()
+#PNG plot creation - 05
+  ExploreWildLifeStrikeDataSet(createPNG = FALSE)
+#PNG plot creation - 06
+  ExploreOnTimeFlightPerformanceDataSet(createPNG = FALSE)
+#Take required columns --> RDS "_02_Desc" - 07
+  DescribeWildLifeStrikeDataSet()
+#Take required columns --> RDS "_02_Desc" - 08
+  DescribeOnTimeFlightPerformanceDataSet()
+#Take out not required rows --> RDS "_03_Sel" - 09
+  SelectWildLifeStrikeDataSet()
+#Take out not required rows --> RDS "_03_Sel" - 10
+  SelectOnTimeFlightPerformanceDataSet()
+#Cleanup the data --> RDS "_04_Cle" - 11
+  CleanupWildLifeStrikeDataSet(createPNG = TRUE)
+#Cleanup the data --> RDS "_04_Cle" - 12
+  CleanupOnTimeFlightPerformanceDataSet(createPNG = TRUE)
+#Airport data preparation - 13
+  AirportDataSetDataPreparation()
+#Airport data describe - 14
+  DescribeAirportDataSet()
+#Airport data select - 15
+  SelectAirportDataSet()
+#Airport data cleanup - 16
+  CleanupAirportDataSet()
+  
 backupFiles()
 
 #rm(list=ls())
 #gc()
 
-#rm(list = ls(pattern = "sr_*"))
 
-dataDir <- getDataDir()
-startYear <- getStartYear()
-endYear <- getEndYear()
-
-for (i in startYear:endYear){
-  RDSFileName <- paste(i,
-                       "_Animal_Strikes.rds",
-                       sep = "")
-  
-  RDSFile <- paste(dataDir,
-                   "/",
-                   RDSFileName,
-                   sep = "")
-  
-  if (file.exists(RDSFile) == TRUE){
-    #file.remove(RDSFile)
-    
-  }
-}
 
 

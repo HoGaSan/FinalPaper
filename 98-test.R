@@ -3,111 +3,9 @@ suppressPackageStartupMessages(loadLibraries())
 suppressPackageStartupMessages(readConfigFile(TRUE))
 
 
-firstSetOfColumns <- c("dataYear",
-                       "numberOfRecords",
-                       "factorOPID",
-                       "factopATYPE",
-                       "factorAC_CLASS",
-                       "factorAC_MASS",
-                       "factorTYPE_ENG")
-
-fistSetOfColumnTitles <- c("Year",
-                           "# of reports",
-                           "Operators",
-                           "Aircraft",
-                           "Aircraft type",
-                           "Aircraft mass type",
-                           "Engine type")
-
-printTable(Full = TRUE, DataFile = "01_EXP_Animal_Strikes.rds", ColumnNames = firstSetOfColumns, ColumnTitles = fistSetOfColumnTitles)
-
-
-
-setOfColumns <- c("dataYear",
-                  "factorTIME_OF_DAY",
-                  "factorAIRPORT_ID",
-                  "factorSTATE",
-                  "factorPHASE_OF_FLT",
-                  "factorSKY",
-                  "factorPRECIP",
-                  "factorWARNED")
-
-setOfColumnTitles <- c("Year",
-                       "Time of day",
-                       "Airports",
-                       "States",
-                       "Phase of flight",
-                       "Sky",
-                       "Precipitation",
-                       "Warned")
-
-printTable(Full = FALSE, 
-           DataFile = "01_EXP_Animal_Strikes.rds", 
-           ColumnNames = setOfColumns, 
-           ColumnTitles = setOfColumnTitles)
-
-
-
-  dataDir <- getDataDir()
-  startYear <- getStartYear()
-  endYear <- getEndYear()
-
-i <- 1990
-    RDSFileName <- paste(i,
-                         "_Animal_Strikes.rds",
-                         sep = "")
-    
-    RDSFile <- paste(dataDir,
-                     "/",
-                     RDSFileName,
-                     sep = "")
- 
-    
-    variableName <- paste("AS_", i, sep="")
-    assign(variableName, readRDS(file = RDSFile))
-
-    
-    ColumnNames <- c(
-    "INDEX_NR",
-    "OPID",
-    "OPERATOR",
-    "ATYPE",
-    "AC_CLASS",
-    "AC_MASS",
-    "TYPE_ENG",
-    "REG",
-    "FLT",
-    "INCIDENT_DATE",
-    "INCIDENT_MONTH",
-    "INCIDENT_YEAR",
-    "TIME_OF_DAY",
-    "TIME",
-    "AIRPORT_ID",
-    "AIRPORT",
-    "STATE",
-    "FAAREGION",
-    "ENROUTE",
-    "RUNWAY",
-    "HEIGHT",
-    "SPEED",
-    "DISTANCE",
-    "PHASE_OF_FLT",
-    "SKY",
-    "PRECIP",
-    "WARNED")
-    
-    str(get(variableName))
-        
-    describedDataSet <- get(variableName)[, ..ColumnNames]
-    
     
     
        
-    variableName <- paste("AS_", i, sep="")
-    assign(variableName, readRDS(file = RDSFile))
-    #DataField <- "AC_CLASS"
-    DataField <- "TIME_OF_DAY"
-    DataYear <- i
 
     ggplot(data = get(variableName), aes(get(DataField))) +
       ggtitle(paste("Data distribution of ",DataField," in year ", DataYear, sep="")) +
@@ -122,6 +20,96 @@ i <- 1990
       opts(title=) 
     
 
+      
+      RDSFileNameSelected <- "06_SEL_Airport.rds"
+      
+      RDSFileSelected <- paste(dataDir,
+                               "/",
+                               RDSFileNameSelected,
+                               sep = "")
+      originalDataSetSel <- readRDS(file = RDSFileSelected)
+
+rm(list = ls())
+
+dataDir <- getDataDir()
+
+i = 1990
+RDSFileName <- paste(i,
+                     "_On_Time_On_Time_Performance_04_Cle.rds",
+                     sep = "")
+
+RDSFileName <- "1990_Animal_Strikes_04_Cle.rds"
+
+RDSFile <- paste(dataDir,
+                 "/",
+                 RDSFileName,
+                 sep = "")
+
+#Read the data file into a variable
+variableName <- paste("AS_", i, sep="")
+assign(variableName, readRDS(file = RDSFile))
+
+
+dataSet <- get(variableName)
+
+#DT1 <- dataSet[Origin == "JFK", .N, by = c("Origin", "Year")]
+DT1 <- dataSet[, .N, by = c("Origin", "Year")]
+names(DT1) <- c("Airport",
+                "Year",
+                "OriginCount")
+setkey(DT1, Airport, Year)
+
+#DT2 <- dataSet[Dest == "JFK", .N, by = c("Dest", "Year")]
+DT2 <- dataSet[, .N, by = c("Dest", "Year")]
+names(DT2) <- c("Airport",
+                "Year",
+                "DestinationCount")
+setkey(DT2, Airport, Year)
+
+DT3 <- DT1[DT2, flightCount := OriginCount + DestinationCount]
+DT3[,c("Airport","Year","flightCount")]
+
+DT1[Airport=="MKC"]
+
+DT3 <- DT1[DT2]
+
+
+DT4 <- dataSet[, .(.N, max(Distance), min(Distance), sum(Distance)), by = c("Origin", "Year")]
+names(DT4) <- c("Airport",
+                "Year",
+                "OriginMaxDistance")
+
+dataSet[Origin == "BLI",]
 
 
 
+
+OGG
+O: 3004
+D: 2981
+  
+LAX
+O: 169834
+D: 169439
+  
+JFK
+O: 42476
+D: 43046
+
+
+
+
+
+
+
+RDSFileName <- "07_CLE_Airport.rds"
+
+RDSFile <- paste(dataDir,
+                 "/",
+                 RDSFileName,
+                 sep = "")
+
+
+    #Read the data file into a variable
+    originalDataSet <- readRDS(file = RDSFile)
+    

@@ -5,5 +5,5 @@ output:
     number_sections: true
 ---
 
-* Additional requirements:
+* Additional Requirements:
     + No additional requirements identified on top of the requirements already stated in this document.

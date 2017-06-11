@@ -114,7 +114,7 @@ suppressPackageStartupMessages(readConfigFile(FALSE))
 
 \newpage
 
-# Appendix 1 - Final project requirements
+# Appendix 1 - Final Project Requirements
 
 The following pages contain the Final project requirements received from the CEU Business School.
 
@@ -163,7 +163,14 @@ The following pages contain the Estimate of Resource Needs, which is the third d
 
 
 \newpage
-# Appendix 6 - Source code
+# Appendix 6 - Full Data Exploration Report (1990-2016) after Cleanup
+
+```{r child = '342-CleanDataFull.Rmd'}
+```
+
+
+\newpage
+# Appendix 7 - Source Code
 
 The following pages contain the source code of the project.
 

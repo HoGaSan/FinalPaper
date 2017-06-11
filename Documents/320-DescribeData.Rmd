@@ -9,7 +9,7 @@ output:
 
 The resolution of the issues found during the data quality verification includes the reducing of several details originally provided by the Federal Aviation Administration and the United States Department of Transportation agencies. This section describes the resulted data sets.
 
-#### Animal strike data
+#### Animal Strike Data
 
 | Column name         | Explanation of Column Name and Codes          |
 |:--------------------|:----------------------------------------------|
@@ -43,8 +43,8 @@ The resolution of the issues found during the data quality verification includes
 
 The number of details (columns) for each strike report has been reduces from 94 to 27.
 
-#### Flight data
 
+#### Flight Data
 
 | Column name     | Explanation of Column Name and Codes              |
 |:----------------|:--------------------------------------------------|
@@ -72,3 +72,18 @@ The number of details (columns) for each strike report has been reduces from 94 
 |DistanceGroup|Distance Intervals, every 250 Miles, for Flight Segment|
 
 The number of details (columns) for each flight performance record has been reduces from 110 to 23.
+
+#### Aiport Data
+
+| Column name          | Explanation of Column Name and Codes         |
+|:---------------------|:---------------------------------------------|
+|Type|Landing facility type. (ex. Airport, Balloonport, Seaplane Base, Gliderport, Heliport, Stolport, Ultralight)|
+|LocationID|Location identifier unique 3-4 character alphanumeric identifier assigned to the landing facility. (ex. 'ORD' for Chicago O'Hare)|
+|Region|FAA region code. (ex. AAL - Alaska, ACE - Central, AEA - Eastern, AGL - Great Lakes, AIN - International, ANE - New England, ANM - Northwest Mountain, ASO - Southern, ASW - Southwest, AWP - Western-Pacific)|
+|State|Associated state post office code standard two letter abbreviation for u.s. states and territories. (ex. IL, PR, CQ)|
+|StateName|Associated state name. (ex. Illinois)|
+|City|Associated city name. (ex. Chicago)|
+|FacilityName|Official facility name. (ex. Chicago O'Hare Intl)|
+|IcaoIdentifier|International coding for airport.|
+
+The number of details (columns) for each airport record has been reduces from 102 to 8.

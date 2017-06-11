@@ -9,7 +9,7 @@ output:
 
 The resolution of the issues found during the data quality verification includes the exclusion of certain records from the data sets originally provided by the Federal Aviation Administration and the United States Department of Transportation agencies. This section provides the summary of the changes on the data sets.
 
-#### Animal strike data
+#### Animal Strike Data
 
 The following columns are impacted by the selection criteria described in the data quality verification section:
 
@@ -17,7 +17,30 @@ The following columns are impacted by the selection criteria described in the da
 * AC_CLASS
 * TYPE_ENG
 
-#### Flight data
+Additionally the number of States in the data set is above the actual number of states of the U.S., so the data needs to be reduced to contain only the following states:
+
+```{r 330-table-01, results = 'asis'}
+#cat("\\begin{multicols}{2}\n\n")
+#cat("\\begin{center}\n")
+
+printStates()
+
+#cat("\\end{center}\n")
+#cat("\n\\end{multicols}\n\n")
+```
+
+#### Flight Data
 
 The data in the Federal Aviation Administration Animal Strike Database is available only until 30-4-2016, so the flight data needs to be adjusted accordingly.
 
+Additionally the number of States in the data set is above the actual number of states of the U.S., so the data needs to be reduced to contain only the following states:
+
+```{r 330-table-02, results = 'asis'}
+#cat("\\begin{multicols}{2}\n\n")
+#cat("\\begin{center}\n")
+
+printStates()
+
+#cat("\\end{center}\n")
+#cat("\n\\end{multicols}\n\n")
+```
