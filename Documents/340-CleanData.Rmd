@@ -198,3 +198,6 @@ cat("\\end{center}\n")
 cat("\n\\end{multicols*}\n\n")
 ```
 
+#### Airport Data
+
+I did not identify any data quality issues - which have not been corrected in the previous steps - with the data provided by the Federal Aviation Administration during the data exploration and data quality verification exercises.

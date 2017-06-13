@@ -20,10 +20,11 @@ loadLibraries <- function() {
   if (!require(png)) {install.packages("png"); require(png)}
   if (!require(grid)) {install.packages("grid"); require(grid)}
   if (!require(pander)) {install.packages("pander"); require(pander)}
-  
+
   #update R
   updateR(TRUE)
   
+
   #update MiKTeX packages
   #system("mpm --update --quiet")
   
@@ -403,6 +404,47 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
                           DataStage,
                           ".png",
                           sep="")
+  
+  plotText <- data.table(
+    keys = c(
+      "AC_CLASS",
+      "AC_MASS",
+      "TYPE_ENG",
+      "TIME_OF_DAY",
+      "PHASE_OF_FLT",
+      "SKY",
+      "PRECIP",
+      "Carrier",
+      "DistanceGroup"
+      ),
+    texts = c(
+      "Aircraft class",
+      "Aircraft mass type",
+      "Engine type",
+      "Time of day",
+      "Flight phase",
+      "Sky condition",
+      "Precipitation",
+      "Airline carrier",
+      "Flight distance group"
+      )
+  )
+  
+  if (!is.empty(tolower(plotText[keys==DataField,texts]))) {
+    lowerPlotText <- tolower(plotText[keys==DataField,texts])
+    labelAxisX <- plotText[keys==DataField,texts]
+  } else {
+    message("Key not found")
+    return()
+  }
+  
+  plotTitle <- paste("Data distribution of "
+                     ,lowerPlotText,
+                     " in ",
+                     DataYear,
+                     sep="")
+  
+  
   png(
     targetFileName, #File name, no directory!
     units = "px", #units are in pixels
@@ -411,10 +453,30 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
     res = 72 #nominal resolution in ppi (pixels per inch)
   ) 
   
-  #barplot(DataObject)
-  barplot(DataObject, 
-          horiz = TRUE, 
-          col = "lightblue", 
+  # ggplot(data = DataObject, aes(get(DataField))) +
+  #   ggtitle(plotTitle) + #plot title
+  #   geom_bar(fill = "#99ccff", color = "#99ccff") + #plotting a bar chart
+  #   coord_flip() + #flip the drawing of the axises --> Y will be the horizontal
+  #   xlab(labelAxisX) + #set the vertical axis text
+  #   ylab("") +
+  #   theme(
+  #     #align title to the center
+  #     plot.title = element_text(hjust = 0.5, face="bold"),
+  #     #set plot background colors
+  #     plot.background = element_rect(fill = "white", colour = "white"),
+  #     #set panel background colors
+  #     panel.background = element_rect(fill = "white", colour = "white"), 
+  #     #set the fonts to serif, which is set to Times New Roman
+  #     text = element_text(family = "serif"),
+  #     #change the angle of the axis text
+  #     axis.text.x = element_text(angle=45, hjust=1, vjust=1)
+  #     
+  #   )
+  
+  
+  barplot(DataObject,
+          horiz = TRUE,
+          col = "lightblue",
           main = paste("Data distribution of\n",
                        DataField,
                        " in year ",
@@ -548,7 +610,33 @@ getStates <- function() {
 printStates <- function() {
   
   dataState <- data.table(
-    state = getStates(),
+    state = c(
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO"
+    ),
     stateName = c(
       "Alabama",
       "Alaska",
@@ -574,7 +662,90 @@ printStates <- function() {
       "Michigan",
       "Minnesota",
       "Mississippi",
-      "Missouri",
+      "Missouri"
+      ),
+    e1 = c(
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ),
+    e2 = c(
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ),
+    state2 = c(
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+    ),
+    stateName2 = c(
       "Montana",
       "Nebraska",
       "Nevada",
@@ -600,11 +771,11 @@ printStates <- function() {
       "West Virginia",
       "Wisconsin",
       "Wyoming"
-      )
+    )
   )
   
   kable(dataState,
-          col.names = c("Abbreviation","Name"),
+          col.names = c("Abbreviation","Name","","","Abbreviation","Name"),
           align = "c")
 
 }

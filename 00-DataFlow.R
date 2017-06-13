@@ -17,9 +17,9 @@ source("90-UserDefinedFunctions.R")
 #Merge data by year --> RDS "_01_Orig" - 04
   onTimeFlightPerformanceDataSetMergeByYear()
 #PNG plot creation - 05
-  ExploreWildLifeStrikeDataSet(createPNG = FALSE)
+  ExploreWildLifeStrikeDataSet(createPNG = TRUE)
 #PNG plot creation - 06
-  ExploreOnTimeFlightPerformanceDataSet(createPNG = FALSE)
+  ExploreOnTimeFlightPerformanceDataSet(createPNG = TRUE)
 #Take required columns --> RDS "_02_Desc" - 07
   DescribeWildLifeStrikeDataSet()
 #Take required columns --> RDS "_02_Desc" - 08
@@ -32,14 +32,14 @@ source("90-UserDefinedFunctions.R")
   CleanupWildLifeStrikeDataSet(createPNG = TRUE)
 #Cleanup the data --> RDS "_04_Cle" - 12
   CleanupOnTimeFlightPerformanceDataSet(createPNG = TRUE)
-#Airport data preparation - 13
+#Airport data preparation - 13 --> ORIG
   AirportDataSetDataPreparation()
-#Airport data describe - 14
+#Airport data describe - 14 --> DESC
   DescribeAirportDataSet()
-#Airport data select - 15
+#Airport data select - 15 --> SEL
   SelectAirportDataSet()
-#Airport data cleanup - 16
-  CleanupAirportDataSet()
+#Airport data cleanup - 16 --> CLE
+  CleanupAirportDataSet() 
   
 backupFiles()
 

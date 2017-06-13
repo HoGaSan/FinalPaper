@@ -41,6 +41,9 @@ SelectAirportDataSet <- function() {
       #TYPE column selection
       selectedDataSet <- originalDataSet[Type == "AIRPORT",]
       
+      #STATE selection
+      selectedDataSet <- selectedDataSet[State %in% getStates(),]
+      
       #Resetting the factors of the data table
       selectedDataSet[] <- 
         lapply(selectedDataSet,

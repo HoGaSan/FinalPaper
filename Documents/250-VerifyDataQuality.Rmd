@@ -216,9 +216,10 @@ Similarly to the Federal Aviation Administration Animal Strike Database, the fli
 
 #### Airport Data
 
-The data set provided by the Federal Aviation Administration is a data set created based on the Airport Master Record (5010-*) forms. The following list of issue(s) needs to be corrected in a later stage of the project:
+The data set provided by the Federal Aviation Administration is a data set created based on the Airport Master Record (5010-*) forms. The following list of issues needs to be corrected in a later stage of the project:
 
 * The LocationID have an apostrophe as the first character, which should be removed for further processing.
+* Number of States in the data set is above the actual number of states of the U.S.
 
 The Federal Aviation Administration provides code books for some of the data details in the airport data. Based on these code books the records with the following values can be removed from the data set, as they are not relevant for the goals of the project.
 

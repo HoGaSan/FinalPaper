@@ -53,7 +53,7 @@ ExploreWildLifeStrikeDataSet <- function(createPNG) {
     } else {
       #Read the data file into a variable
       variableName <- paste("AS_", i, sep="")
-      assign(variableName, readRDS(file = RDSFile))
+      assign(variableName, readRDS(file = RDSFile), envir = .GlobalEnv)
       
       dataSummary <- rbindlist(
         list(
@@ -91,40 +91,47 @@ ExploreWildLifeStrikeDataSet <- function(createPNG) {
                        DataField = "AC_CLASS",
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$AC_CLASS))
+                       #DataObject = variableName)
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "AnimalStrike", 
                        DataField = "AC_MASS", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$AC_MASS))
+                       #DataObject = get(variableName))
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "AnimalStrike", 
                        DataField = "TYPE_ENG", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$TYPE_ENG))
+                       #DataObject = get(variableName))
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "AnimalStrike",
                        DataField = "TIME_OF_DAY", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$TIME_OF_DAY))
+                       #DataObject = get(variableName))
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "AnimalStrike", 
                        DataField = "PHASE_OF_FLT", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$PHASE_OF_FLT))
+                       #DataObject = get(variableName))
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "AnimalStrike", 
                        DataField = "SKY", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$SKY))
+                       #DataObject = get(variableName))
         saveBarPlotPNG(DataYear = i,
                        DataSet = "AnimalStrike", 
                        DataField = "PRECIP", 
                        DataStage = "01_Orig",
                        DataObject = table(get(variableName)$PRECIP))
+                       #DataObject = get(variableName))
       }
       
       #Free up the memory
-      rm(list = variableName)
+      rm(list = variableName, envir = .GlobalEnv)
       rm(variableName)
       gc()
       

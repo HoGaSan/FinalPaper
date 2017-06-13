@@ -44,3 +44,17 @@ printStates()
 #cat("\\end{center}\n")
 #cat("\n\\end{multicols}\n\n")
 ```
+
+#### Airport Data
+
+The number of States in the data set is above the actual number of states of the U.S., so the data needs to be reduced to contain only the following states:
+
+```{r 330-table-03, results = 'asis'}
+#cat("\\begin{multicols}{2}\n\n")
+#cat("\\begin{center}\n")
+
+printStates()
+
+#cat("\\end{center}\n")
+#cat("\n\\end{multicols}\n\n")
+```

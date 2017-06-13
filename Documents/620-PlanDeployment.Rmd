@@ -7,8 +7,5 @@ output:
 
 ### Deployment Plan
 
-TODO
+As already mentioned in the initial resource plan, this final paper is a pet project, therefore the results of the project will never be put into a real production environment, meaning that no deployment plan has to be created.
 
-<!--
-In order to deploy the data mining result(s) into the business, this task takes the evaluation results and develops a strategy for deployment.
--->
