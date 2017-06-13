@@ -20,11 +20,14 @@ assign(variableName, readRDS(file = RDSFile), envir = .GlobalEnv)
 
 
 get(variableName)
+
+substitute(get(variableName))
     
+eval(as.symbol(variableName), envir = .GlobalEnv)
 
-saveBarPlotPNG2(DataYear = 1990, DataSet = "AnimalStrike", DataField = "AC_MASS", DataStage = "01_Orig", DataObject = variableName)
+saveBarPlotPNG2(DataYear = 1990, DataSet = "AnimalStrike", DataField = "AC_MASS", DataStage = "01_Orig", DataObject = get(variableName))
 
-
+?dev.off()
 dataSet <- readRDS(file = RDSFileCleaned)
 
 rm(dataSet)

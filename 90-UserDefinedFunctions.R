@@ -445,46 +445,36 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
                      sep="")
   
   
-  png(
-    targetFileName, #File name, no directory!
-    units = "px", #units are in pixels
-    width = 300, #width of the plot in px (should be the same as the height)
-    height = 300, #height of the plot in px (should be the same as the width)
-    res = 72 #nominal resolution in ppi (pixels per inch)
-  ) 
+  test <- DataObject
   
-  # ggplot(data = DataObject, aes(get(DataField))) +
-  #   ggtitle(plotTitle) + #plot title
-  #   geom_bar(fill = "#99ccff", color = "#99ccff") + #plotting a bar chart
-  #   coord_flip() + #flip the drawing of the axises --> Y will be the horizontal
-  #   xlab(labelAxisX) + #set the vertical axis text
-  #   ylab("") +
-  #   theme(
-  #     #align title to the center
-  #     plot.title = element_text(hjust = 0.5, face="bold"),
-  #     #set plot background colors
-  #     plot.background = element_rect(fill = "white", colour = "white"),
-  #     #set panel background colors
-  #     panel.background = element_rect(fill = "white", colour = "white"), 
-  #     #set the fonts to serif, which is set to Times New Roman
-  #     text = element_text(family = "serif"),
-  #     #change the angle of the axis text
-  #     axis.text.x = element_text(angle=45, hjust=1, vjust=1)
-  #     
-  #   )
+  ggplot(data = DataObject, aes(get(DataField))) +
+    ggtitle(plotTitle) + #plot title
+    geom_bar(fill = "#99ccff", color = "#99ccff") + #plotting a bar chart
+    coord_flip() + #flip the drawing of the axises --> Y will be the horizontal
+    xlab(labelAxisX) + #set the vertical axis text
+    ylab("") +
+    theme(
+      #align title to the center
+      plot.title = element_text(hjust = 0.5, face="bold"),
+      #set plot background colors
+      plot.background = element_rect(fill = "white", colour = "white"),
+      #set panel background colors
+      panel.background = element_rect(fill = "white", colour = "white"),
+      #set the fonts to serif, which is set to Times New Roman
+      text = element_text(family = "serif"),
+      #change the angle of the axis text
+      axis.text.x = element_text(angle=45, hjust=1, vjust=1)
+      
+    )
   
-  
-  barplot(DataObject,
-          horiz = TRUE,
-          col = "lightblue",
-          main = paste("Data distribution of\n",
-                       DataField,
-                       " in year ",
-                       DataYear,
-                       sep=""))
-  
-  dev.off() #flush the plot to the file and close the file
-  
+  ggsave(
+    targetFileName,
+    units = "in", #units are in pixels
+    width = 5, #width of the plot in in (should be the same as the height)
+    height = 5, #height of the plot in in (should be the same as the width)
+    dpi = 72 #nominal resolution in ppi (pixels per inch)
+  )
+
   setwd(currentWorkingDir)
 }
 

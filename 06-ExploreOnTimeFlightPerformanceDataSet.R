@@ -98,13 +98,13 @@ ExploreOnTimeFlightPerformanceDataSet <- function(createPNG) {
                        DataSet = "FlightData", 
                        DataField = "Carrier", 
                        DataStage = "01_Orig",
-                       DataObject = table(get(variableName)$Carrier))
-  
+                       DataObject = get(variableName))
+
         saveBarPlotPNG(DataYear = i, 
                        DataSet = "FlightData", 
                        DataField = "DistanceGroup", 
                        DataStage = "01_Orig",
-                       DataObject = table(get(variableName)$DistanceGroup))
+                       DataObject = get(variableName))
       }
 
       #Free up the memory
