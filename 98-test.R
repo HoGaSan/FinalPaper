@@ -7,12 +7,17 @@ getwd()
 source("97-UDF.R")
 
 
-RDSFileNameCleaned <- "1990_Animal_Strikes_04_Cle.rds"
+RDSFileNameCleaned <- "1990_On_Time_On_Time_Performance_01_Orig.rds"
 
 RDSFile <- paste(dataDir,
                         "/",
                         RDSFileNameCleaned,
                         sep = "")
+
+test <- readRDS(file = RDSFile)
+
+rm(test)
+
 i = 1990
 
 variableName <- paste("AS_", i, sep="")

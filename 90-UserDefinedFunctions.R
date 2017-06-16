@@ -769,3 +769,199 @@ printStates <- function() {
           align = "c")
 
 }
+
+
+
+#' 
+#' \code{regeneratePlots} regenerates the plots based on the data sets
+#' 
+#' @examples 
+#' regeneratePlots()
+#' 
+
+regeneratePlots <- function(){
+  dataDir <- getDataDir()
+  startYear <- getStartYear()
+  endYear <- getEndYear()
+  
+  for (i in startYear:endYear){
+    RDSFileName_01 <- paste(i,
+                         "_Animal_Strikes_01_Orig.rds",
+                         sep = "")
+    
+    RDSFile_01 <- paste(dataDir,
+                     "/",
+                     RDSFileName_01,
+                     sep = "")
+    
+    #Read the data file into a variable
+    variableName_01 <- paste("AS_", i, sep="")
+    assign(variableName_01, readRDS(file = RDSFile_01))
+
+    #Save the plots as PNG files
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "AC_CLASS",
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "AC_MASS", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "TYPE_ENG", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike",
+                   DataField = "TIME_OF_DAY", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "PHASE_OF_FLT", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "SKY", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+    saveBarPlotPNG(DataYear = i,
+                   DataSet = "AnimalStrike", 
+                   DataField = "PRECIP", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_01))
+
+    #Free up the memory
+    rm(list = variableName_01)
+    rm(variableName_01)
+    gc()
+      
+    RDSFileName_02 <- paste(i,
+                            "_Animal_Strikes_04_Cle.rds",
+                            sep = "")
+    
+    RDSFile_02 <- paste(dataDir,
+                        "/",
+                        RDSFileName_02,
+                        sep = "")
+    
+    #Read the data file into a variable
+    variableName_02 <- paste("AS_", i, sep="")
+    assign(variableName_02, readRDS(file = RDSFile_02))
+    
+    #Save the plots as PNG files
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "AC_CLASS",
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "AC_MASS", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "TYPE_ENG", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike",
+                   DataField = "TIME_OF_DAY", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "PHASE_OF_FLT", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "AnimalStrike", 
+                   DataField = "SKY", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    saveBarPlotPNG(DataYear = i,
+                   DataSet = "AnimalStrike", 
+                   DataField = "PRECIP", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_02))
+    
+    #Free up the memory
+    rm(list = variableName_02)
+    rm(variableName_02)
+    gc()
+
+      
+    RDSFileName_03 <- paste(i,
+                         "_On_Time_On_Time_Performance_01_Orig.rds",
+                         sep = "")
+    
+    RDSFile_03 <- paste(dataDir,
+                     "/",
+                     RDSFileName_03,
+                     sep = "")
+      
+    #Read the data file into a variable
+    variableName_03 <- paste("FP_", i, sep="")
+    assign(variableName_03, readRDS(file = RDSFile_03))
+        
+    #Save the plots as PNG files
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "FlightData", 
+                   DataField = "Carrier", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_03))
+    
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "FlightData", 
+                   DataField = "DistanceGroup", 
+                   DataStage = "01_Orig",
+                   DataObject = get(variableName_03))
+
+    #Free up the memory
+    rm(list = variableName_03)
+    rm(variableName_03)
+    gc()
+        
+
+    RDSFileName_04 <- paste(i,
+                            "_On_Time_On_Time_Performance_04_Cle.rds",
+                            sep = "")
+    
+    RDSFile_04 <- paste(dataDir,
+                        "/",
+                        RDSFileName_04,
+                        sep = "")
+    
+    #Read the data file into a variable
+    variableName_04 <- paste("FP_", i, sep="")
+    assign(variableName_04, readRDS(file = RDSFile_04))
+    
+    #Save the plots as PNG files
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "FlightData", 
+                   DataField = "Carrier", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_04))
+    
+    saveBarPlotPNG(DataYear = i, 
+                   DataSet = "FlightData", 
+                   DataField = "DistanceGroup", 
+                   DataStage = "04_Cleaned",
+                   DataObject = get(variableName_04))
+    
+    #Free up the memory
+    rm(list = variableName_04)
+    rm(variableName_04)
+    gc()
+    
+
+  } #end of "for (i in startYear:endYear)"
+  
+  
+  
+}

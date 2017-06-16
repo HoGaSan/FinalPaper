@@ -94,13 +94,13 @@ CleanupOnTimeFlightPerformanceDataSet <- function(createPNG) {
                          DataSet = "FlightData", 
                          DataField = "Carrier", 
                          DataStage = "04_Cleaned",
-                         DataObject = get(variableName))
+                         DataObject = cleanedDataSet)
           
           saveBarPlotPNG(DataYear = i, 
                          DataSet = "FlightData", 
                          DataField = "DistanceGroup", 
                          DataStage = "04_Cleaned",
-                         DataObject = get(variableName))
+                         DataObject = cleanedDataSet)
         }
 
         saveRDS(cleanedDataSet, file = RDSFileCleaned)

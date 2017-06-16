@@ -41,6 +41,8 @@ source("90-UserDefinedFunctions.R")
 #Airport data cleanup - 16 --> CLE
   CleanupAirportDataSet() 
   
+
+regeneratePlots()
 backupFiles()
 
 #rm(list=ls())
@@ -48,4 +50,9 @@ backupFiles()
 
 
 
+onTimeFlightPerformanceDataSetMergeByYear()
+ExploreOnTimeFlightPerformanceDataSet(createPNG = TRUE)
+DescribeOnTimeFlightPerformanceDataSet()
+SelectOnTimeFlightPerformanceDataSet()
+CleanupOnTimeFlightPerformanceDataSet(createPNG = TRUE)
 

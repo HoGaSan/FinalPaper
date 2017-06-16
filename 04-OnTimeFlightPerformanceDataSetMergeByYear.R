@@ -62,6 +62,8 @@ onTimeFlightPerformanceDataSetMergeByYear <- function() {
   
       } #end of "for (j in startMonth:endMonth)"
       
+      dataOfWholeYear$DistanceGroup <- as.factor(dataOfWholeYear$DistanceGroup)
+      
       saveRDS(dataOfWholeYear, file = RDSFile)
       message(RDSFileName," created.")
       
