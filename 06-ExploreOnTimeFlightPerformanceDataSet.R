@@ -91,7 +91,7 @@ ExploreOnTimeFlightPerformanceDataSet <- function(createPNG) {
                         "DestStateName"))
           )
         )
-
+      
       if (createPNG == TRUE) {
         #Save the plots as PNG files
         saveBarPlotPNG(DataYear = i, 
@@ -146,10 +146,12 @@ ExploreOnTimeFlightPerformanceDataSet <- function(createPNG) {
   dataSummaryOriginState <- dataSummaryOriginState[order(originState)]
     
   if (file.exists(RDSExpStateFile) != TRUE) {
-    saveRDS(dataSummaryOriginState, file = RDSExpStateFile)
+    saveRDS(dataSummaryOriginState,
+            file = RDSExpStateFile)
   } else {
     file.remove(RDSExpStateFile)
-    saveRDS(dataSummaryOriginState, file = RDSExpStateFile)
+    saveRDS(dataSummaryOriginState,
+            file = RDSExpStateFile)
   }
   
 
@@ -169,11 +171,12 @@ ExploreOnTimeFlightPerformanceDataSet <- function(createPNG) {
   dataSummaryDestState <- dataSummaryDestState[order(destState)]
     
   if (file.exists(RDSExpStateFile) != TRUE) {
-    saveRDS(dataSummaryDestState, file = RDSExpStateFile)
+    saveRDS(dataSummaryDestState,
+            file = RDSExpStateFile)
   } else {
     file.remove(RDSExpStateFile)
-    saveRDS(dataSummaryDestState, file = RDSExpStateFile)
+    saveRDS(dataSummaryDestState,
+            file = RDSExpStateFile)
   }
-  
 
 }

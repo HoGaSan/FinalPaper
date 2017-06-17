@@ -27,6 +27,14 @@ CleanupOnTimeFlightPerformanceDataSet <- function(createPNG) {
     factorDepTimeBlk = integer(),
     factorDistanceGroup = integer()
   )
+
+  dataSummaryOriginAirport <- data.table(
+    originAirport = character()
+  )
+  
+  dataSummaryDestinationAirport <- data.table(
+    destinationAirport = character()
+  )
   
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
@@ -86,6 +94,22 @@ CleanupOnTimeFlightPerformanceDataSet <- function(createPNG) {
                  )
             )
           )
+
+        dataSummaryOriginAirport <- rbindlist(
+          list(
+            dataSummaryOriginAirport,
+            unique(cleanedDataSet[,c("Origin")], 
+                   by = c("Origin"))
+          )
+        )
+        
+        dataSummaryDestinationAirport <- rbindlist(
+          list(
+            dataSummaryDestinationAirport,
+            unique(cleanedDataSet[,c("Dest")], 
+                   by = c("Dest"))
+          )
+        )
         
         if (createPNG == TRUE) {
           
@@ -130,4 +154,46 @@ CleanupOnTimeFlightPerformanceDataSet <- function(createPNG) {
     saveRDS(dataSummary, file = RDSExpFile)
   }
 
+  RDSExpStateFileName <- "03_CLEANED_Flight_Data_O_Airports.rds"
+  
+  RDSExpStateFile <- paste(dataDir,
+                           "/",
+                           RDSExpStateFileName,
+                           sep = "")
+  
+  dataSummaryOriginAirport <- 
+    unique(dataSummaryOriginAirport[,c("originAirport")],
+           by = c("originAirport"))
+  
+  
+  if (file.exists(RDSExpStateFile) != TRUE) {
+    saveRDS(dataSummaryOriginAirport,
+            file = RDSExpStateFile)
+  } else {
+    file.remove(RDSExpStateFile)
+    saveRDS(dataSummaryOriginAirport,
+            file = RDSExpStateFile)
+  }
+  
+  
+  RDSExpStateFileName <- "03_CLEANED_Flight_Data_D_Airports.rds"
+  
+  RDSExpStateFile <- paste(dataDir,
+                           "/",
+                           RDSExpStateFileName,
+                           sep = "")
+  
+  dataSummaryDestinationAirport <- 
+    unique(dataSummaryDestinationAirport[,c("destinationAirport")], 
+           by = c("destinationAirport"))
+  
+  if (file.exists(RDSExpStateFile) != TRUE) {
+    saveRDS(dataSummaryDestinationAirport,
+            file = RDSExpStateFile)
+  } else {
+    file.remove(RDSExpStateFile)
+    saveRDS(dataSummaryDestinationAirport,
+            file = RDSExpStateFile)
+  }
+  
 }

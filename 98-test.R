@@ -248,4 +248,42 @@ RDSFile <- paste(dataDir,
 
     #Read the data file into a variable
     originalDataSet <- readRDS(file = RDSFile)
-    
+
+
+
+airportsDT <- data.table(airports)
+flightsDT <- data.table(flights)
+
+
+usa_map <- map_data("usa", "hawaii")
+alaska_map <- map_data("world", "USA:alaska")
+hawaii_map <- map_data("world", "USA:hawaii")
+
+all_states <- map_data("state") #benne van az összes state határa is
+usa_map <- map_data("usa") #csak a continentális usa, államok nélkül
+
+
+dataDir <- getDataDir()
+
+RDSFileName <- "07_CLE_Airport.rds"
+
+RDSFile <- paste(dataDir,
+                 "/",
+                 RDSFileName,
+                 sep = "")
+
+MyAirports <- readRDS(file = RDSFile)
+
+rm(all_states)
+
+saveMapPNG(DataState = getStates(), DataObject = MyAirports)
+
+
+airportsDT[faa=="04G",]
+MyAirports[LocationID=="04G"]
+
+
+hawaii_map <- map_data("world", "USA:hawaii")
+hawaii_map <- map_data("state", "hawaii")
+all_states <- map_data("state") #benne van az összes state határa is
+

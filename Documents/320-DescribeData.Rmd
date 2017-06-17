@@ -85,5 +85,9 @@ The number of details (columns) for each flight performance record has been redu
 |City|Associated city name. (ex. Chicago)|
 |FacilityName|Official facility name. (ex. Chicago O'Hare Intl)|
 |IcaoIdentifier|International coding for airport.|
+|ARPLatitude|Airport reference point latitude (formatted).|
+|ARPLatitudeS|Airport reference point latitude (seconds).|
+|ARPLongitude|Airport reference point longitude (formatted).|
+|ARPLongitudeS|Airport reference point longitude (seconds).|
 
 The number of details (columns) for each airport record has been reduces from 102 to 8.

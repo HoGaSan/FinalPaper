@@ -36,12 +36,17 @@ CleanupAirportDataSet <- function() {
     } else {
       
       #Read the data file into a variable
-      originalDataSet <- readRDS(file = RDSFile)
+      cleanedDataSet <- readRDS(file = RDSFile)
       
-      cleanedDataSet <- originalDataSet
-      cleanedDataSet$LocationID <- cleanedDataSet[,sub('.',
-                                                       '',
-                                                       LocationID)]
+      #remove the ' character from the location id
+      cleanedDataSet$LocationID <- cleanedDataSet[,sub('.','',LocationID)]
+      
+      #make the location id a factor
+      cleanedDataSet$LocationID <- as.factor(cleanedDataSet$LocationID)
+
+      #create the lat and long decimal values
+      cleanedDataSet <- cleanedDataSet[, lat := convertToDMSNumber(as.character(ARPLatitude))]
+      cleanedDataSet <- cleanedDataSet[, long := convertToDMSNumber(as.character(ARPLongitude))]
       
       #Resetting the factors of the data table
       cleanedDataSet[] <- 

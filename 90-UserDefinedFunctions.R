@@ -19,7 +19,8 @@ loadLibraries <- function() {
   if (!require(yaml)) {install.packages("yaml"); require(yaml)}
   if (!require(png)) {install.packages("png"); require(png)}
   if (!require(grid)) {install.packages("grid"); require(grid)}
-  if (!require(pander)) {install.packages("pander"); require(pander)}
+  if (!require(maps)) {install.packages("maps"); require(maps)}
+  if (!require(sp)) {install.packages("sp"); require(sp)}
 
   #update R
   updateR(TRUE)
@@ -61,7 +62,8 @@ versionDetails <- function() {
     "- yaml version ", packageVersion("yaml"),"\n",
     "- png version ", packageVersion("png"),"\n",
     "- grid version ", packageVersion("grid"),"\n",
-    "- pander version ", packageVersion("pander"),"\n\n",
+    "- maps version ", packageVersion("maps"),"\n\n",
+    "- sp version ", packageVersion("sp"),"\n\n",
     "Base package versions:\n",
     "- stats version ", packageVersion("stats"),"\n",
     "- graphics version ", packageVersion("graphics"),"\n",
@@ -390,7 +392,7 @@ loadSourceCodeFunctions <- function() {
 #' The data object to create the plot
 #' 
 #' @examples 
-#' saveBarPlotPNG(1990, "Animal Strike", DT)
+#' saveBarPlotPNG(1990, "Animal Strike", "State", "01_Origin" DT)
 #' 
 saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) {
   currentWorkingDir <- getwd()
@@ -451,8 +453,9 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
     ggtitle(plotTitle) + #plot title
     geom_bar(fill = "#99ccff", color = "#99ccff") + #plotting a bar chart
     coord_flip() + #flip the drawing of the axises --> Y will be the horizontal
-    xlab(labelAxisX) + #set the vertical axis text
-    ylab("") +
+    #xlab(labelAxisX) + #set the vertical (coordflip!) axis text
+    xlab("") + #set the vertical (coordflip!) axis text
+    ylab("") + #set the horizontal (coordflip!) axis text
     theme(
       #align title to the center
       plot.title = element_text(hjust = 0.5, face="bold"),
@@ -470,13 +473,195 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
   ggsave(
     targetFileName,
     units = "in", #units are in pixels
-    width = 5, #width of the plot in in (should be the same as the height)
-    height = 5, #height of the plot in in (should be the same as the width)
+    width = 4, #width of the plot in in (should be the same as the height)
+    height = 4, #height of the plot in in (should be the same as the width)
     dpi = 72 #nominal resolution in ppi (pixels per inch)
   )
 
   setwd(currentWorkingDir)
 }
+
+
+#' 
+#' \code{saveMapPNG} saves the required state map 
+#' the details in the YAML config file
+#' 
+#' @param DataState string list
+#' The name of the state
+#' 
+#' @param DataObject object
+#' The data object to create the map
+#' 
+#' @examples 
+#' saveMapPNG("TX", DT)
+#' 
+saveMapPNG <- function(DataState, DataObject) {
+  currentWorkingDir <- getwd()
+  setwd(getDocInputDir())
+  
+  stateNames <- data.table(
+    state = c(
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO",
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+    ),
+    stateName = c(
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming"
+    )
+  )
+  
+  for (actualState in DataState){
+    targetFileName <- paste("State_",
+                            actualState,
+                            "_Airports.png",
+                            sep="")
+    
+    
+    plotTitle <- paste("Airports in ",
+                       stateNames[state==actualState,
+                                  "stateName"],
+                       sep="")
+    
+    if (actualState == "AK"){
+      base_map <- map_data("world", "USA:alaska")
+    } else if (actualState == "HI") {
+      base_map <- map_data("world", "USA:hawaii")
+    } else {
+      base_map <- map_data("state",
+                           tolower(stateNames[state==actualState,
+                                              "stateName"])
+      )
+    }
+    
+    temp <- DataObject
+    rm(temp)
+    
+    ggplot()  + 
+      geom_polygon(data=base_map,aes(x=long, y=lat, group=group), color="darkblue", fill = "#99ccff") +
+      geom_point(aes(x = DataObject[State==actualState, long], y = DataObject[State==actualState, lat]), color = "red", size = 1, shape = 16) +
+      theme_classic() +
+      ggtitle(plotTitle) +
+      xlab("") +
+      ylab("") +
+      theme(
+        plot.title = element_text(hjust = 0.5, face="bold"),
+        legend.position = "none",
+        axis.line = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        text = element_text(family = "serif")
+      )
+    
+    ggsave(
+      targetFileName,
+      units = "in", #units are in pixels
+      width = 4, #width of the plot in in (should be the same as the height)
+      height = 4, #height of the plot in in (should be the same as the width)
+      dpi = 72 #nominal resolution in ppi (pixels per inch)
+    )
+    
+  }
+
+  setwd(currentWorkingDir)
+}
+
+
 
 
 #' 
@@ -525,6 +710,7 @@ printTable <- function(Full, DataFile, ColumnNames, ColumnTitles) {
   }
 
 }
+
 
 #' 
 #' \code{getStates} returns the U.S. state abbreviations
@@ -771,14 +957,12 @@ printStates <- function() {
 }
 
 
-
 #' 
 #' \code{regeneratePlots} regenerates the plots based on the data sets
 #' 
 #' @examples 
 #' regeneratePlots()
 #' 
-
 regeneratePlots <- function(){
   dataDir <- getDataDir()
   startYear <- getStartYear()
@@ -958,10 +1142,38 @@ regeneratePlots <- function(){
     rm(list = variableName_04)
     rm(variableName_04)
     gc()
-    
 
   } #end of "for (i in startYear:endYear)"
+
+}
+
+
+#' 
+#' \code{convertToDMSNumber} 
+#' 
+#' @param inputString string
+#' The DMS (Degrees Minutes Seconds) input string in the following format:
+#' DD-MM-SS.####c
+#' 
+#' @return the numeric value of the latitude / longitude received 
+#' in a character string
+#' 
+#' @examples 
+#' convertToDMSNumber("")
+#' 
+
+convertToDMSNumber <- function(inputString){
   
+  getDot <- regexpr(pattern ='\\.',inputString)
+  getLastChar <- substring(inputString, nchar(as.character(inputString)))
   
-  
+  return(
+    inputString %>%
+      sub('-', 'd', .) %>%
+      sub('-', '\'', .) %>%
+      substr(. , 1, getDot-1) %>%
+      paste(.,'"', getLastChar, sep = "") %>%
+      char2dms %>%
+      as.numeric
+    )
 }

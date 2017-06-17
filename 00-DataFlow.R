@@ -1,3 +1,4 @@
+#rm(list = ls())
 getwd()
 setwd(getMainDir())
 
@@ -29,9 +30,9 @@ source("90-UserDefinedFunctions.R")
 #Take out not required rows --> RDS "_03_Sel" - 10
   SelectOnTimeFlightPerformanceDataSet()
 #Cleanup the data --> RDS "_04_Cle" - 11
-  CleanupWildLifeStrikeDataSet(createPNG = TRUE)
+  CleanupWildLifeStrikeDataSet(createPNG = FALSE)
 #Cleanup the data --> RDS "_04_Cle" - 12
-  CleanupOnTimeFlightPerformanceDataSet(createPNG = TRUE)
+  CleanupOnTimeFlightPerformanceDataSet(createPNG = FALSE)
 #Airport data preparation - 13 --> ORIG
   AirportDataSetDataPreparation()
 #Airport data describe - 14 --> DESC

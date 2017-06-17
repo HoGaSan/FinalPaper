@@ -48,7 +48,11 @@ DescribeAirportDataSet <- function() {
                        "StateName",
                        "City",
                        "FacilityName",
-                       "IcaoIdentifier")
+                       "IcaoIdentifier",
+                       "ARPLatitude",
+                       "ARPLatitudeS",
+                       "ARPLongitude",
+                       "ARPLongitudeS")
       
       #Move reduces data into a new data set
       describedDataSet <- originalDataSet[, ..ColumnNames]

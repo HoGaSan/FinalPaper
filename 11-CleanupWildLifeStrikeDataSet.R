@@ -32,7 +32,11 @@ CleanupWildLifeStrikeDataSet <- function(createPNG) {
     factorPRECIP = integer(),
     factorWARNED = integer()
   )
-
+  
+  dataSummaryAirport <- data.table(
+    airport = character()
+  )
+  
   for (i in startYear:endYear){
     RDSFileName <- paste(i,
                        "_Animal_Strikes_03_Sel.rds",
@@ -114,7 +118,16 @@ CleanupWildLifeStrikeDataSet <- function(createPNG) {
                  length(levels(cleanedDataSet$WARNED))
                  )
             )
+        )
+        
+        dataSummaryAirport <- rbindlist(
+          list(
+            dataSummaryAirport,
+            unique(cleanedDataSet[,c("AIRPORT_ID")], 
+                   by = c("AIRPORT_ID"))
           )
+        )
+        
         
         if (createPNG == TRUE) {
     
@@ -184,4 +197,26 @@ CleanupWildLifeStrikeDataSet <- function(createPNG) {
     saveRDS(dataSummary, file = RDSExpFile)
   }
 
+  RDSExpFileName <- "03_CLEANED_Animal_Strikes_Airports.rds"
+  
+  RDSExpFile <- paste(dataDir,
+                           "/",
+                      RDSExpFileName,
+                           sep = "")
+  
+  dataSummaryAirport <- 
+    unique(dataSummaryAirport[,c("airport")],
+           by = c("airport"))
+  
+  
+  if (file.exists(RDSExpFile) != TRUE) {
+    saveRDS(dataSummaryAirport,
+            file = RDSExpFile)
+  } else {
+    file.remove(RDSExpFile)
+    saveRDS(dataSummaryAirport,
+            file = RDSExpFile)
+  }
+  
+  
 }
