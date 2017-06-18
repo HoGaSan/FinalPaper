@@ -44,12 +44,18 @@ SelectAirportDataSet <- function() {
       #STATE selection
       selectedDataSet <- selectedDataSet[State %in% getStates(),]
       
+      #Status selection
+      selectedDataSet <- selectedDataSet[AirportStatusCode == "O",]
+      
       #Resetting the factors of the data table
       selectedDataSet[] <- 
         lapply(selectedDataSet,
                function(x) if(is.factor(x)) factor(x) else x)
 
       saveRDS(selectedDataSet, file = RDSFileSelected)
+      message(RDSFileNameSelected,
+              " created.")
+      
 
     } #end of "if (file.exists(RDSFileSelected) == TRUE)"
     

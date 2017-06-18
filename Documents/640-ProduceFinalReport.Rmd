@@ -7,7 +7,8 @@ output:
 
 ### Final Report
 
-TODO
+As already mentioned in the initial resource plan, this final paper is a pet project without real business stakeholders, therefore the results of the project will never be put into a real production environment, meaning that beyond the creation of this final paper and the expected presentation of the results of the project no additional reports are going to be created.
+
 
 ### Final Presentation
 

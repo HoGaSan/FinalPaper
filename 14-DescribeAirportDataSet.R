@@ -48,16 +48,20 @@ DescribeAirportDataSet <- function() {
                        "StateName",
                        "City",
                        "FacilityName",
-                       "IcaoIdentifier",
                        "ARPLatitude",
                        "ARPLatitudeS",
                        "ARPLongitude",
-                       "ARPLongitudeS")
+                       "ARPLongitudeS",
+                       "AirportStatusCode",
+                       "IcaoIdentifier"
+                       )
       
       #Move reduces data into a new data set
       describedDataSet <- originalDataSet[, ..ColumnNames]
       
       saveRDS(describedDataSet, file = RDSFileDescibed)
+      message(RDSFileNameDescibed,
+              " created.")
 
     } #end of "if (file.exists(RDSFileDescibed) == TRUE)"
     

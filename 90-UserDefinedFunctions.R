@@ -20,6 +20,7 @@ loadLibraries <- function() {
   if (!require(png)) {install.packages("png"); require(png)}
   if (!require(grid)) {install.packages("grid"); require(grid)}
   if (!require(maps)) {install.packages("maps"); require(maps)}
+  if (!require(mapdata)) {install.packages("mapdata"); require(mapdata)}
   if (!require(sp)) {install.packages("sp"); require(sp)}
 
   #update R
@@ -62,7 +63,8 @@ versionDetails <- function() {
     "- yaml version ", packageVersion("yaml"),"\n",
     "- png version ", packageVersion("png"),"\n",
     "- grid version ", packageVersion("grid"),"\n",
-    "- maps version ", packageVersion("maps"),"\n\n",
+    "- maps version ", packageVersion("maps"),"\n",
+    "- mapdata version ", packageVersion("mapdata"),"\n",
     "- sp version ", packageVersion("sp"),"\n\n",
     "Base package versions:\n",
     "- stats version ", packageVersion("stats"),"\n",
@@ -367,8 +369,8 @@ loadSourceCodeFunctions <- function() {
   source("14-DescribeAirportDataSet.R")
   source("15-SelectAirportDataSet.R")
   source("16-CleanupAirportDataSet.R")
-  
-  #source("17-DeriveAirportAttributes.R")
+  source("17-DeriveAirportAttributes.R")
+  source("18-IntegrateAttributes.R")
 }
 
 
@@ -613,7 +615,7 @@ saveMapPNG <- function(DataState, DataObject) {
                             sep="")
     
     
-    plotTitle <- paste("Airports in ",
+    plotTitle <- paste("Modeled airports in ",
                        stateNames[state==actualState,
                                   "stateName"],
                        sep="")
@@ -633,14 +635,27 @@ saveMapPNG <- function(DataState, DataObject) {
     rm(temp)
     
     ggplot()  + 
-      geom_polygon(data=base_map,aes(x=long, y=lat, group=group), color="darkblue", fill = "#99ccff") +
-      geom_point(aes(x = DataObject[State==actualState, long], y = DataObject[State==actualState, lat]), color = "red", size = 1, shape = 16) +
+      geom_polygon(data=base_map,
+                   aes(x=long, 
+                       y=lat, 
+                       group=group), 
+                   color="darkblue", 
+                   fill = "#99CCFF") +
+      geom_point(aes(x = DataObject[State==actualState,
+                                    long],
+                     y = DataObject[State==actualState,
+                                    lat],
+                     size = DataObject[State==actualState,
+                                       StrikeNo]), 
+                 color = "#FFCC99") +
       theme_classic() +
       ggtitle(plotTitle) +
       xlab("") +
       ylab("") +
+      scale_size_continuous(range = c(1, 6)) +
       theme(
-        plot.title = element_text(hjust = 0.5, face="bold"),
+        plot.title = element_text(hjust = 0.5, 
+                                  face="bold"),
         legend.position = "none",
         axis.line = element_blank(),
         axis.text = element_blank(),

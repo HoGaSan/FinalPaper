@@ -41,8 +41,13 @@ source("90-UserDefinedFunctions.R")
   SelectAirportDataSet()
 #Airport data cleanup - 16 --> CLE
   CleanupAirportDataSet() 
+#Derive airport attirbutes - 17 --> DER
+  DeriveAirportAttributes()
+#Integrate attributes for model 01 - 18 --> "09_Model_01_Data.rds"
+  IntegrateAttributesM1()
+#Integrate attributes for model 02 - 18 --> "10_Model_02_Data.rds"
+  IntegrateAttributesM2()
   
-
 regeneratePlots()
 backupFiles()
 

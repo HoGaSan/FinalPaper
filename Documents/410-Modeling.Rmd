@@ -5,44 +5,42 @@ output:
     number_sections: true
 ---
 
-TODO
-
-## Select Modeling Technique for Model 1
+## Select Modeling Technique for the first model
 
 ```{r child = '420-SelectModelingTechniqueModel1.Rmd'}
 ```
 
-## Generate Test Design for Model 1
+## Generate Test Design for the first model
 
 ```{r child = '430-GenerateTestDesignModel1.Rmd'}
 ```
 
-## Build Model for Model 1
+## Build Model for the first model
 
 ```{r child = '440-BuildModelModel1.Rmd'}
 ```
 
-## Assess Model for Model 1
+## Assess Model for the first model
 
 ```{r child = '450-AssessModelModel1.Rmd'}
 ```
 
-## Select Modeling Technique for Model 2
+## Select Modeling Technique for the second model
 
 ```{r child = '460-SelectModelingTechniqueModel2.Rmd'}
 ```
 
-## Generate Test Design for Model 2
+## Generate Test Design for the second model
 
 ```{r child = '470-GenerateTestDesignModel2.Rmd'}
 ```
 
-## Build Model for Model 2
+## Build Model for the second model
 
 ```{r child = '480-BuildModelModel2.Rmd'}
 ```
 
-## Assess Model for Model 2
+## Assess Model for the second model
 
 ```{r child = '490-AssessModelModel2.Rmd'}
 ```

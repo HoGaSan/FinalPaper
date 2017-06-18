@@ -41,7 +41,7 @@ The Federal Aviation Administration provides code books for some of the data det
 |TYPE_ENG|""|Value is empty.|
 
 
-The strike report itself contains a great deal of details, which can be used in different projects, but for our purposes the following details have to be removed to concentrate on those information, which we expect to be the cause and not the effect of the strike. The following details needs to be removed from the data set in a later stage.
+The strike report itself contains a great deal of details, which can be used in different projects, but for my purposes the following details have to be removed to concentrate on those information, which I expect to be the cause and not the effect of the strike. The following details needs to be removed from the data set in a later stage.
 
 | Column name         | Explanation of Column Name and Codes          |
 |:--------------------|:----------------------------------------------|
@@ -122,7 +122,7 @@ The data set provided by the United States Department of Transportation is a dat
 
 The data in the Federal Aviation Administration Animal Strike Database is available only until 30-4-2016, so the flight data needs to be adjusted accordingly.
 
-Similarly to the Federal Aviation Administration Animal Strike Database, the flight performance data set contains a great deal of details as well, which can be used in different projects, but for our purposes the following details have to be removed to concentrate on those information, which we expect to be the cause and not the effect of the strike. The following details needs to be removed from the data set in a later stage.
+Similarly to the Federal Aviation Administration Animal Strike Database, the flight performance data set contains a great deal of details as well, which can be used in different projects, but for my purposes the following details have to be removed to concentrate on those information, which I expect to be the cause and not the effect of the strike. The following details needs to be removed from the data set in a later stage.
 
 | Column name     | Explanation of Column Name and Codes              |
 |:----------------|:--------------------------------------------------|
@@ -281,7 +281,6 @@ Similarly to the previous data sets this data set contains a great deal of detai
 |NOTAMFacilityID|Identifier of the facility responsible for issuing notices to airmen (NOTAMS) and weather information for the airport. (ex. ORD)|
 |NOTAMService|Availability of NOTAM 'd' service at airport. (ex. Y - yes, N - no)|
 |ActivationDate|Airport activation date (mm/yyyy). Provides the month and year that the facility was added to the NFDC airport database. Note: this information is only available for those facilities opened since 1981. (ex. 06/1981)|
-|AirportStatusCode|Airport status code: CI - closed indefinitely; CP - closed permanently; O - operational|
 |CertificationTypeDate|Airport certification type and date. Format is the class code ('I', 'II', 'III' or 'IV') followed by a one characther code A, B, C, D, E, or L, followed by a one character code S or U, followed by the month and year of certification. (ex. 'I A S 07/1980', 'I C S 01/1983' or 'I A U 09/1983').  Codes A, B, C, D, and E are for airports having a full certificate under CFR Part 139, and receiving scheduled air carrier service from carriers certificated by the Civil Aeronautics Board.  The A, B, C, D, and E identify the aircraft rescue and firefighting index for the airport.  Code L is for airports having limited certification under CFR Part 139.  Code S is for Airports receiving scheduled air carrier service from carriers certificated by the Civil Aeronautics Board.  Code U is for airports not receiving this scheduled service.|
 |FederalAgreements|NPIAS/Federal Agreement Code.  A combination of 1 to 7 codes that indicate the type of federal agreements existing at the airport. (ex. NGH). N - national plan of integrated airport systems (NPIAS); B - installation of navigational facilities on privately owned airports under F&E program; G - grant agreements under FAAP/ADAP/AIP; H - compliance with accessibility to the handicapped; P - surplus property agreement under Public Law 289; R - surplus property agreement under Regulation 16-WAA; S - conveyance under section 16, Federal Airport Act of 1946 or Section 23, Airport and Airway Development Act of 1970; V - advance planning agreement under FAAP; X - obligations assumed by transfer; Y - assurances pursuant to Title VI, Civil Rights Act of 1964; Z - conveyance under Section 303(C), Federal Aviation Act of 1958; 1 - grant agreement has expired, however, agreement remains in effect for this facility as long as it is public use.|
 |AirspaceDetermination|Airport airspace analysis determination. (ex. CONDL (conditional), NOT ANALYZED, NO OBJECTION, OBJECTIONABLE)|

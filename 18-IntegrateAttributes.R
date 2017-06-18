@@ -10,7 +10,8 @@ IntegrateAttributesM1 <- function() {
   dataDir <- getDataDir()
   
   #Data:
-  #Airports - get the merged airport list from flight data origins, destination airports and the strike data airports
+  #Airports - get the merged airport list from flight data origins,
+  #destination airports and the strike data airports
   #Airport attributes based on the flights data
   #airport attributes based on the stike data:
   # - number of strikes by airport
@@ -18,80 +19,189 @@ IntegrateAttributesM1 <- function() {
   # - number of strikes by airport by day
   # - number of strikes by airport by sky
   
-  RDSFileName <- "05_DESC_Airport.rds"
+  RDSFileName <- "07_CLE_Airport.rds"
   
   RDSFile <- paste(dataDir,
                    "/",
                    RDSFileName,
                    sep = "")
   
-  RDSFileNameSelected <- "06_SEL_Airport.rds"
+  RDSFileNameDest <- "08_DER_Airport_Destination.rds"
   
-  RDSFileSelected <- paste(dataDir,
-                           "/",
-                           RDSFileNameSelected,
-                           sep = "")
+  RDSFileDest <- paste(dataDir,
+                   "/",
+                   RDSFileNameDest,
+                   sep = "")
   
-  if (file.exists(RDSFile) != TRUE){
+  RDSFileNameOrig <- "08_DER_Airport_Origin.rds"
+  
+  RDSFileOrig <- paste(dataDir,
+                   "/",
+                   RDSFileNameOrig,
+                   sep = "")
+  
+  RDSFileNameStr <- "08_DER_Airport_Strike.rds"
+  
+  RDSFileStr <- paste(dataDir,
+                   "/",
+                   RDSFileNameStr,
+                   sep = "")
+  
+
+  if ((file.exists(RDSFile) != TRUE) ||
+      (file.exists(RDSFileDest) != TRUE) ||
+      (file.exists(RDSFileOrig) != TRUE) ||
+      (file.exists(RDSFileStr) != TRUE)
+      ){
     message(RDSFileName,
-            "is not available, ",
+            " or ",
+            RDSFileNameDest,
+            " or ",
+            RDSFileNameOrig,
+            " or ",
+            RDSFileNameStr,
+            " is not available, ",
             "please re-run the preparation scripts!")
   } else {
     
+    airportData <- readRDS(file = RDSFile)
+    setkey(airportData, LocationID)
+    airportDestination <- readRDS(file = RDSFileDest)
+    setkey(airportDestination, Airport)
+    airportOrigin <- readRDS(file = RDSFileOrig)
+    setkey(airportOrigin, Airport)
+    airportStrike <- readRDS(file = RDSFileStr)
+    setkey(airportStrike, Airport)
     
-    if (file.exists(RDSFileSelected) == TRUE){
-      message(RDSFileNameSelected,
-              " exists, no further action is required.")
+    mergedAirportFlightData <- merge(airportOrigin,
+                                     airportDestination,
+                                     all = TRUE)
+    
+    #Resetting the NA values to zero
+    mergedAirportFlightData[is.na(mergedAirportFlightData)] <- 0
+    
+    airportDatawFD <-
+      airportData[LocationID %in% mergedAirportFlightData$Airport]
+    
+    #enrich data with the flight data
+    airportDatawFD <- merge(airportDatawFD,
+                            mergedAirportFlightData,
+                            by.x = "LocationID",
+                            by.y = "Airport",
+                            all.x = TRUE)
+    
+    #enrich the data, with the strike data
+    airportDatawST <- merge(airportDatawFD,
+                            airportStrike,
+                            by.x = "LocationID",
+                            by.y = "Airport",
+                            all.x = TRUE)
+    
+    airportDatawST[is.na(airportDatawST)] <- 0
+    
+    #Resetting the factors of the data table
+    airportDatawST[] <- 
+      lapply(airportDatawST,
+             function(x) if(is.factor(x)) factor(x) else x)
+    
+    
+    airportDataForModel01 <- 
+      airportDatawST[,c("LocationID",
+                        "Region",
+                        "State",
+                        "City",
+                        "FacilityName",
+                        "OriginCount",
+                        "OriginMaxDistance",
+                        "OriginMinDistance",
+                        "OriginAvgDistance",
+                        "DestinationCount",
+                        "DestinationMaxDistance",
+                        "DestinationMinDistance",
+                        "DestinationAvgDistance",
+                        "StrikeNo"
+                        )
+                    ]
+    
+    #Resetting the factors of the data table
+    airportDataForModel01[] <- 
+      lapply(airportDataForModel01,
+             function(x) if(is.factor(x)) factor(x) else x)
+    
+    
+    RDSFileNameModel01 <- "09_Model_01_Data.rds"
+    
+    RDSFileModel01 <- paste(dataDir,
+                            "/",
+                            RDSFileNameModel01,
+                            sep = "")
+    
+    if (file.exists(RDSFileModel01) != TRUE) {
+      saveRDS(airportDataForModel01,
+              file = RDSFileModel01)
     } else {
-      
-      #Read the data file into a variable
-      originalDataSet <- readRDS(file = RDSFile)
-      
-      #TYPE column selection
-      selectedDataSet <- originalDataSet[Type == "AIRPORT",]
-      
-      #STATE selection
-      selectedDataSet <- selectedDataSet[State %in% getStates(),]
-      
-      #Merge origin and destination airport data
-      RDSFileNameOriginAirport <- "03_CLEANED_Flight_Data_O_Airports.rds"
-      
-      RDSFileOriginAirport <- paste(dataDir,
-                                    "/",
-                                    RDSFileNameOriginAirport,
-                                    sep = "")
-      
-      originAirports <- readRDS(file = RDSFileOriginAirport)
-      
-      names(originAirports) <- c("Airport")
-      
-      RDSFileNameDestinationAirport <- "03_CLEANED_Flight_Data_D_Airports.rds"
-      
-      RDSFileDestinationAirport <- paste(dataDir,
-                                         "/",
-                                         RDSFileNameDestinationAirport,
-                                         sep = "")
-      
-      destinationAirports <- readRDS(file = RDSFileDestinationAirport)
-      
-      names(destinationAirports) <- c("Airport")
-      
-      airportListDT <- merge(originAirports, destinationAirports, all=TRUE)
-      
-      #Get the impacted airport only 
-      selectedDataSet <- selectedDataSet[State %in% airportListDT[],]
-      
-      #Resetting the factors of the data table
-      selectedDataSet[] <- 
-        lapply(selectedDataSet,
-               function(x) if(is.factor(x)) factor(x) else x)
-      
-      saveRDS(selectedDataSet, file = RDSFileSelected)
-      
-    } #end of "if (file.exists(RDSFileSelected) == TRUE)"
+      file.remove(RDSFileModel01)
+      saveRDS(airportDataForModel01,
+              file = RDSFileModel01)
+    }
     
+    saveMapPNG(airportDatawST$State, airportDatawST)
+    
+    currentWorkingDir <- getwd()
+    setwd(getDocInputDir())
+    
+    base_map <- map_data("state")
+
+    plotData <- 
+      airportDatawST[!State %in% c("AK",
+                                   "HI"),
+                     sum(StrikeNo),
+                     by = "StateName"]
+    plotData$StateName <- tolower(plotData$StateName)
+    names(plotData) <- c("region",
+                         "NumberOfStrikes")
+    
+    plotDataMapUSA <- 
+      merge(statesDT, 
+            plotData, 
+            by="region", 
+            all = TRUE)
+    
+    plotDataMapUSA <- 
+      plotDataMapUSA[plotDataMapUSA$region!="district of columbia",]
+    
+    targetFileName <- "USA_Airports.png"
+
+    ggplot() + 
+      geom_polygon(data=plotDataMapUSA,
+                   aes(x=long,
+                       y=lat,
+                       group = group,
+                       color = "white",
+                       fill=plotDataMapUSA$NumberOfStrikes),
+                   colour="white") +
+      scale_fill_continuous(low = "#CBE5FF",
+                            high = "#00264C",
+                            guide="colorbar") +
+      theme_bw() +
+      labs(fill = "Number of Strikes",
+           x="",
+           y="") +
+      scale_y_continuous(breaks=c()) + 
+      scale_x_continuous(breaks=c()) + 
+      theme(panel.border =  element_blank())
+
+    ggsave(
+      targetFileName,
+      units = "in", #units are in pixels
+      width = 10, #width of the plot in in (should be the same as the height)
+      height = 7, #height of the plot in in (should be the same as the width)
+      dpi = 72 #nominal resolution in ppi (pixels per inch)
+    )
+    
+    setwd(currentWorkingDir)
+
   } #end of "if (file.exists(RDSFile) != TRUE)"
-  
 }
 
 
@@ -104,139 +214,7 @@ IntegrateAttributesM1 <- function() {
 #' IntegrateAttributesM2()
 #' 
 IntegrateAttributesM2 <- function() {
-  
-  dataDir <- getDataDir()
-  startYear <- getStartYear()
-  endYear <- getEndYear()
 
-  airportAttributes <- data.table(
-    airportCode = character(),
-    airportName = character(),
-    avgOriginated = integer(),
-    avgDeparted = integer(),
-    maxDistanceOriginated = integer(),
-    maxDistanceDeparted = ingeter(),
-    avgDistanceOriginated = integer(),
-    avgDistanceDeparted = ingeter(),
-    minDistanceOriginated = integer(),
-    minDistanceDeparted = ingeter()
-  )
-
-  airportAttributesByYear <- data.table(
-    airportCode = character(),
-    airportName = character(),
-    dataYear = character(),
-    avgOriginated = integer(),
-    avgDeparted = integer(),
-    maxDistanceOriginated = integer(),
-    maxDistanceDeparted = ingeter(),
-    avgDistanceOriginated = integer(),
-    avgDistanceDeparted = ingeter(),
-    minDistanceOriginated = integer(),
-    minDistanceDeparted = ingeter()
-  )
-  
-  for (i in startYear:endYear){
-    RDSFileName <- paste(i,
-                         "_On_Time_On_Time_Performance_04_Cle.rds",
-                         sep = "")
-
-    RDSFile <- paste(dataDir,
-                     "/",
-                     RDSFileName,
-                     sep = "")
-
-    if (file.exists(RDSFile) != TRUE){
-      message(RDSFileName,
-              "is not available, ",
-              "please re-run the preparation scripts!")
-    } else {
-      
-      #Read the data file into a variable
-      variableName <- paste("FP_", i, sep="")
-      assign(variableName, readRDS(file = RDSFile))
-      
-      
-      dataSet <- get(variableName)
-      
-      #Get the number of flights, minimum, maximum and summary distances
-      DT1 <- dataSet[, 
-                     .(.N,
-                       max(Distance),
-                       min(Distance),
-                       sum(Distance)), 
-                     by = c("Origin", "Year")]
-      names(DT1) <- c("Airport",
-                      "Year",
-                      "OriginCount",
-                      "OriginMaxDistance",
-                      "OriginMinDistance",
-                      "OriginSumDistance")
-      setkey(DT1, Airport, Year)
-      
-      DT2 <- dataSet[, 
-                     .(.N,
-                       max(Distance),
-                       min(Distance),
-                       sum(Distance)),
-                     by = c("Dest", "Year")]
-      names(DT2) <- c("Airport",
-                      "Year",
-                      "DestinationCount",
-                      "DestinationMaxDistance",
-                      "DestinationMinDistance",
-                      "DestinationSumDistance")
-      setkey(DT2, Airport, Year)
-      
-      DT3 <- DT1[DT2]
-      
-      
-      
-      
-      
-      
-      
-      # airportAttributesByYear <- rbindlist(
-      #   list(
-      #     airportAttributesByYear,
-      #     dataSet[,]
-      #     list(cleanedDataSet
-      #          as.character(i),
-      #          nrow(cleanedDataSet),
-      #          length(levels(cleanedDataSet$Carrier)),
-      #          length(levels(cleanedDataSet$Origin)),
-      #          length(levels(cleanedDataSet$OriginState)),
-      #          length(levels(cleanedDataSet$Dest)),
-      #          length(levels(cleanedDataSet$DestState)),
-      #          length(levels(cleanedDataSet$DepTimeBlk)),
-      #          length(levels(cleanedDataSet$DistanceGroup))
-      #          )
-      #     )
-      #   )
-      
-
-      #Free up the memory
-      rm(list = variableName)
-      rm(variableName)
-      gc()
-        
-    } #end of "if (file.exists(RDSFile) != TRUE)"
-    
-  } #end of "for (i in startYear:endYear)"
-
-  RDSAirportAttributesName <- paste("04_Airport_Attributes.rds",
-                                    sep = "")
-  
-  RDSAirportAttributes <- paste(dataDir,
-                                "/",
-                                RDSAirportAttributesName,
-                                sep = "")
-  
-  if (file.exists(RDSAirportAttributes) != TRUE) {
-    saveRDS(dataSummary, file = RDSAirportAttributes)
-  } else {
-    file.remove(RDSAirportAttributes)
-    saveRDS(dataSummary, file = RDSAirportAttributes)
-  }
+  #TODO  
 
 }

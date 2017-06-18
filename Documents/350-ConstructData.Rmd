@@ -18,16 +18,20 @@ Taking into account that the animal strikes might be related to the amount of th
 * Average distance of the flights originated from the airport
 * Average distance of the flights departed to the airport
 
-Another set of attributes, which need to take into account is based on the animal strike data. The following supporting attriburtes will be created for each airport:
+Another set of attributes, which needs to be taken into account is based on the animal strike data. The following supporting attribute(s) will be created for each airport:
 
+* Number of strikes at the airport
+
+<!--
 * Number of strikes in the different flight phases (e.g.: Landing roll, Descent, Climb, etc.)
 * Number of strikes by the time of the day (e.g.: Day, Night, etc.)
 * Number of strikes by the precipitation (e.g.: Rain, Snow, Fog, etc.)
 * Number of strikes by the sky conditions (e.g.: No clouds, Some clouds, etc.)
+-->
 
 ### Generated Records
 
-The information described by the data records and the massive amount of data provided by the Federal Aviation Administration and the United States Department of Transportation does not require to generate additional records at this stage of the project. It might still happen on the other hand that during the modell building it will be required to generate more records (or reduce the number of records), but this task will be performed at the model creation stage based on the preliminary evaluation of the model.
+The information described by the data records and the massive amount of data provided by the Federal Aviation Administration and the United States Department of Transportation does not require to generate additional records at this stage of the project. It might still happen on the other hand that during the model building it will be required to generate more records (or reduce the number of records), but this task will be performed at the model creation stage based on the preliminary evaluation of the model.
 
 
 <!--

@@ -11,7 +11,7 @@ TODO
 
 ### Approved Models
 
-TODO
+As already mentioned in the initial resource plan, this final paper is a pet project, therefore the results of the project will never be put into a real production environment, meaning that no approval is required for any of the models created during the project.
 
 <!--
 Previous evaluation steps dealt with factors such as the accuracy and generality of the model. This step assesses the degree to which the model meets the business objectives and determines if there is some business reason why this model is deficient. Another option here is to test the model(s) on real-world applications— if time and budget constraints permit. Moreover, evaluation also seeks to unveil additional challenges, information, or hints for future directions.

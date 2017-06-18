@@ -7,12 +7,23 @@ output:
 
 ### Modeling Technique
 
-TODO
+My goal is to create a statistical model to analyse a continuous variable as the outcome variable (called by statisticians as Y, the response variable, the dependent variable) using multiple predictors (called by statisticians as X, independent variable, explanatory variable). Having the outcome variable as a continuous variable, I'm going to use a linear regression model for the analysis.
+
+The data sets I have available are simplifying the situation as they do not contain several variables (like the distance to national parks, the flight routes of the birds, actions taken by the authorities of the different airports, etc.), which might have significant impact on the model results. These variables are called confounder variables and can be defined as follows:
+
+\textit{"A confounder is a third variable that biases (increases or decreases) the association we are interested in. The confounder is always associated with both the response and the predictor."} [@daroczi2015]
 
 ### Modeling Assumptions
 
-TODO
-
+Besides the assumptions taken with the standard estimation techniques of the linear regression model I did not take any other modeling related assumption. 
 <!--
-This task refers to choosing one or more specific modeling techniques, such as decision tree building with C4.5 or neural network generation with back propagation. If assumptions are attached to the modeling technique, these should be recorded.
+The assumptions taken are the following:
+
+1. The outcome variable is a continuous variable
+2. The residuals are statistically independent
+3. There is a relationship between the outcome variable and each predictor variable
+4. The outcome variable has a normal distribution
+5. The variance of the outcome variable is fixed regardless of the predictor variables
+
+The assumptions above are based on the definitions and the descriptions written in "Mastering Data Analysis with R" by [@daroczi2015].
 -->

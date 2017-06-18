@@ -10,5 +10,17 @@ output:
 TODO
 
 <!--
+
+As it turned out during the project the following issues 
+
+List of issues found during the project:
+
+* Data quality issues
+the flight data does not contain all the flights in the given timeframe. expectation was that all the data is available, but it's not.
+
+-->
+
+
+<!--
 The data analyst should assess failures and successes as well as potential areas of improvement for use in future projects. This step should include a summary of important experiences during the project and can include interviews with the significant project participants. This document could include pitfalls, misleading approaches, or hints for selecting the best-suited data mining techniques in similar situations. In ideal projects, experience documentation also covers any reports written by individual project members during the project phases and tasks.
 -->

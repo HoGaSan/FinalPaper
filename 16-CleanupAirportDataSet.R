@@ -45,8 +45,12 @@ CleanupAirportDataSet <- function() {
       cleanedDataSet$LocationID <- as.factor(cleanedDataSet$LocationID)
 
       #create the lat and long decimal values
-      cleanedDataSet <- cleanedDataSet[, lat := convertToDMSNumber(as.character(ARPLatitude))]
-      cleanedDataSet <- cleanedDataSet[, long := convertToDMSNumber(as.character(ARPLongitude))]
+      cleanedDataSet <- 
+        cleanedDataSet[,
+                       lat := convertToDMSNumber(as.character(ARPLatitude))]
+      cleanedDataSet <- 
+        cleanedDataSet[, 
+                       long := convertToDMSNumber(as.character(ARPLongitude))]
       
       #Resetting the factors of the data table
       cleanedDataSet[] <- 
@@ -54,6 +58,9 @@ CleanupAirportDataSet <- function() {
                function(x) if(is.factor(x)) factor(x) else x)
       
       saveRDS(cleanedDataSet, file = RDSFileCleaned)
+      message(RDSFileNameCleaned,
+              " created.")
+      
       
     } #end of "if (file.exists(RDSFileCleaned) == TRUE)"
 

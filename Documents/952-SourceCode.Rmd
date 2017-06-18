@@ -24,6 +24,8 @@ cat(readLines('../13-AirportDataSetDataPreparation.R'), sep = '\n')
 cat(readLines('../14-DescribeAirportDataSet.R'), sep = '\n')
 cat(readLines('../15-SelectAirportDataSet.R'), sep = '\n')
 cat(readLines('../16-CleanupAirportDataSet.R'), sep = '\n')
+cat(readLines('../17-DeriveAirportAttributes.R'), sep = '\n')
+cat(readLines('../18-IntegrateAttributes.R'), sep = '\n')
 cat(readLines('../90-UserDefinedFunctions.R'), sep = '\n')
 ```
 
