@@ -93,6 +93,9 @@ CleanupWildLifeStrikeDataSet <- function(createPNG) {
         #change engine type
         cleanedDataSet[TYPE_ENG == "A/C", TYPE_ENG:= "A"]
         cleanedDataSet[TYPE_ENG == "B/D", TYPE_ENG:= "B"]
+        
+        #change the date to the incident day
+        cleanedDataSet[,INCIDENT_DATE := substr(INCIDENT_DATE, 9, 10)]
 
         #Resetting the factors of the data table
         cleanedDataSet[] <- 

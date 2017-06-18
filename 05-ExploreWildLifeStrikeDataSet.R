@@ -53,7 +53,7 @@ ExploreWildLifeStrikeDataSet <- function(createPNG) {
     } else {
       #Read the data file into a variable
       variableName <- paste("AS_", i, sep="")
-      assign(variableName, readRDS(file = RDSFile), envir = .GlobalEnv)
+      assign(variableName, readRDS(file = RDSFile))
       
       dataSummary <- rbindlist(
         list(
@@ -124,7 +124,7 @@ ExploreWildLifeStrikeDataSet <- function(createPNG) {
       }
       
       #Free up the memory
-      rm(list = variableName, envir = .GlobalEnv)
+      rm(list = variableName)
       rm(variableName)
       gc()
       
