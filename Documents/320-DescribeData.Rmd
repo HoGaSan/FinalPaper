@@ -88,6 +88,8 @@ The number of details (columns) for each flight performance record has been redu
 |ARPLatitudeS|Airport reference point latitude (seconds).|
 |ARPLongitude|Airport reference point longitude (formatted).|
 |ARPLongitudeS|Airport reference point longitude (seconds).|
+|ARPElevation|Airport elevation (nearest foot MSL). Elevation is measured at the highest point on the centerline of the usable landing surface. (ex. 1200; -10 for 10 feet below sea level)|
+|LandAreaCoveredByAirport|Amount of land owned by the airport in acres.|
 |AirportStatusCode|Airport status code: CI - closed indefinitely; CP - closed permanently; O - operational|
 |IcaoIdentifier|International coding for airport.|
 

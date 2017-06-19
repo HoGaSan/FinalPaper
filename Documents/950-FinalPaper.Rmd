@@ -3,7 +3,7 @@ output:
   pdf_document:
     latex_engine: xelatex
     number_sections: yes
-    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
+#    pandoc_args: ["--output=Output/05-FinalPaper.pdf"]
 urlcolor: blue
 linkcolor: black
 header-includes:

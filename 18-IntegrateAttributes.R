@@ -9,16 +9,6 @@ IntegrateAttributesM1 <- function() {
   
   dataDir <- getDataDir()
   
-  #Data:
-  #Airports - get the merged airport list from flight data origins,
-  #destination airports and the strike data airports
-  #Airport attributes based on the flights data
-  #airport attributes based on the stike data:
-  # - number of strikes by airport
-  # - number of strikes by airport by flight phase
-  # - number of strikes by airport by day
-  # - number of strikes by airport by sky
-  
   RDSFileName <- "07_CLE_Airport.rds"
   
   RDSFile <- paste(dataDir,
@@ -75,7 +65,7 @@ IntegrateAttributesM1 <- function() {
     
     mergedAirportFlightData <- merge(airportOrigin,
                                      airportDestination,
-                                     all = TRUE)
+                                     all = FALSE)
     
     #Resetting the NA values to zero
     mergedAirportFlightData[is.na(mergedAirportFlightData)] <- 0
@@ -111,6 +101,8 @@ IntegrateAttributesM1 <- function() {
                         "State",
                         "City",
                         "FacilityName",
+                        "ARPElevation",
+                        "LandAreaCoveredByAirport",
                         "OriginCount",
                         "OriginMaxDistance",
                         "OriginMinDistance",

@@ -21,6 +21,7 @@ loadLibraries <- function() {
   if (!require(grid)) {install.packages("grid"); require(grid)}
   if (!require(maps)) {install.packages("maps"); require(maps)}
   if (!require(mapdata)) {install.packages("mapdata"); require(mapdata)}
+  if (!require(gvlma)) {install.packages("gvlma"); require(gvlma)}
   if (!require(sp)) {install.packages("sp"); require(sp)}
 
   #update R
@@ -65,6 +66,7 @@ versionDetails <- function() {
     "- grid version ", packageVersion("grid"),"\n",
     "- maps version ", packageVersion("maps"),"\n",
     "- mapdata version ", packageVersion("mapdata"),"\n",
+    "- gvlma version ", packageVersion("gvlma"),"\n",
     "- sp version ", packageVersion("sp"),"\n\n",
     "Base package versions:\n",
     "- stats version ", packageVersion("stats"),"\n",
@@ -371,6 +373,7 @@ loadSourceCodeFunctions <- function() {
   source("16-CleanupAirportDataSet.R")
   source("17-DeriveAirportAttributes.R")
   source("18-IntegrateAttributes.R")
+  source("19-Model01.R")
 }
 
 
@@ -394,7 +397,7 @@ loadSourceCodeFunctions <- function() {
 #' The data object to create the plot
 #' 
 #' @examples 
-#' saveBarPlotPNG(1990, "Animal Strike", "State", "01_Origin" DT)
+#' saveBarPlotPNG(1990, "Animal Strike", "State", "01_Origin", DT)
 #' 
 saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) {
   currentWorkingDir <- getwd()
@@ -475,8 +478,8 @@ saveBarPlotPNG <- function(DataYear, DataSet, DataField, DataStage, DataObject) 
   ggsave(
     targetFileName,
     units = "in", #units are in pixels
-    width = 4, #width of the plot in in (should be the same as the height)
-    height = 4, #height of the plot in in (should be the same as the width)
+    width = 5, #width of the plot in in (should be the same as the height)
+    height = 5, #height of the plot in in (should be the same as the width)
     dpi = 72 #nominal resolution in ppi (pixels per inch)
   )
 
@@ -666,8 +669,8 @@ saveMapPNG <- function(DataState, DataObject) {
     ggsave(
       targetFileName,
       units = "in", #units are in pixels
-      width = 4, #width of the plot in in (should be the same as the height)
-      height = 4, #height of the plot in in (should be the same as the width)
+      width = 5, #width of the plot in in (should be the same as the height)
+      height = 5, #height of the plot in in (should be the same as the width)
       dpi = 72 #nominal resolution in ppi (pixels per inch)
     )
     
@@ -1191,4 +1194,195 @@ convertToDMSNumber <- function(inputString){
       char2dms %>%
       as.numeric
     )
+}
+
+#' 
+#' \code{saveModelingHistogramPNG} saves the required histogram 
+#' 
+#' @param FieldName string
+#' The field name
+#' 
+#' @param DataObject object
+#' The data to create the plot
+#' 
+#' @param BinSize number
+#' The bin size to be used in the plot
+#' 
+#' @examples 
+#' saveModelingHistogramPNG("Field", DT, 20)
+#' 
+saveModelingHistogramPNG <- function(FieldName, DataObject, BinSize) {
+  currentWorkingDir <- getwd()
+  setwd(getDocInputDir())
+  targetFileName <- paste("Histogram_of_",
+                          FieldName,
+                          ".png",
+                          sep="")
+  
+  plotText <- data.table(
+    keys = c(
+      "StrikeNo",
+      "OriginCount",
+      "OriginMaxDistance",
+      "OriginMinDistance",
+      "OriginAvgDistance",
+      "DestinationCount",
+      "DestinationMaxDistance",
+      "DestinationMinDistance",
+      "DestinationAvgDistance",
+      "ARPElevation",
+      "LandAreaCoveredByAirport"
+    ),
+    texts = c(
+      "number of animal strikes",
+      "number of flights originated",
+      "maximum flight distance originated",
+      "minimum flight distance originated",
+      "average flight distance originated",
+      "number of flights departed",
+      "maximum flight distance departed",
+      "minimum flight distance departed",
+      "average flight distance departed",
+      "airport elevation",
+      "land covered by the airport"
+    )
+  )
+  
+  if (!is.empty(tolower(plotText[keys==FieldName,texts]))) {
+    lowerPlotText <- tolower(plotText[keys==FieldName,texts])
+    labelAxisX <- plotText[keys==FieldName,texts]
+  } else {
+    message("Key not found")
+    return()
+  }
+  
+  plotTitle <- paste("Histogram of "
+                     ,lowerPlotText,
+                     sep="")
+  
+  test <- DataObject
+
+  ggplot(data=modelData, aes(get(FieldName))) +
+    geom_histogram(binwidth = BinSize, fill = "#99ccff", color = "white") +
+    ggtitle(plotTitle) + #plot title
+    xlab("") + #set the vertical (coordflip!) axis text
+    ylab("") + #set the horizontal (coordflip!) axis text
+    theme(
+      #align title to the center
+      plot.title = element_text(hjust = 0.5, face="bold"),
+      #set plot background colors
+      plot.background = element_rect(fill = "white", colour = "white"),
+      #set panel background colors
+      panel.background = element_rect(fill = "white", colour = "white"),
+      #set the fonts to serif, which is set to Times New Roman
+      text = element_text(family = "serif"),
+      #change the angle of the axis text
+      axis.text.x = element_text(angle=45, hjust=1, vjust=1)
+    )
+
+  ggsave(
+    targetFileName,
+    units = "in", #units are in pixels
+    width = 5, #width of the plot in in (should be the same as the height)
+    height = 5, #height of the plot in in (should be the same as the width)
+    dpi = 72 #nominal resolution in ppi (pixels per inch)
+  )
+  
+  setwd(currentWorkingDir)
+}
+
+#' 
+#' \code{saveModelingHistogramLogPNG} saves the required histogram 
+#' 
+#' @param FieldName string
+#' The field name
+#' 
+#' @param DataObject object
+#' The data to create the plot
+#' 
+#' @param BinSize number
+#' The bin size to be used in the plot
+#' 
+#' @examples 
+#' saveModelingHistogramLogPNG("Field", DT, 20)
+#' 
+saveModelingHistogramLogPNG <- function(FieldName, DataObject, BinSize) {
+  currentWorkingDir <- getwd()
+  setwd(getDocInputDir())
+  targetFileName <- paste("Histogram_of_log_",
+                          FieldName,
+                          ".png",
+                          sep="")
+  
+  plotText <- data.table(
+    keys = c(
+      "StrikeNo",
+      "OriginCount",
+      "OriginMaxDistance",
+      "OriginMinDistance",
+      "OriginAvgDistance",
+      "DestinationCount",
+      "DestinationMaxDistance",
+      "DestinationMinDistance",
+      "DestinationAvgDistance",
+      "ARPElevation",
+      "LandAreaCoveredByAirport"
+    ),
+    texts = c(
+      "number of animal strikes",
+      "number of flights originated",
+      "maximum flight distance originated",
+      "minimum flight distance originated",
+      "average flight distance originated",
+      "number of flights departed",
+      "maximum flight distance departed",
+      "minimum flight distance departed",
+      "average flight distance departed",
+      "airport elevation",
+      "land covered by the airport"
+    )
+  )
+  
+  if (!is.empty(tolower(plotText[keys==FieldName,texts]))) {
+    lowerPlotText <- tolower(plotText[keys==FieldName,texts])
+    labelAxisX <- plotText[keys==FieldName,texts]
+  } else {
+    message("Key not found")
+    return()
+  }
+  
+  plotTitle <- paste("Histogram of "
+                     ,lowerPlotText,
+                     " (log)",
+                     sep="")
+  
+  test <- DataObject
+  
+  ggplot(data=modelData, aes(log(get(FieldName)))) +
+    geom_histogram(binwidth = BinSize, fill = "#99ccff", color = "white") +
+    ggtitle(plotTitle) + #plot title
+    xlab("") + #set the vertical (coordflip!) axis text
+    ylab("") + #set the horizontal (coordflip!) axis text
+    theme(
+      #align title to the center
+      plot.title = element_text(hjust = 0.5, face="bold"),
+      #set plot background colors
+      plot.background = element_rect(fill = "white", colour = "white"),
+      #set panel background colors
+      panel.background = element_rect(fill = "white", colour = "white"),
+      #set the fonts to serif, which is set to Times New Roman
+      text = element_text(family = "serif"),
+      #change the angle of the axis text
+      axis.text.x = element_text(angle=45, hjust=1, vjust=1)
+    )
+  
+  ggsave(
+    targetFileName,
+    units = "in", #units are in pixels
+    width = 5, #width of the plot in in (should be the same as the height)
+    height = 5, #height of the plot in in (should be the same as the width)
+    dpi = 72 #nominal resolution in ppi (pixels per inch)
+  )
+  
+  setwd(currentWorkingDir)
 }

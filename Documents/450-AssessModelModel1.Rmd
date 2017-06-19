@@ -7,11 +7,85 @@ output:
 
 ### Model Assessment
 
-TODO
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+
+```{r 450-ModelAssessment, results='asis'}
+
+dataDir <- getDataDir()
+
+cat("Something-something-something\n\n")
+
+
+RDSFileName <- "10_Model_01_01.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+model01 <- readRDS(file = RDSFile)
+summary(model01)
+cat("\n\n")
+
+RDSFileName <- "10_Model_01_02.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+model01 <- readRDS(file = RDSFile)
+summary(model01)
+cat("\n\n")
+
+RDSFileName <- "10_Model_01_03.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+model01 <- readRDS(file = RDSFile)
+summary(model01)
+cat("\n\n")
+
+RDSFileName <- "10_Model_01_04.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+model01 <- readRDS(file = RDSFile)
+summary(model01)
+cat("\n\n")
+
+RDSFileName <- "10_Model_01_05.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+model01 <- readRDS(file = RDSFile)
+summary(model01)
+cat("\n\n")
+
+RDSFileName <- "10_Model_01_06.rds"
+RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+
+model01 <- readRDS(file = RDSFile)
+
+summary(model01)
+cat("\n\n")
+
+
+  #gvlma(model01)
+  #cat("\n\n\n")
+
+```
+
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
+
 
 ### Revised Parameter Settings
 
-TODO
+Keeping the modelling task as simple as possible I did not change the parameter settings for the models, instead I've used different predictor combinations to get the best possible statistical model from the data available.
 
 <!--
 The data mining analyst interprets the models according to his or her domain knowledge, the data mining success criteria, and the desired test design. The data mining analyst judges the success of the application of modeling and discovery techniques technically, but he or she should also work with business analysts and domain experts in order to interpret the data mining results in the business context. The data mining analyst may even choose to have the business analyst involved when creating the models for assistance in discovering potential problems with the data.

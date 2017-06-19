@@ -17,20 +17,18 @@ Realizing these objectives I need to merge the data sets based on two very diffe
 Criteria set for merging the data regarding the first business goal:
 
 * Base data set to be used is the Federal Aviation Administration Airport Data & Contact Information
-* Use airports having flight data available (either as an origin or as a destination airport) in the data set obtained from the United States Department of Transportation
+* Use airports having flight data available (both as an origin and as a destination airport) in the data set obtained from the United States Department of Transportation
 * Enrich the data with the animal strike data acquired from the Federal Aviation Administration Wildlife Strike Database
-
 
 There are multiple different ways of uniquely identifying an airport. In the US one option is to use the Federal Aviation Administration Location ID, while another way is to use the international airport code of the International Civil Aviation Organization (ICAO). The data sets are using a mix of these identifiers.
 
-\textit{Note: The airports might have identification code from the International Air Transport Association (IATA) and/or the International Civil Aviation Organization (ICAO) and/or Federal Aviation Administration (FAA LID). Some airports have identification codes from all these organizations, some does not.}
+\textit{Note: The airports might have identification code from the International Air Transport Association (IATA) and/or the International Civil Aviation Organization (ICAO) and/or Federal Aviation Administration (FAA LID). Some airports have identification codes from all these organizations, some does not. The data acquired from the agencies are using codes from two of the identification code types.}
 
 
 Criteria set for merging the data regarding the second business goal:
 
 * Base data set to be used is the available in the data set obtained from the United States Department of Transportation
 * Marking the flight data with the animal strike information should be based on the date, the airport, the flight number (if available), and the tail number (if available) of the aircraft
-
 
 Based on the merged data I can visualize the distribution of the animal strikes in the map of the US.
 

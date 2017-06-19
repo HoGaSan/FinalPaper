@@ -52,6 +52,8 @@ DescribeAirportDataSet <- function() {
                        "ARPLatitudeS",
                        "ARPLongitude",
                        "ARPLongitudeS",
+                       "ARPElevation",
+                       "LandAreaCoveredByAirport",
                        "AirportStatusCode",
                        "IcaoIdentifier"
                        )

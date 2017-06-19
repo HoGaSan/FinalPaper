@@ -250,12 +250,7 @@ Similarly to the previous data sets this data set contains a great deal of detai
 |ManagerAddress|Manager's address.|
 |ManagerCSZ|Manager's city, state and zip code.|
 |ManagerPhone|Manager's phone number. (data formats: nnn-nnn-nnnn (area code + phone number), 1-nnn-nnnn (dial 1-800 then number), 8-nnn-nnnn (dial 800 then number)|
-|ARPLatitude|Airport reference point latitude (formatted).|
-|ARPLatitudeS|Airport reference point latitude (seconds).|
-|ARPLongitude|Airport reference point longitude (formatted).|
-|ARPLongitudeS|Airport reference point longitude (seconds).|
 |ARPMethod|Airport reference point determination method. (ex. E - estimated, S - surveyed)|
-|ARPElevation|Airport elevation (nearest foot MSL). Elevation is measured at the highest point on the centerline of the usable landing surface. (ex. 1200; -10 for 10 feet below sea level)|
 |ARPElevationMethod|Airport elevation determination method. (ex. E - estimated, S - surveyed)|
 |MagneticVariation|Magnetic variation and direction magnetic variation to nearest degree. (ex. 03W)|
 |MagneticVariationYear|Magnetic variation epoch year. (ex. 1985)|
@@ -263,7 +258,6 @@ Similarly to the previous data sets this data set contains a great deal of detai
 |ChartName|Aeronautical sectional chart on which facility appears. (ex. Washington)|
 |DistanceFromCBD|Distance from central business district of the associated city to the airport (nearest nautical mile - ex. 08).|
 |DirectionFromCBD|Direction of airport from central business district of associated city (nearest 1/8 compass point - ex. NE).|
-|LandAreaCoveredByAirport|Amount of land owned by the airport in acres.|
 |BoundaryARTCCID|Boundary ARTCC Identifier.  The boundary ARTCC is the FAA air route traffic control center within whose published boundaries the airport lies. It may not be the controlling ARTCC for the airport if a letter of agreement exists between the boundary ARTCC and another ARTCC. (ex. ZDC for Washington ARTCC)|
 |BoundaryARTCCComputerID|Boundary ARTCC (FAA) computer identifier. (ex. ZCW for Washington ARTCC)|
 |BoundaryARTCCName|Boundary ARTCC name. (ex. Washington)|

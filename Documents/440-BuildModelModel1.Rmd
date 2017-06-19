@@ -7,16 +7,92 @@ output:
 
 ### Parameter Settings
 
-TODO
+The R language provides quite a lot of possibilities for setting different parameters for the linear regression models. Keeping the modelling as simple as possible I'm using the default settings for the linear model fitting.
 
 ### Models
 
-TODO
+Before building any model I checked the type and in the relevant cases the distribution of the variables (for the outcome and for the predictor variables as well). The following table shows the type of the variables I've used in the model building:
+
+| Variable name   | Type of the variable | Modelling relevance | Check distribution |
+|:----------------|:---------------------|:--------------------|:-------------------|
+|StrikeNo|Number|Outcome|Yes|
+|Region|Categorical|Predictor|No|
+|State|Categorical|Predictor|No|
+|OriginCount|Integer|Predictor|Yes|
+|OriginMaxDistance|Number|Predictor|Yes|
+|OriginMinDistance|Number|Predictor|Yes|
+|OriginAvgDistance|Number|Predictor|Yes|
+|DestinationCount|Integer|Predictor|Yes|
+|DestinationMaxDistance|Number|Predictor|Yes|
+|DestinationMinDistance|Number|Predictor|Yes|
+|DestinationAvgDistance|Number|Predictor|Yes|
+|ARPElevation|Integer|Predictor|Yes|
+|LandAreaCoveredByAirport|Number|Predictor|Yes|
+
+Checking the histograms of the relevant fields I saw that none of the fields have a normal distribution, instead all of them are left-skewed.
+
+\graphicspath{ {Input/} }
+
+\begin{multicols}{2}
+\begin{center}
+
+\includegraphics[height=60mm]{Histogram_of_StrikeNo}
+\includegraphics[height=60mm]{Histogram_of_OriginCount}
+\includegraphics[height=60mm]{Histogram_of_OriginMinDistance}
+\includegraphics[height=60mm]{Histogram_of_OriginMaxDistance}
+\includegraphics[height=60mm]{Histogram_of_OriginAvgDistance}
+\includegraphics[height=60mm]{Histogram_of_DestinationCount}
+\includegraphics[height=60mm]{Histogram_of_DestinationMinDistance}
+\includegraphics[height=60mm]{Histogram_of_DestinationMaxDistance}
+\includegraphics[height=60mm]{Histogram_of_DestinationAvgDistance}
+\includegraphics[height=60mm]{Histogram_of_ARPElevation}
+\includegraphics[height=60mm]{Histogram_of_LandAreaCoveredByAirport}
+
+\end{center}
+\end{multicols}
+
+Resolving this issue can be done using the log of these fields, which will normalize the distributions as it is shown below.
+
+\begin{multicols}{2}
+\begin{center}
+
+\includegraphics[height=60mm]{Histogram_of_log_StrikeNo}
+\includegraphics[height=60mm]{Histogram_of_log_OriginCount}
+\includegraphics[height=60mm]{Histogram_of_log_OriginMinDistance}
+\includegraphics[height=60mm]{Histogram_of_log_OriginMaxDistance}
+\includegraphics[height=60mm]{Histogram_of_log_OriginAvgDistance}
+\includegraphics[height=60mm]{Histogram_of_log_DestinationCount}
+\includegraphics[height=60mm]{Histogram_of_log_DestinationMinDistance}
+\includegraphics[height=60mm]{Histogram_of_log_DestinationMaxDistance}
+\includegraphics[height=60mm]{Histogram_of_log_DestinationAvgDistance}
+\includegraphics[height=60mm]{Histogram_of_log_ARPElevation}
+\includegraphics[height=60mm]{Histogram_of_log_LandAreaCoveredByAirport}
+
+\end{center}
+\end{multicols}
+
+Taking into account several combinations I've built the following models.
+
+| Model name   | Predictors                      |
+|:-------------|:--------------------------------|
+|Model01-01|OriginCount, DestinationCount|
+|Model01-02|OriginCount, OriginMaxDistance, OriginMinDistance, OriginAvgDistance, DestinationCount, DestinationMaxDistance, DestinationMinDistance, DestinationAvgDistance|
+|Model01-03|ARPElevation, LandAreaCoveredByAirport|
+|Model01-04|Region|
+|Model01-05|Region, State|
+|Model01-06|State, OriginCount, DestinationCount, ARPElevation, LandAreaCoveredByAirport|
+
 
 ### Model Description
 
-TODO
+The models can be described as follows.
 
-<!--
-After testing, the data analyst runs the modeling tool on the prepared data set to create one or more models.
--->
+| Model name   | Description                      |
+|:-------------|:--------------------------------|
+|Model01-01| TODO |
+|Model01-02| TODO |
+|Model01-03| TODO |
+|Model01-04| TODO |
+|Model01-05| TODO |
+|Model01-06| TODO |
+
