@@ -10,11 +10,9 @@ output:
 \setmonofont{Courier New}
 \setmainfont{Courier New}
 
-```{r 450-ModelAssessment, results='asis'}
+```{r 450-ModelAssessment}
 
 dataDir <- getDataDir()
-
-cat("Something-something-something\n\n")
 
 
 RDSFileName <- "10_Model_01_01.rds"
@@ -67,9 +65,7 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-
 model01 <- readRDS(file = RDSFile)
-
 summary(model01)
 cat("\n\n")
 
