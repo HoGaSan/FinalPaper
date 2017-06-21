@@ -7,14 +7,22 @@ output:
 
 ### Model Assessment
 
+All the linear regression models will be assessed using the following criteria:
+
+| Criteria              | Description                            |
+|:----------------------|:---------------------------------------|
+|Residuals|The expectation is that the residuals have a normal distribution, with a Median value close to 0.|
+|Significance markings|A very low p-value is indicated as "***", while a " " is considered a high p-value. A lower p-value indicates that it's more unlikely that there is no relationship between the outcome and the predictor variable.|
+|Standard error of the coefficient estimate|this value is measuring the variability in the coefficient estimate. The value is relative to the coefficient estimate, in general lower is better.|
+|p-value|The predictor variable probability of being not relevant. Lower value is better, since it means that the predictor is relevant.|
+|R-squared|It's the numeric representation of how well is the model fitting the data. In general higher is better, indicating a good correlation, but this does not mean causation.|
+
+#### Model01-01 Assessment
+
 \setmonofont{Courier New}
 \setmainfont{Courier New}
-
-```{r 450-ModelAssessment}
-
+```{r 450-ModelAssessment-01}
 dataDir <- getDataDir()
-
-
 RDSFileName <- "10_Model_01_01.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -23,7 +31,18 @@ RDSFile <- paste(dataDir,
 model01 <- readRDS(file = RDSFile)
 summary(model01)
 cat("\n\n")
+```
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
 
+While the residuals seem to have a quite normal distribution none of the predictors is significant for the outcome. This model is not good, the remaining criteria do not need to be evaluated.
+
+#### Model01-02 Assessment
+
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+```{r 450-ModelAssessment-02}
+dataDir <- getDataDir()
 RDSFileName <- "10_Model_01_02.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -32,7 +51,18 @@ RDSFile <- paste(dataDir,
 model01 <- readRDS(file = RDSFile)
 summary(model01)
 cat("\n\n")
+```
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
 
+In the second model the residuals are not distributed normally and even though the predictor significance got a little bit better, the model is still not acceptable. Just like in the previous case, the remaining criteria do not need to be evaluated.
+
+#### Model01-03 Assessment
+
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+```{r 450-ModelAssessment-03}
+dataDir <- getDataDir()
 RDSFileName <- "10_Model_01_03.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -41,7 +71,18 @@ RDSFile <- paste(dataDir,
 model01 <- readRDS(file = RDSFile)
 summary(model01)
 cat("\n\n")
+```
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
 
+While this model has a much better predictor significance, the distribution of the residuals can't be accepted, making the model rejected.
+
+#### Model01-04 Assessment
+
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+```{r 450-ModelAssessment-04}
+dataDir <- getDataDir()
 RDSFileName <- "10_Model_01_04.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -50,7 +91,18 @@ RDSFile <- paste(dataDir,
 model01 <- readRDS(file = RDSFile)
 summary(model01)
 cat("\n\n")
+```
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
 
+The forth is the first model where the predictor significance seems to be really good, along with an acceptable level of r-squared values, but I still have to reject the model because of the distribution of the residuals.
+
+#### Model01-05 Assessment
+
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+```{r 450-ModelAssessment-05}
+dataDir <- getDataDir()
 RDSFileName <- "10_Model_01_05.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -59,7 +111,18 @@ RDSFile <- paste(dataDir,
 model01 <- readRDS(file = RDSFile)
 summary(model01)
 cat("\n\n")
+```
+\setmonofont{Times New Roman}
+\setmainfont{Times New Roman}
 
+The fifth model is showing the possibility of a higher significance of the airport location with a quite good residual distribution, but from interpretation point of you it's a bit misleading as well, since the regions and the states are overlapping, making the predictors incorrect from the domain point of view.
+
+#### Model01-06 Assessment
+
+\setmonofont{Courier New}
+\setmainfont{Courier New}
+```{r 450-ModelAssessment-06}
+dataDir <- getDataDir()
 RDSFileName <- "10_Model_01_06.rds"
 RDSFile <- paste(dataDir,
                      "/",
@@ -71,13 +134,12 @@ cat("\n\n")
 
 
   #gvlma(model01)
-  #cat("\n\n\n")
-
 ```
-
 \setmonofont{Times New Roman}
 \setmainfont{Times New Roman}
 
+I consider the sixth and final model the best logistic regression model, as it has a quite normal residual distribution, very high significance for most of the predictors (some of the predictors are showing a very strong relation to the outcome) with good standard error for the predictors and very high r-squared values.
+The interpretation of the model from the business goal point of view tells, that compared to the outcome variable of the airports in Alaska, the location, the traffic and the elevation of the airport has a significant relation to the number of animal strikes suffered by the aircrafts.
 
 ### Revised Parameter Settings
 
