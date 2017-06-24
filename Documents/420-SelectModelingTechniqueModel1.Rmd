@@ -15,7 +15,9 @@ The data sets I have available are simplifying the situation as they do not cont
 
 ### Modeling Assumptions
 
-Besides the assumptions taken with the standard estimation techniques of the linear regression model I did not take any other modeling related assumption. The assumptions taken are the following:
+Besides the assumptions taken with the standard estimation techniques of the linear regression model I did not take any other modeling related assumption.
+
+These assumptions taken are the following:
 
 1. The outcome variable is a continuous variable
 2. The residuals are statistically independent
@@ -24,4 +26,3 @@ Besides the assumptions taken with the standard estimation techniques of the lin
 5. The variance of the outcome variable is fixed regardless of the predictor variables
 
 The assumptions above are based on the definitions and the descriptions written in the "Mastering Data Analysis with R" book by [@daroczi2015].
-

@@ -21,19 +21,11 @@ loadLibraries <- function() {
   if (!require(grid)) {install.packages("grid"); require(grid)}
   if (!require(maps)) {install.packages("maps"); require(maps)}
   if (!require(mapdata)) {install.packages("mapdata"); require(mapdata)}
-  if (!require(gvlma)) {install.packages("gvlma"); require(gvlma)}
   if (!require(sp)) {install.packages("sp"); require(sp)}
-
+  if (!require(h2o)) {install.packages("h2o"); require(h2o)}
+  
   #update R
   updateR(TRUE)
-  
-
-  #update MiKTeX packages
-  #system("mpm --update --quiet")
-  
-  #require(lattice)
-  #require(ggplot2movies)
-  #require(latticeExtra)
 }
 
 
@@ -66,8 +58,8 @@ versionDetails <- function() {
     "- grid version ", packageVersion("grid"),"\n",
     "- maps version ", packageVersion("maps"),"\n",
     "- mapdata version ", packageVersion("mapdata"),"\n",
-    "- gvlma version ", packageVersion("gvlma"),"\n",
-    "- sp version ", packageVersion("sp"),"\n\n",
+    "- sp version ", packageVersion("sp"),"\n",
+    "- h2o version ", packageVersion("h2o"),"\n\n",
     "Base package versions:\n",
     "- stats version ", packageVersion("stats"),"\n",
     "- graphics version ", packageVersion("graphics"),"\n",
@@ -1385,4 +1377,84 @@ saveModelingHistogramLogPNG <- function(FieldName, DataObject, BinSize) {
   )
   
   setwd(currentWorkingDir)
+}
+
+#' 
+#' \code{saveModelingHistogramLogPNG} saves the required histogram 
+#' 
+#' @param AirlineCode string
+#' The code of the airline
+#' 
+#' @return the airline name in uppercase
+#' 
+#' @examples 
+#' saveModelingHistogramLogPNG("Field", DT, 20)
+#' 
+getAirlineName <- function(AirlineCode) {
+  
+  airlines <- data.table(
+    CarrierCode = c(
+      "9E",
+      "AA",
+      "AQ",
+      "AS",
+      "B6",
+      "CO",
+      "DH",
+      "DL",
+      "EV",
+      "F9",
+      "FL",
+      "HA",
+      "HP",
+      "MQ",
+      "NK",
+      "NW",
+      "OH",
+      "OO",
+      "PA",
+      "TW",
+      "TZ",
+      "UA",
+      "US",
+      "VX",
+      "WN",
+      "XE",
+      "YV",
+      "EA"
+    ),
+    CarrierName = c(
+      "Pinnacle",
+      "American Airlines",
+      "Aloha Airlines",
+      "Alaska Airlines",
+      "JetBlue Airways",
+      "Continental Airlines",
+      "Atlantic Coast Airlines",
+      "Delta Air Lines",
+      "Atlantic Southeast",
+      "Frontier Airlines",
+      "AirTran Airways",
+      "Hawaiian Air",
+      "America West Airlines",
+      "American Eagle Airlines",
+      "Spirit Airlines",
+      "Northwest Airlines",
+      "Comair Airlines",
+      "SkyWest Airlines",
+      "Pan Am",
+      "Trans World Airlines",
+      "ATA Airlines",
+      "United Airlines",
+      "US Airways",
+      "Virgin America",
+      "Southwest Airlines",
+      "ExpressJet Airlines",
+      "Mesa Airlines",
+      "Eastern Airline"
+    )
+  )
+  
+  return(toupper(airlines[CarrierCode == AirlineCode,CarrierName]))
+  
 }

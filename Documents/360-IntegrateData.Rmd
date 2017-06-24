@@ -24,12 +24,6 @@ There are multiple different ways of uniquely identifying an airport. In the US 
 
 \textit{Note: The airports might have identification code from the International Air Transport Association (IATA) and/or the International Civil Aviation Organization (ICAO) and/or Federal Aviation Administration (FAA LID). Some airports have identification codes from all these organizations, some does not. The data acquired from the agencies are using codes from two of the identification code types.}
 
-
-Criteria set for merging the data regarding the second business goal:
-
-* Base data set to be used is the available in the data set obtained from the United States Department of Transportation
-* Marking the flight data with the animal strike information should be based on the date, the airport, the flight number (if available), and the tail number (if available) of the aircraft
-
 Based on the merged data I can visualize the distribution of the animal strikes in the map of the US.
 
 \graphicspath{ {Input/} }
@@ -41,7 +35,22 @@ Based on the merged data I can visualize the distribution of the animal strikes 
 \end{centering}
 
 
-<!--
-Integrating data involves combining information from multiple tables or records to create new records or values. With table-based data, an analyst can join two or more tables that have different information about the same objects. For instance, a retail chain has one table with information about each store’s general characteristics (e.g., floor space, type of mall), another table with summarized sales data (e.g., profit, percent change in sales from previous year), and another table with information about the demographics of the surrounding area. Each of these tables contains one record for each store. These tables can be merged together into a new table with one record for each store, combining fields from the source tables.
-Data integration also covers aggregations. Aggregations refer to operations where new values are computed by summarizing information from multiple records and/or tables. For example, an aggregation could include converting a table of customer purchases, where there is one record for each purchase, into a new table where there is one record for each customer. The table’s fields could include the number of purchases, the average purchase amount, the percent of orders charged to credit cards, the percent of items under promotion, etc.
--->
+Criteria set for merging the data regarding the second business goal:
+
+* Base data set to be used is the available in the data set obtained from the United States Department of Transportation
+* Marking the flight data with the animal strike information should be based on the following list of criteria:
+    + airline / carrier
+    + incident date
+    + airport and state
+    + flight number
+
+Notes:
+
+* The Federal Aviation Administration Wildlife Strike Database is based on the geographical location of the strike. The database contains the strike records regardless of the airline / carrier, meaning that it contain the strike data of international flights as well (508 airlines).
+* The flight performance data from the United States Department of Transportation contains the data only from the major airlines (26 airlines).
+
+The strict criteria for integrating the two main data sets resulted the following actual number of identified strikes in the flight performance data:
+
+|Number of flight records |Number of striked records |Percentage |
+|:------------------------|:-------------------------|:----------|
+|155,432,729|28,740|0.01849%|

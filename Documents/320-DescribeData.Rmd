@@ -55,6 +55,7 @@ The number of details (columns) for each strike report has been reduces from 94 
 |DayOfWeek|Day of Week|
 |FlightDate|Flight Date (yyyymmdd)|
 |Carrier|Code assigned by IATA and commonly used to identify a carrier. As the same code may have been assigned to different carriers over time, the code is not always unique. For analysis, use the Unique Carrier Code.|
+|UniqueCarrier|Unique Carrier Code. When the same code has been used by multiple carriers, a numeric suffix is used for earlier users, for example, PA, PA(1), PA(2). Use this field for analysis across a range of years.|
 |FlightNum|Flight Number|
 |Origin|Origin Airport|
 |OriginCityName|Origin Airport, City Name|

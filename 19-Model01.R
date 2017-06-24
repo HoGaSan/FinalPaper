@@ -257,8 +257,7 @@ BuildModel01 <- function() {
                     State + 
                     OriginCount +
                     DestinationCount +
-                    ARPElevation +
-                    LandAreaCoveredByAirport
+                    ARPElevation
                   , data = modelData)
     
     saveRDS(model06, file = RDSFileM6)

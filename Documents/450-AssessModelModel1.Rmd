@@ -48,8 +48,8 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-model01 <- readRDS(file = RDSFile)
-summary(model01)
+model02 <- readRDS(file = RDSFile)
+summary(model02)
 cat("\n\n")
 ```
 \setmonofont{Times New Roman}
@@ -68,8 +68,8 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-model01 <- readRDS(file = RDSFile)
-summary(model01)
+model03 <- readRDS(file = RDSFile)
+summary(model03)
 cat("\n\n")
 ```
 \setmonofont{Times New Roman}
@@ -88,8 +88,8 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-model01 <- readRDS(file = RDSFile)
-summary(model01)
+model04 <- readRDS(file = RDSFile)
+summary(model04)
 cat("\n\n")
 ```
 \setmonofont{Times New Roman}
@@ -108,8 +108,8 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-model01 <- readRDS(file = RDSFile)
-summary(model01)
+model05 <- readRDS(file = RDSFile)
+summary(model05)
 cat("\n\n")
 ```
 \setmonofont{Times New Roman}
@@ -128,25 +128,18 @@ RDSFile <- paste(dataDir,
                      "/",
                      RDSFileName,
                      sep = "")
-model01 <- readRDS(file = RDSFile)
-summary(model01)
+model06 <- readRDS(file = RDSFile)
+summary(model06)
 cat("\n\n")
 
-
-  #gvlma(model01)
 ```
 \setmonofont{Times New Roman}
 \setmainfont{Times New Roman}
 
 I consider the sixth and final model the best logistic regression model, as it has a quite normal residual distribution, very high significance for most of the predictors (some of the predictors are showing a very strong relation to the outcome) with good standard error for the predictors and very high r-squared values.
-The interpretation of the model from the business goal point of view tells, that compared to the outcome variable of the airports in Alaska, the location, the traffic and the elevation of the airport has a significant relation to the number of animal strikes suffered by the aircrafts.
+
+Taking into account that the model is a log-log model including categorical predictors (meaning that I used the natural log of the outcome and the continous predictor variables along with categorical predictors), the interpretation would go for the traffic originated from the airport as a one percent change in the originated traffic would be expected to have a 0.01518 percent change in the number of strikes is, compared to the number of strikes of Alaska.
 
 ### Revised Parameter Settings
 
 Keeping the modelling task as simple as possible I did not change the parameter settings for the models, instead I've used different predictor combinations to get the best possible statistical model from the data available.
-
-<!--
-The data mining analyst interprets the models according to his or her domain knowledge, the data mining success criteria, and the desired test design. The data mining analyst judges the success of the application of modeling and discovery techniques technically, but he or she should also work with business analysts and domain experts in order to interpret the data mining results in the business context. The data mining analyst may even choose to have the business analyst involved when creating the models for assistance in discovering potential problems with the data.
-For example, a data mining project may test the factors that affect bank account closure. If data is collected at different times of the month, it could cause a significant difference in the account balances of the two data sets collected. (Because individuals tend to get paid at the end of the month, the data collected at that time would reflect higher account balances.) A business analyst familiar with the bank’s operations would note such a discrepancy immediately.
-In this phase, the data mining analyst also tries to rank the models. He or she assesses the models according to the evaluation criteria and takes into account business objectives and business success criteria. In most data mining projects, the data mining analyst applies a single technique more than once or generates data mining results with different alternative techniques. In this task, he or she also compares all results according to the evaluation criteria.
--->

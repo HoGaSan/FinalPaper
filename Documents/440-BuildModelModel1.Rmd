@@ -80,7 +80,7 @@ Taking into account several combinations I've built the following models.
 |Model01-03|ARPElevation, LandAreaCoveredByAirport|
 |Model01-04|Region|
 |Model01-05|Region, State|
-|Model01-06|State, OriginCount, DestinationCount, ARPElevation, LandAreaCoveredByAirport|
+|Model01-06|State, OriginCount, DestinationCount, ARPElevation|
 
 
 ### Model Description

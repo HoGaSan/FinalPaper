@@ -43,7 +43,7 @@ DescribeOnTimeFlightPerformanceDataSet <- function() {
       } else {
 
         #Read the data file into a variable
-        variableName <- paste("AS_", i, sep="")
+        variableName <- paste("FP_", i, sep="")
         assign(variableName, readRDS(file = RDSFile))
         
         #set the required column names
@@ -54,6 +54,7 @@ DescribeOnTimeFlightPerformanceDataSet <- function() {
                          "DayOfWeek",
                          "FlightDate",
                          "Carrier",
+                         "UniqueCarrier",
                          "FlightNum",
                          "Origin",
                          "OriginCityName",
