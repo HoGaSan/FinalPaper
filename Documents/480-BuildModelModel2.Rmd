@@ -7,17 +7,66 @@ output:
 
 ### Parameter Settings
 
-TODO
+The following parameters have been set for the Deep Learning model:
+
+| Parameter name| Parameter value| Description                     |
+|:--------------|:---------------|:--------------------------------|
+|x|All, but the last column|Predictor variables.|
+|y|strikeFlag|Outcome variable.|
+|nfolds|3|The number of subsets used in the cross validation.|
+|activation|Rectifier|The activation function used in the model.|
+|hidden|20,20|The number and size of the hidden layers in the model.|
+|epochs|10|The number of iterations on the training data set.|
+|stopping_rounds|3|Number of rounds taken into account for stopping.|
+|stopping_tolerance|0|The tolerance for stopping.|
+|stopping_metric|AUC|The metric used to decide for stopping.|
+|seed|42|Makes the random selection deterministic, allowing to reproduce the model building.|
+
+Stopping parameters are set in a way that the model building will stop if in 3 consecutive rounds the AUC (Area Under the Curve) metric is improves (increases) by less than 0.1.
+
 
 ### Models
 
-TODO
+The models built have the following variables to work with:
+
+| Variable name   | Type of the variable | Modelling relevance |
+|:----------------|:---------------------|:--------------------|
+|Year|Integer|Predictor|
+|Quarter|Integer|Predictor|
+|Month|Integer|Predictor|
+|DayofMonth|Integer|Predictor|
+|DayOfWeek|Integer|Predictor|
+|FlightDate|Factor|Predictor|
+|UniqueCarrier|String|Predictor|
+|FlightNum|Integer|Predictor|
+|Origin|Factor|Predictor|
+|Dest|Factor|Predictor|
+|DepTimeBlk|Factor|Predictor|
+|ArrTimeBlk|Factor|Predictor|
+|CRSElapsedTime|Number|Predictor|
+|Distance|Number|Predictor|
+|DistanceGroup|Factor|Predictor|
+|strikeFlag|Factor|Outcome|
+
+Based on the model building responses of the H2O package the following variables have been dropped:
+
+| Variable name   | Type of the variable | Modelling relevance |
+|:----------------|:---------------------|:--------------------|
+|Year|Integer|Predictor|
+|UniqueCarrier|String|Predictor|
 
 ### Model Description
 
-TODO
+To check the performance of the model parameters I've built the first model on the data from the year 1990. In this data sub-set I had 5,220,743 records, with only 9 records with strike data.
 
-<!--
-After testing, the data analyst runs the modeling tool on the prepared data set to create one or more models.
--->
+The evaluation of the first model indicated that the most probable reason behind the wrong performance is the lack of data variety with the huge difference ion the data volume. There are multiple ways to overcome on these kind of situations, including to reduce the number of records, and generating additional records. The first resolution works well in a situation when the variety and the volume of the data allows the reducing without significant impact on the results, while the second resolution can be used when the volume of the data is small.
+
+The situation of the data I'm working with requires tho use both reducing and boosting, since the volume of records without strike is overwhelmingly bigger than the records with strikes. So for the second model I've modified the training data to take only the 10% of the non-strike records and add each strike record three times into the data set.
+
+The data manipulation have resulted the following number of data records:
+
+|Number of flight records |Number of striked records |Percentage |
+|:------------------------|:-------------------------|:----------|
+|15,447,169|85,353|0.5525%|
+
 

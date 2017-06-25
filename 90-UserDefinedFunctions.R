@@ -366,6 +366,8 @@ loadSourceCodeFunctions <- function() {
   source("17-DeriveAirportAttributes.R")
   source("18-IntegrateAttributes.R")
   source("19-Model01.R")
+  source("20-Model02.R")
+  source("21-BuildModel02.R")
 }
 
 
@@ -1421,7 +1423,9 @@ getAirlineName <- function(AirlineCode) {
       "WN",
       "XE",
       "YV",
-      "EA"
+      "EA",
+      "ML",
+      "KH"
     ),
     CarrierName = c(
       "Pinnacle",
@@ -1451,7 +1455,9 @@ getAirlineName <- function(AirlineCode) {
       "Southwest Airlines",
       "ExpressJet Airlines",
       "Mesa Airlines",
-      "Eastern Airline"
+      "Eastern Airline",
+      "Midway Airlines",
+      "Aloha Air Cargo"
     )
   )
   

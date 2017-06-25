@@ -7,12 +7,10 @@ output:
 
 ### Modeling Technique
 
-TODO
+Selecting the modelling technique I had to take into account two main restrictions and the business goal of the model. The first restriction was about the variety of the data I had, which was more of a needle in a haystack like data, instead of a nicely balanced data from the outcome point of view. The second restriction was about the volume of the data which made it impossible with the available resources to build the model in one single run. The business goal was to build a prediction mode.
+
+Meeting both restrictions is not a simple task, therefore the modelling techniques I selected is the Deep Learning model provided in H2O, which is a supervised learning method. Since the H2O Deep Learning model is having a huge variety of parameters and can be easily used to retrain the model with new data sets.
 
 ### Modeling Assumptions
 
-TODO
-
-<!--
-This task refers to choosing one or more specific modeling techniques, such as decision tree building with C4.5 or neural network generation with back propagation. If assumptions are attached to the modeling technique, these should be recorded.
--->
+I did not take any modelling related assumption.

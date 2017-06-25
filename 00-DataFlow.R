@@ -45,8 +45,13 @@ source("90-UserDefinedFunctions.R")
   DeriveAirportAttributes()
 #Integrate attributes for model 01 - 18 --> "09_Model_01_Data.rds"
   IntegrateAttributesM1()
-#Integrate attributes for model 02 - 18 --> "10_Model_02_Data.rds"
+#Integrate attributes for model 02 - 18 --> "_05_Mod"
   IntegrateAttributesM2()
+#Build Model 01 - 19 --> "10_Model_01_*"
+  BuildModel01()
+#Build Model 02 - 20 --> "12_Model_02_Data.rds"
+  BuildModel02Data()
+
   
 regeneratePlots()
 backupFiles()

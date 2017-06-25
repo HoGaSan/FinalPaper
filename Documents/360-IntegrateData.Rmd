@@ -46,8 +46,8 @@ Criteria set for merging the data regarding the second business goal:
 
 Notes:
 
-* The Federal Aviation Administration Wildlife Strike Database is based on the geographical location of the strike. The database contains the strike records regardless of the airline / carrier, meaning that it contain the strike data of international flights as well (508 airlines).
-* The flight performance data from the United States Department of Transportation contains the data only from the major airlines (26 airlines).
+* The Federal Aviation Administration Wildlife Strike Database is based on the geographical location of the strike. The database contains the strike records regardless of the airline / carrier, meaning that it contain the strike data of international flights as well.
+* The flight performance data from the United States Department of Transportation contains the data only from the major airlines.
 
 The strict criteria for integrating the two main data sets resulted the following actual number of identified strikes in the flight performance data:
 

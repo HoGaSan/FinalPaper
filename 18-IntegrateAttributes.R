@@ -377,17 +377,19 @@ IntegrateAttributesM2 <- function() {
                                          sep = "_")]
       
       
-      #Resetting the factors of the data tables
-      strikeDataSet[] <- 
-        lapply(strikeDataSet,
-               function(x) if(is.factor(x)) factor(x) else x)
-      
       #Setting the flag for the modelling
       flightDataSet[,strikeFlag := 0]
       flightDataSet[mergeKeyD %in% strikeDataSet$mergeKeyD,
                     strikeFlag := 1]
       flightDataSet[mergeKeyO %in% strikeDataSet$mergeKeyO,
                     strikeFlag := 1]
+      flightDataSet$strikeFlag <- as.factor(flightDataSet$strikeFlag)
+      
+      #Resetting the factors of the data tables
+      strikeDataSet[] <- 
+        lapply(strikeDataSet,
+               function(x) if(is.factor(x)) factor(x) else x)
+      
       
       #set the required column names
       ColumnNames <- c("Year",
@@ -430,10 +432,8 @@ IntegrateAttributesM2 <- function() {
                              sep = "")
       
       saveRDS(flightDataSet, file = RDSModel02File)
-      
 
-      
-      #TODO: memory cleanup
+      #memory cleanup
       rm(strikeDataSet)
       rm(flightDataSet)
       gc()
