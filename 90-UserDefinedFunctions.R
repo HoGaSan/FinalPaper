@@ -368,6 +368,7 @@ loadSourceCodeFunctions <- function() {
   source("19-Model01.R")
   source("20-Model02.R")
   source("21-BuildModel02.R")
+  source("22-BuildPresentation.R")
 }
 
 

@@ -7,13 +7,10 @@ output:
 
 ### Assessment of Data Mining Result with Business Success Criteria
 
-TODO
+The regressions and the models built and assessed shows that even with a quite limited and noisy data some level or certainty can be reached, but all these results needs to be used with caution.
+
+Meaning that I was able to show that based on the data available some properties of airports could be identified having a significant effect on the number of animal strikes, and even for individual flights a prediction can be given for the strike, but there real world is much more complex, than the regressions and predictions build in this pet project.
 
 ### Approved Models
 
 As already mentioned in the initial resource plan, this final paper is a pet project, therefore the results of the project will never be put into a real production environment, meaning that no approval is required for any of the models created during the project.
-
-<!--
-Previous evaluation steps dealt with factors such as the accuracy and generality of the model. This step assesses the degree to which the model meets the business objectives and determines if there is some business reason why this model is deficient. Another option here is to test the model(s) on real-world applications— if time and budget constraints permit. Moreover, evaluation also seeks to unveil additional challenges, information, or hints for future directions.
-At this stage, the data analyst summarizes the assessment results in terms of business success criteria, including a final statement about whether the project already meets the initial business objectives.
--->

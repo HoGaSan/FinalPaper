@@ -12,7 +12,3 @@ As already mentioned in the initial resource plan, this final paper is a pet pro
 ### Decision
 
 As already mentioned in the initial resource plan, this final paper is a pet project, therefore the results of the project will never be put into a real production environment, meaning that no decisions are expected based on the results of the project.
-
-<!--
-At this stage, the project leader must decide whether to finish this project and move on to deployment or whether to initiate further iterations or set up new data mining projects.
--->

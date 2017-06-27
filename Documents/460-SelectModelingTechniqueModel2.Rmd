@@ -7,9 +7,9 @@ output:
 
 ### Modeling Technique
 
-Selecting the modelling technique I had to take into account two main restrictions and the business goal of the model. The first restriction was about the variety of the data I had, which was more of a needle in a haystack like data, instead of a nicely balanced data from the outcome point of view. The second restriction was about the volume of the data which made it impossible with the available resources to build the model in one single run. The business goal was to build a prediction mode.
+Selecting the modelling technique I had to take into account two main restrictions and the business goal of the model. The first restriction was about the variety of the data I had, which was more of a needle in a haystack like data, instead of a nicely balanced data from the outcome point of view. The second restriction was about the volume of the data which made it impossible with the available resources to build the model in one single run. Additionally the main business goal was to build a prediction mode, so I had to select a model type fitting all these restrictions.
 
-Meeting both restrictions is not a simple task, therefore the modelling techniques I selected is the Deep Learning model provided in H2O, which is a supervised learning method. Since the H2O Deep Learning model is having a huge variety of parameters and can be easily used to retrain the model with new data sets.
+The modelling techniques I selected is the Gradient Boosting Machine (GBM) provided as one of the supervised algorithm in the H2O platform. The GBM technique can be used for both regression and classification models using forward learning ensemble method by building regression trees for all the predictors in the training data set. The H2O platform implementation is having a huge variety of parameters and can be easily used for a wide variety of model building exercises.
 
 ### Modeling Assumptions
 

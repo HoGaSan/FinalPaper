@@ -25,7 +25,13 @@ BuildModel02 <- function() {
     trainData <- readRDS(file = RDSFile)
 
     #start H2O
-    h2o.init()
+    h2o.init(
+      nthreads=-1,
+      max_mem_size = "5G"
+    )
+    
+    #clenaup the cluster
+    h2o.removeAll()
     
     #upload the data to H2O
     trainDataH2O <- as.h2o(trainData)
@@ -34,63 +40,103 @@ BuildModel02 <- function() {
     rm(trainData)
     gc()
     
+    #create test and train sets
+    splits <- h2o.splitFrame(
+      trainDataH2O,
+      c(0.6,0.2),
+      seed=42)
+    
+    #data sets
+    trainH2O <- h2o.assign(splits[[1]], "train.hex")   
+    validH2O <- h2o.assign(splits[[2]], "valid.hex")
+    testH2O <- h2o.assign(splits[[3]], "test.hex")
+    
+    #train the initial model
+    trainedModelInit <- h2o.gbm(
+      training_frame = trainH2O,
+      validation_frame = validH2O,
+      x=1:15,
+      y=16,
+      seed = 42)
+    
+    #summary(trainedModelInit)
+    
+    ColumnNames <- c("Quarter",
+                     "Month",
+                     "DayofMonth",
+                     "DayOfWeek",
+                     "UniqueCarrier",
+                     "FlightNum",
+                     "Origin",
+                     "Dest",
+                     "DepTimeBlk",
+                     "ArrTimeBlk",
+                     "CRSElapsedTime",
+                     "Distance",
+                     "DistanceGroup")
+    
     #train the model
-    trainedModel <- h2o.deeplearning(x = 1:(ncol(trainDataH2O)-1),
-                                     y = "strikeFlag",
-                                     training_frame = trainDataH2O,
-                                     nfolds = 3,
-                                     activation = "Rectifier",
-                                     hidden = c(20,20),
-                                     epochs = 10,
-                                     stopping_rounds = 3,
-                                     stopping_tolerance = 0.1,
-                                     stopping_metric = "AUC",
-                                     seed=42)
-    
+    trainedModel <- h2o.gbm(
+      training_frame = trainH2O,
+      validation_frame = validH2O,
+      x = ColumnNames,
+      y = 16,
+      ntrees = 200,
+      learn_rate = 0.2,
+      max_depth = 10,
+      stopping_rounds = 2,
+      stopping_metric = "logloss",
+      stopping_tolerance = 0.01,
+      score_each_iteration = T,
+      seed = 42)
+
+    #summary(trainedModel)
+
     #save the model
-    model_path <- h2o.saveModel(object=trainedModel, path=getDataDir(), force=TRUE)
+    model_path_init <- 
+      h2o.saveModel(object=trainedModelInit, 
+                    path=getDataDir(), 
+                    force=TRUE)
+    RDSFileName <- "13_Model_02_Path_Init.rds"
+    RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+    saveRDS(model_path_init, file = RDSFile)
     
     
-    #Get AUC value
-    #modelAUC <- h2o.auc(trainedModel)
+    model_path <- 
+      h2o.saveModel(object=trainedModel, 
+                    path=getDataDir(), 
+                    force=TRUE)
+    RDSFileName <- "14_Model_02_Path.rds"
+    RDSFile <- paste(dataDir,
+                     "/",
+                     RDSFileName,
+                     sep = "")
+    saveRDS(model_path, file = RDSFile)
+
     
-    #Get model performance values
-    #modelPerf <- h2o.performance(trainedModel)
-    
-    #Get TPR and FPR from the metrics
-    # modelMetrics <- dt[,c("fpr","tpr"),with=FALSE]
-    # 
-    # if (modelMetrics[,.N]==1) {
-    #   modelMetrics <- rbind(modelMetrics, list(0, 0))
-    # }
-    
-    # plot2 <- ggplot(modelMetrics, aes(x=fpr, y=tpr, group=1)) + 
-    #   labs(title="AUC", x="", y="") + 
-    #   annotate("text", x=0.5, y= 0.5 ,label=as.character(round(modelAUC,4)),size = 15) +
-    #   theme(axis.line=element_blank(),axis.text.x=element_blank(),axis.text.y=element_blank(),axis.ticks=element_blank(),axis.title.x=element_blank(),
-    #         axis.title.y=element_blank(),legend.position="none",panel.background=element_blank(),panel.border=element_blank(),
-    #         panel.grid.major=element_blank(),panel.grid.minor=element_blank(),plot.background=element_blank())
-    
-    
-    # pokerTrainH2O_MD_NN5050_CM <- h2o.confusionMatrix(pokerTrainH2O_MD_NN5050)
-    # kable(pokerTrainH2O_MD_NN5050_CM, format = "markdown")
-    #?h2o.removeAll()
-    
-    #scoring a model:
-    #scores <- h2o.predict(model_random_forest, test_data)
+    #load the model
+    # #RDSFileName <- "13_Model_02_Path_Init.rds"
+    # #RDSFileName <- "14_Model_02_Path.rds"
+    # RDSFile <- paste(dataDir,
+    #                  "/",
+    #                  RDSFileName,
+    #                  sep = "")
+    # model_path <- readRDS(file = RDSFile)
+    # saved_model <- h2o.loadModel(model_path)
     
     
-    # load the model
-    #saved_model <- h2o.loadModel(model_path)
+    #final scoring
+    # perf <- 
+    #   h2o.performance(model = saved_model,
+    #                   newdata = testH2O)
     
-    #free memory
-    #rm(trainData)
-    #rm(trainDataH2O)
+    #create the confusion matrix for the scored data
+    # h2o.confusionMatrix(perf)
     
-    #h2o.shutdown(prompt = FALSE)
-    
-    
-    #free memory
+    h2o.shutdown(prompt = FALSE)
 
   } # end of "if (file.exists(RDSModelFile) != TRUE)"
 

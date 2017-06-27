@@ -7,4 +7,4 @@ output:
 
 ### Test Design
 
-The data sets contain data for all the years between 1990 and 2015, and contain data for part of 2016. This gies my the opportunity to use the data from 2016 as the test data, while all the other data can be used as the train data for the model.
+The most efficient way of assessing the model would be to use a subset of the data set which was not used for training and for testing the model during the model building. Therefore I've split the data set to three sub-sets, containing 60% of the records for the training, 20% of the records for validating the model during the model building and 20% of the records for scoring the built model.

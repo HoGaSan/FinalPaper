@@ -13,6 +13,7 @@ The R language provides quite a lot of possibilities for setting different param
 
 Before building any model I checked the type and in the relevant cases the distribution of the variables (for the outcome and for the predictor variables as well). The following table shows the type of the variables I've used in the model building:
 
+
 | Variable name   | Type of the variable | Modelling relevance | Check distribution |
 |:----------------|:---------------------|:--------------------|:-------------------|
 |StrikeNo|Number|Outcome|Yes|

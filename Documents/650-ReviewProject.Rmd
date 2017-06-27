@@ -7,20 +7,10 @@ output:
 
 ### Experience Documentation
 
-TODO
+The most remarkable remark is, that the use of the CRISP-DM process model helps covering all the aspects with ease of a data mining engagement. but of course there were several less significant observations as well, like:
 
-<!--
-
-As it turned out during the project the following issues 
-
-List of issues found during the project:
-
-* Data quality issues
-the flight data does not contain all the flights in the given timeframe. expectation was that all the data is available, but it's not.
-
--->
-
-
-<!--
-The data analyst should assess failures and successes as well as potential areas of improvement for use in future projects. This step should include a summary of important experiences during the project and can include interviews with the significant project participants. This document could include pitfalls, misleading approaches, or hints for selecting the best-suited data mining techniques in similar situations. In ideal projects, experience documentation also covers any reports written by individual project members during the project phases and tasks.
--->
+* The quality of the date is rather bad in case it's based on voluntary manual reporting.
+* The integration of different data sources might be more complex than the cleaning and exploring those data sets involved.
+* Having data from goverment agencies (even if it's the same agency, but different office) can have notable quality differences.
+* Using open source and freely available tools (including model building platforms as well) can give you the false sence of security when it comes to code quality (and hidden bugs).
+* Never-ever underestimate the amunt of work required to clean, format and integrate the data.

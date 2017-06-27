@@ -7,15 +7,15 @@ output:
 
 
 * Aviation:
-    +  Aviation Terms / Directory: [http://www.aviation-terms.com/index2.php](http://www.aviation-terms.com/index2.php)
-    +  Aviation Glossary: [http://www.aerofiles.com/glossary.html](http://www.aerofiles.com/glossary.html)
-    +  Aviation Glossaries: [https://www.flightsimaviation.com/_glossaries.html?s=aviation_terms](https://www.flightsimaviation.com/_glossaries.html?s=aviation_terms)
+    +  [Aviation Terms / Directory](http://www.aviation-terms.com/index2.php)
+    +  [Aviation Glossary](http://www.aerofiles.com/glossary.html)
+    +  [Aviation Glossaries](https://www.flightsimaviation.com/_glossaries.html?s=aviation_terms)
 * Data Mining
-    +  Data Mining Glossary: [http://www.thearling.com/glossary.htm](http://www.thearling.com/glossary.htm)
-    +  Data Mining - Terminologies: [https://www.tutorialspoint.com/data_mining/dm_terminologies.htm](https://www.tutorialspoint.com/data_mining/dm_terminologies.htm)
-    +  Data Mining and Predictive Analytics Glossary: [http://www.kdnuggets.com/2015/06/data-mining-predictive-analytics-glossary.html](http://www.kdnuggets.com/2015/06/data-mining-predictive-analytics-glossary.html)
+    +  [Data Mining Glossary](http://www.thearling.com/glossary.htm)
+    +  [Data Mining - Terminologies](https://www.tutorialspoint.com/data_mining/dm_terminologies.htm)
+    +  [Data Mining and Predictive Analytics Glossary](http://www.kdnuggets.com/2015/06/data-mining-predictive-analytics-glossary.html)
 * Data Science / Big Data
-    +  Data Science Glossary: [http://www.datascienceglossary.org/](http://www.datascienceglossary.org/)
-    +  Analytics and Big Data Glossary: [http://data-informed.com/glossary-of-big-data-terms/](http://data-informed.com/glossary-of-big-data-terms/)
-    +  Data Science Glossary: [http://www.kdnuggets.com/2015/09/data-science-glossary.html](http://www.kdnuggets.com/2015/09/data-science-glossary.html)
+    +  [Data Science Glossary](http://www.datascienceglossary.org/)
+    +  [Analytics and Big Data Glossary](http://data-informed.com/glossary-of-big-data-terms/)
+    +  [Data Science Glossary](http://www.kdnuggets.com/2015/09/data-science-glossary.html)
 

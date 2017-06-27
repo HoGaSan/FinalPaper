@@ -7,8 +7,5 @@ output:
 
 ### Review of Process
 
-TODO
+The data analysis and the model building exercises done during this project showed, that - even with a significant experience on these fields - the data can easily contradict any initial assumption made.
 
-<!--
-It is now appropriate to do a more thorough review of the data mining engagement to determine if there is any important factor or task that has somehow been overlooked. This review also covers quality assurance issues (e.g., did we correctly build the model? Did we only use allowable attributes that are available for future deployment?).
--->

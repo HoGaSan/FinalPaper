@@ -49,9 +49,10 @@ source("90-UserDefinedFunctions.R")
   IntegrateAttributesM2()
 #Build Model 01 - 19 --> "10_Model_01_*"
   BuildModel01()
-#Build Model 02 - 20 --> "12_Model_02_Data.rds"
+#Build Model Data 02 - 20 --> "12_Model_02_Data.rds"
   BuildModel02Data()
-
+#Build Model 02 - 21
+  BuildModel02()
   
 regeneratePlots()
 backupFiles()

@@ -7,61 +7,58 @@ output:
 
 ### Parameter Settings
 
-The following parameters have been set for the Deep Learning model:
+The following parameters have been set for the GBM model:
 
-| Parameter name| Parameter value| Description                     |
-|:--------------|:---------------|:--------------------------------|
-|x|All, but the last column|Predictor variables.|
-|y|strikeFlag|Outcome variable.|
-|nfolds|3|The number of subsets used in the cross validation.|
-|activation|Rectifier|The activation function used in the model.|
-|hidden|20,20|The number and size of the hidden layers in the model.|
-|epochs|10|The number of iterations on the training data set.|
-|stopping_rounds|3|Number of rounds taken into account for stopping.|
-|stopping_tolerance|0|The tolerance for stopping.|
-|stopping_metric|AUC|The metric used to decide for stopping.|
-|seed|42|Makes the random selection deterministic, allowing to reproduce the model building.|
+| Parameter name|Description                         |Initial|Final|
+|:-----------|:--------------------------------------|:-----:|:---:|
+|x|Specify the columns to use as the predictor variables.|X|X|
+|y|Specify the column to use as the outcome variable.|X|X|
+|training_frame|Specify the data set used to build the model.|X|X|
+|validation_frame|Specify the data set used to evaluate the accuracy of the model.|X|X|
+|ntrees|Specify the number of trees to build.| |X|
+|learn_rate|Specify the learning rate.| |X|
+|max_depth|Specify the maximum tree depth.| |X|
+|stopping_rounds|Stops training when the option selected for stopping_metric doesn’t improve for the specified number of training rounds, based on a simple moving average.| |X|
+|stopping_metric|Specify the metric to use for early stopping.| |X|
+|stopping_tolerance|Specify the relative tolerance for the metric-based stopping to stop training if the improvement is less than this value.| |X|
+|score_each_iteration|Specify whether to score during each iteration of the model training.| |X|
+|seed|Specify the random number generator (RNG) seed for algorithm components dependent on randomization.| |X|
 
-Stopping parameters are set in a way that the model building will stop if in 3 consecutive rounds the AUC (Area Under the Curve) metric is improves (increases) by less than 0.1.
-
+Stopping parameters are defined to avoid unnecessary iterations without significant precision gain.
 
 ### Models
 
-The models built have the following variables to work with:
+I've built two model using different parameters (see the used parameters in the table above), first an initial model so that I could do a quick evaluation on the data and the model statistics, and secondly a final model using more parameters fine tuned to create a more precise result.
 
-| Variable name   | Type of the variable | Modelling relevance |
-|:----------------|:---------------------|:--------------------|
-|Year|Integer|Predictor|
-|Quarter|Integer|Predictor|
-|Month|Integer|Predictor|
-|DayofMonth|Integer|Predictor|
-|DayOfWeek|Integer|Predictor|
-|FlightDate|Factor|Predictor|
-|UniqueCarrier|String|Predictor|
-|FlightNum|Integer|Predictor|
-|Origin|Factor|Predictor|
-|Dest|Factor|Predictor|
-|DepTimeBlk|Factor|Predictor|
-|ArrTimeBlk|Factor|Predictor|
-|CRSElapsedTime|Number|Predictor|
-|Distance|Number|Predictor|
-|DistanceGroup|Factor|Predictor|
-|strikeFlag|Factor|Outcome|
+Based on the initial results the models have been built using different predictors, to keep the importance of the predictors in the final model in a reasonable level. The variables used in the models are the following:
 
-Based on the model building responses of the H2O package the following variables have been dropped:
+| Variable name   | Type of the variable | Modelling relevance |Initial|Final|
+|:----------------|:--------------------:|:-------------------:|:-----:|:---:|
+|Year|Integer|Predictor|X| |
+|Quarter|Integer|Predictor|X|X|
+|Month|Integer|Predictor|X|X|
+|DayofMonth|Integer|Predictor|X|X|
+|DayOfWeek|Integer|Predictor|X|X|
+|FlightDate|Factor|Predictor|X| |
+|UniqueCarrier|String|Predictor|X|X|
+|FlightNum|Integer|Predictor|X|X|
+|Origin|Factor|Predictor|X|X|
+|Dest|Factor|Predictor|X|X|
+|DepTimeBlk|Factor|Predictor|X|X|
+|ArrTimeBlk|Factor|Predictor|X|X|
+|CRSElapsedTime|Number|Predictor|X|X|
+|Distance|Number|Predictor|X|X|
+|DistanceGroup|Factor|Predictor|X|X|
+|strikeFlag|Factor|Outcome|X|X|
 
-| Variable name   | Type of the variable | Modelling relevance |
-|:----------------|:---------------------|:--------------------|
-|Year|Integer|Predictor|
-|UniqueCarrier|String|Predictor|
 
 ### Model Description
 
 To check the performance of the model parameters I've built the first model on the data from the year 1990. In this data sub-set I had 5,220,743 records, with only 9 records with strike data.
 
-The evaluation of the first model indicated that the most probable reason behind the wrong performance is the lack of data variety with the huge difference ion the data volume. There are multiple ways to overcome on these kind of situations, including to reduce the number of records, and generating additional records. The first resolution works well in a situation when the variety and the volume of the data allows the reducing without significant impact on the results, while the second resolution can be used when the volume of the data is small.
+The evaluation of the first model indicated that the most probable reason behind the wrong performance is the lack of data variety with the huge difference in the data volume. There are multiple ways to overcome on these kind of situations. These techniques usually try to balance the outcome variable variety with reducing the number of records and/or generating additional records. Reducing the number of records works well in a situation when the variety and the volume of the data allows the reducing without significant impact on the results, while generating additional records can be used when the volume of the data is too small.
 
-The situation of the data I'm working with requires tho use both reducing and boosting, since the volume of records without strike is overwhelmingly bigger than the records with strikes. So for the second model I've modified the training data to take only the 10% of the non-strike records and add each strike record three times into the data set.
+The situation of the data I'm working with requires to use both the reducing and generating/boosting, since the volume of records without strike is overwhelmingly bigger than the records with strikes. So for the second model I've modified the training data to take only the 10% of the non-strike records and add each strike record three times into the data set.
 
 The data manipulation have resulted the following number of data records:
 
